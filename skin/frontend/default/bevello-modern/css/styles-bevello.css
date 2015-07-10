@@ -1,0 +1,853 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+/* Default Styles and Resets */
+body { background: #FFFFFF; color: #777777; font: 13px/18px Helvetica, Arial, sans-serif; margin: 0px; padding: 0px; }
+img { border: none; vertical-align: top; }
+a { color: #333333; text-decoration: underline; }
+a:hover { text-decoration: none; }
+:focus { outline: 0; }
+h1 { color: #333333; font: normal 25px/25px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; margin: 0px; padding: 0px; text-transform: lowercase; }
+h2 { color: #555555; font: normal 20px/20px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; margin: 20px 0px 0px 0px; padding: 0px; text-transform: lowercase; }
+ul { list-style: disc; }
+.clear { clear: both; }
+.no-height { height: 0px; overflow: hidden; }
+.slanted {
+	transform: skew(350deg,0deg);
+	-ms-transform: skew(350deg,0deg); /* IE 9 & Only IE 9 */
+	-webkit-transform: skew(350deg,0deg); /* Safari and Chrome */
+	-o-transform: skew(350deg,0deg); /* Opera */
+	-moz-transform: skew(350deg,0deg); /* Firefox */
+}
+div.page-title h1 {
+	transform: skew(350deg,0deg);
+	-ms-transform: skew(350deg,0deg); /* IE 9 & Only IE 9 */
+	-webkit-transform: skew(350deg,0deg); /* Safari and Chrome */
+	-o-transform: skew(350deg,0deg); /* Opera */
+	-moz-transform: skew(350deg,0deg); /* Firefox */
+}	
+
+
+/* Styles for:  Page Layouts */
+.main-container { background: #FFFFFF url(../images/background-wood-grain.jpg) 0px 0px repeat-x; position: relative; z-index: 1; }
+.main { margin: 0px auto; min-height: 350px;  padding: 30px 0px 50px 0px; width: 960px; }
+/* Base Columns */
+.col-left { float:left; width:220px; padding:0 0 1px; }
+.col-main { float:left; width:686px; padding:0 0 1px; }
+.col-right { float:right; width:220px; padding:0 0 1px; }
+/* Column Layout - 1 Column */
+.col1-layout .main {  padding-top: 35px; width: 972px; }
+.col1-layout .col-main { float:none; width:auto; }
+.col1-layout .content-area-top { background: url(../images/background-content-area-caps-sprite.png) 0px 0px no-repeat; height: 9px; overflow: hidden; }
+.col1-layout .content-area-bottom { background: url(../images/background-content-area-caps-sprite.png) 0px -18px no-repeat; height: 9px; overflow: hidden; }
+.col1-layout .content-area { background: url(../images/background-content-area-middle.png) 0px 0px repeat-y; }
+.col1-layout .content-area .content-area-padding { margin: 0px auto; width: 940px; }
+/* Column Layout - 2 Column */
+.col2-left-layout .main { padding-top: 35px; width: 972px; }
+.col2-left-layout .col-main { float: right; width: 700px; }
+.col2-left-layout .content-area-top { background: url(../images/background-content-area-caps-sprite.png) 0px 0px no-repeat; height: 9px; overflow: hidden; }
+.col2-left-layout .content-area-bottom { background: url(../images/background-content-area-caps-sprite.png) 0px -18px no-repeat; height: 9px; overflow: hidden; }
+.col2-left-layout .content-area { background: url(../images/background-content-area-middle.png) 0px 0px repeat-y; }
+.col2-left-layout .content-area .content-area-padding { margin: 0px auto; width: 940px; }
+.col2-right-layout .col-main {}
+
+
+/* Styles for:  Header Container */
+.header-container { border-top: solid #000000 2px; border-bottom: solid #CCCCCC 1px; height: 107px; position: relative; z-index: 2; }
+.header-container .header-wrapper { margin: 0px auto; position: relative; width: 960px; }
+.header-container .logo { background: url(../images/logo-bevello.png) 0px 0px no-repeat; cursor: pointer; display: block; height: 49px; left: 0px; overflow: hidden; position: absolute; text-indent: -999px; top: 25px; width: 207px; }
+.header-container .free-shipping { background: #F6F6F6; border: solid #E9E9E9 1px; color: #333333; font: normal 12px/18px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; height: 20px; padding: 0px 15px;  position: absolute; right: 0px; text-transform: lowercase; top: 37px; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
+.header-container .utility-menu { position: absolute; right: 0px; top: 7px; }
+.header-container .utility-menu ul.links { float: left; list-style: none; margin: 0px 20px 0px 0px; padding: 0px; }
+.header-container .utility-menu ul.links li { font: normal 13px/25px "Trebuchet MS", Arial, Helvetica, sans-serif; float: left; margin-left: 20px; text-transform: lowercase; }
+.header-container .utility-menu ul.links li a { color: #B0B0B0; text-decoration: none; }
+.header-container .utility-menu ul.links li a:hover { color: #666666; }
+.header-container .utility-menu ul.links span.shopping-cart-qty { background: #BBBBBB; color: #FFFFFF; display: inline-block; font-size: 10px; height: 16px; line-height: 16px; margin-left: 6px; padding: 0px 5px; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+.header-container .utility-menu .top-bar { float: left; }
+.header-container .utility-menu .top-bar .breadcrumbs { display: none; }
+.header-container .utility-menu .top-bar form#search_mini_form { margin: 0px; padding: 0px; }
+.header-container .utility-menu .top-bar form#search_mini_form .structure { background: url(../images/background-search-form-sprite.png) 0px 0px no-repeat; float: left; height: 25px; overflow: hidden; }
+.header-container .utility-menu .top-bar form#search_mini_form .cap-left { background-position: 0px 0px; display: inline-block; width: 12px; }
+.header-container .utility-menu .top-bar form#search_mini_form .cap-right { background-position: -18px 0px; display: inline-block; width: 12px; }
+.header-container .utility-menu .top-bar form#search_mini_form .middle { background-position: 0px -30px; background-repeat: repeat-x; display: block; padding-top: 1px; }
+.header-container .utility-menu .top-bar form#search_mini_form input#search { border: 0px; height: 23px; color: #AAAAAA; font: italic 13px/23px "Times New Roman", Times, serif; margin: 0px; outline: none; padding: 0px 6px 0px 2px; width: 230px; }
+.header-container .utility-menu .top-bar form#search_mini_form input.button { background: url(../images/background-search-form-sprite.png) 0px -60px no-repeat; border: 0px; cursor: pointer; display: inline-block; height: 15px; outline: none; overflow: hidden; text-indent: -500px; width: 15px; }
+.header-container .social-media { position: absolute; right: 15px; top: 40px; }
+.header-container .social-media ul { list-style: none; margin: 0px; padding: 0px; }
+.header-container .social-media ul li { display: inline; float: left; margin-left: 10px; }
+.header-container .social-media ul li a { background: url(../images/background-general-sprite.png) 0px 0px no-repeat; display: block; height: 16px; overflow: hidden; text-indent: -500px; width: 16px; }
+.header-container .social-media ul li a.facebook { background-position: 0px 0px; }
+.header-container .social-media ul li a.facebook:hover { background-position: 0px -26px; }
+.header-container .social-media ul li a.twitter { background-position: -26px 0px; }
+.header-container .social-media ul li a.twitter:hover { background-position: -26px -26px; }
+.header-container .social-media ul li a.email { background-position: -52px 0px; }
+.header-container .social-media ul li a.email:hover { background-position: -52px -26px; }
+.header-container .social-media ul li a.blog { background-position: -78px 0px; }
+.header-container .social-media ul li a.blog:hover { background-position: -78px -26px; }
+.header-container .primary-menu { position: absolute; right: 0px; top: 67px; }
+.header-container .primary-menu ul#nav { font: normal 15px/15px "Trebuchet MS", Arial, Helvetica, sans-serif; list-style: none; margin: 0px; padding: 0px; text-transform: lowercase; }
+.header-container .primary-menu ul#nav li { display: inline; float: left; position: relative; text-align: left;	}
+.header-container .primary-menu ul#nav li.over { z-index: 5000; }
+.header-container .primary-menu ul#nav li a { background: url(../images/background-main-nav-gradiant.png) 0px -100px repeat-x; color: #545454; display: inline-block; height: 40px; line-height: 40px; padding: 0px 13px; text-decoration: none; }
+.header-container .primary-menu ul#nav li a:hover { background-position: 0px 0px; color: #333333; }
+.header-container .primary-menu ul#nav li.over a { background-position: 0px 0px; color: #333333; }
+.header-container .primary-menu ul#nav li.active a { background-position: 0px 0px; color: #333333; }
+.header-container .primary-menu ul#nav li ul { list-style: none; margin: 0px; padding: 0px; position: absolute; right: 10000px; top: 40px; width: 175px; }
+.header-container .primary-menu ul#nav li.over ul { right: 0px; }
+.header-container .primary-menu ul#nav li ul li { display: block; float: none; }
+.header-container .primary-menu ul#nav li ul li a { background: url(../images/background-main-nav-dropdown.png) 0px 0px repeat; color: #777777 !important; display: block; font: normal 13px/30px "Trebuchet MS", Arial, Helvetica, sans-serif; height: 30px; text-align: right; }
+.header-container .primary-menu ul#nav li ul li a:hover { background: #FFFFFF; color: #333333 !important; }
+.header-container .beta-box { left: 0px; position: absolute; top: -107px; }
+.header-container .beta-box div.content { background: #DDDDDD; color: #666666; font: normal 12px/16px Helvetica, Arial, sans-serif; height: 107px; visibility: hidden; width: 550px; z-index: 1; }
+.header-container .beta-box div.content .padding { padding: 12px 15px 0px 15px; }
+.header-container .beta-box div.content div.title { color: #555555; font-weight: bold; }
+.header-container .beta-box div.button { background: #DDDDDD; color: #555555; cursor: pointer; display: inline-block; font: normal 10px/16px Helvetica, Arial, sans-serif; height: 16px; padding: 0px 6px; z-index: 1; }
+
+
+/* Styles for Custom Notification Slide-out */
+.header-container .status-message { background: url(../images/background-status-message-transparency.png) 0px 0px repeat; color: #CCCCCC; height: 110px; left: 0px; overflow: hidden; position: absolute; top: -112px; width: 100%; z-index: 1; }
+.header-container .status-message .wrapper { margin: 0px auto; position: relative; padding-top: 15px; width: 960px; }
+.header-container .status-message .wrapper .button-close { background: url(../images/background-general-sprite.png) -141px -218px repeat-x; cursor: pointer; display: block; height: 20px; position: absolute; right: 0px; top: 10px; width: 20px; }
+.header-container .status-message .wrapper .button-close:hover { background-position: -141px -241px; }
+.header-container .status-message .title { color: #FFFFFF; font: normal 20px/20px Helvetica, Arial, sans-serif; padding-bottom: 10px; }
+.header-container .status-message ul.messages { list-style: none; margin: 0px; padding: 0px; }
+.header-container .status-message ul.messages li { border-width: 0px !important; font: normal 13px/17px Helvetica, Arial, sans-serif; margin-bottom: 0px !important; padding: 0px !important; }
+.header-container .status-message ul.messages li ul { list-style: disc outside none; margin: 0px; padding: 0px 0px 0px 15px; }
+.header-container .status-message ul.messages li ul li { padding-bottom: 10px; }
+
+
+/* Styles for:  Column Left - Sidebar */
+.col-left { padding: 7px 0px; width: 220px; }
+.col-left .category-wrapper { background: #F9F9F9 url(../images/background-sidebar-gradient.jpg) top left repeat-x; border: solid #EEEEEE 1px; padding: 15px 14px; }
+.col-left .category-wrapper div.title { color: #555555; font: normal 20px/20px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; padding-left: 7px; text-transform: lowercase; }
+.col-left .category-wrapper div.divider { border-top: solid #BBBBBB 1px; border-bottom: solid #F0F0F0 1px; height: 0px; margin: 6px 0px 10px 0px; }
+.col-left .category-wrapper ul { list-style: none; margin: 0px; padding: 0px; }
+.col-left .category-wrapper ul li { float: left; }
+.col-left .category-wrapper ul li a { color: #888888; display: block; font: normal 14px/14px Helvetica, Arial, sans-serif; text-decoration: none; text-transform: lowercase; padding: 6px 0px; text-indent: 5px; width: 185px; }
+.col-left .category-wrapper ul li a:hover { color: #505050; }
+.col-left .category-wrapper ul li.current a { color: #000000; }
+.col-left .category-wrapper ul li.current ul { padding-bottom: 10px; }
+.col-left .category-wrapper ul li.current ul li a { color: #888888; }
+.col-left .category-wrapper ul li.current ul li a:hover { color: #505050; }
+.col-left .category-wrapper ul li.clear { float: none; height: 0px; }
+.col-left .category-wrapper ul li ul { display: none; }
+.col-left .category-wrapper ul li.expanded ul { display: block; }
+.col-left .category-wrapper ul li.current ul { display: block; }
+.col-left .category-wrapper ul li ul li a { text-indent: 25px; }
+.col-left .designer-wrapper { background: #F9F9F9; border: solid #EEEEEE 1px; margin-top: 10px; padding: 15px 14px; }
+.col-left .designer-wrapper div.title { color: #999999; font: normal 20px/20px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; padding-left: 7px; text-transform: lowercase; }
+.col-left .designer-wrapper div.divider { border-top: solid #ECECEC 1px; border-bottom: solid #FFFFFF 1px; height: 0px; margin: 6px 0px 10px 0px; }
+.col-left .designer-wrapper ul { list-style: none; margin: 0px; padding: 0px; }
+.col-left .designer-wrapper ul li { }
+.col-left .designer-wrapper ul li a { color: #999999; display: block; font: normal 12px/12px Helvetica, Arial, sans-serif; text-decoration: none; padding: 4px 0px; text-indent: 5px; width: 185px; }
+.col-left .designer-wrapper ul li a:hover { background: #F3F3F3; color: #505050; }
+.col-left .shipping-promo-wrapper { margin-top: 20px; padding-left: 5px; }
+
+
+/* Styles for:  Product Toolbar (displayed on product category lists, search results, etc.) */
+.toolbar { color: #888888; font: normal 12px/12px Helvetica, Arial, sans-serif; padding-bottom: 10px; }
+.toolbar .left { float: left; }
+.toolbar .left .display-counter { padding-top: 8px; }
+.toolbar .right { float: right; }
+.toolbar .right .product-pager { float: left; }
+.toolbar .right .product-pager ol { list-style: none; margin: 0px; padding: 0px; }
+.toolbar .right .product-pager ol li { display: inline; float: left; margin: 0px 2px; }
+.toolbar .right .products-per-page { float: left; margin-left: 10px; }
+.toolbar .right .sort-by { float: left; margin-left: 10px; }
+
+
+/* Styles for:  Product View - List */
+.product-view-list { }
+.product-view-list div.category-header-image { margin: 7px 0px 30px 0px; }
+.product-view-list div.category-header-image h1 { background-position: top left; background-repeat: no-repeat; display: block; height: 200px; overflow: hidden; text-indent: -700px; width: 700px; }
+.product-view-list ul.product-list { list-style: none; margin: 0px; padding: 0px; }
+.product-view-list ul.product-list li { border: solid #EEEEEE 1px; color: #999999; font: normal 12px/15px Helvetica, Arial, sans-serif; float: left; margin: 0px 20px 20px 0px; padding: 9px; width: 200px; }
+.product-view-list ul.product-list li.first { clear: left; }
+.product-view-list ul.product-list li.last { margin-right: 0px; }
+.product-view-list ul.product-list div.img { }
+.product-view-list ul.product-list div.img a { text-decoration: none; }
+.product-view-list ul.product-list div.name { margin-top: 10px; }
+.product-view-list ul.product-list div.name h2 { font: normal 12px/15px Helvetica, Arial, sans-serif; margin: 0px; text-transform: none; }
+.product-view-list ul.product-list div.name a { color: #444444; text-decoration: none; }
+.product-view-list ul.product-list div.name a:hover { color: #777777; text-decoration: underline; }
+.product-view-list ul.product-list div.details { line-height: 17px; }
+.product-view-list ul.product-list div.details span.new { color: #CC0000; }
+.product-view-list ul.product-list div.details span.original { color: #BBBBBB; display: inline-block; margin-left: 10px; text-decoration: line-through; }
+.product-view-list ul.product-list div.img.multiple { position: relative; }
+.product-view-list ul.product-list div.img.multiple a { display: block; height: 300px; overflow: hidden; position: relative; width: 200px; }
+.product-view-list ul.product-list div.img.multiple div.img-slider { left: 0px; position: absolute; top: 0px; width: 400px; z-index: 1; }
+.product-view-list ul.product-list div.img.multiple div.img-slider img { float: left; }
+.product-view-list ul.product-list div.img.multiple div.img-slider-controller { background: #EEEEEE; bottom: 3px; color: #454545; cursor: pointer; font: normal 14px/18px Arial, Helvetica, sans-serif; height: 18px; position: absolute; right: 3px; text-align: center; width: 18px; z-index: 2; }
+.product-view-list ul.product-list div.img.multiple div.img-slider-controller:hover { background: #454545; color: #FFFFFF; }
+
+
+/* Styles for:  Product View - Single */
+.product-view-single { }
+.product-view-single .breadcrumbs { color: #AAAAAA; font: normal 13px/13px Helvetica, Arial, sans-serif; padding: 10px 0px 13px 8px; text-transform: lowercase; }
+.product-view-single .breadcrumbs ul { list-style: none; margin: 0px; padding: 0px; }
+.product-view-single .breadcrumbs a { color: #AAAAAA; text-decoration: none; }
+.product-view-single .breadcrumbs a:hover { color: #444444; }
+.product-view-single .breadcrumbs span { color: #BBBBBB; margin: 0px 4px; font: normal 12px/13px "Courier New", Courier, monospace; }
+.product-view-single .breadcrumbs strong { font-weight: normal; }
+.product-view-single .product-display { padding-bottom: 7px; }
+.product-view-single .product-display .product-col-left { float: left; width: 355px; }
+.product-view-single .product-display .product-col-left .product-image-main { margin-bottom: 4px; }
+.product-view-single .product-display .product-col-left ul.product-image-alts { list-style: none; margin: 0px; padding: 0px; }
+.product-view-single .product-display .product-col-left ul.product-image-alts li { display: inline; float: left; margin-right: 4px; }
+.product-view-single .product-display .product-col-left ul.product-image-alts li.last { margin-right: 0px; }
+.product-view-single .product-display .product-col-left .product-image-controls { color: #666666; font: bold 9px/9px Helvetica, Arial, sans-serif; margin-top: 10px; text-transform: uppercase; }
+.product-view-single .product-display .product-col-left .product-image-controls a { color: #666666; font: bold 9px/9px Helvetica, Arial, sans-serif; text-decoration: none; text-transform: uppercase; }
+.product-view-single .product-display .product-col-left .product-image-controls a:hover { text-decoration: underline; }
+.product-view-single .product-display .product-col-left .model-details { color: #999999; font: normal 12px/20px Helvetica, Arial, sans-serif; margin-top: 40px; }
+.product-view-single .product-display .product-col-left .model-details .label { color: #333333; margin-right: 4px; }
+.product-view-single .product-display .product-col-right { float: right; width: 565px; }
+.product-view-single .product-display .product-col-right ul.content-tabs { list-style: none; margin: 0px; padding: 0px; position: relative; z-index: 1; }
+.product-view-single .product-display .product-col-right ul.content-tabs li { cursor: pointer; display: inline; float: left; margin-right: 3px; }
+.product-view-single .product-display .product-col-right ul.content-tabs li span { background: #F6F6F6; border: solid #E0E0E0 1px; color: #999999; display: inline-block; font: normal 11px/39px Helvetica, Arial, sans-serif; height: 39px; padding: 0px 20px; text-transform: uppercase; }
+.product-view-single .product-display .product-col-right ul.content-tabs li:hover span { background: #EEEEEE; color: #777777; }
+.product-view-single .product-display .product-col-right ul.content-tabs li.active span { background: #FFFFFF; border: solid #E0E0E0 1px; border-bottom-color: #FFFFFF; color: #999999; cursor: default; }
+.product-view-single .product-display .product-col-right .content-block-wrapper { position: relative; top: -1px; width: 100%; z-index: 0; }
+.product-view-single .product-display .product-col-right .content-block { border: solid #E0E0E0 1px; display: none; padding: 30px 20px 15px 20px; }
+.product-view-single .product-display .product-col-right .content-block.active { display: block; }
+.product-view-single .product-display .product-col-right #content-1 { padding-left: 15px; padding-right: 15px; }
+.product-view-single .product-display .product-col-right #content-1 .title-bar { border-bottom: solid #E0E0E0 1px; padding: 0px 5px 5px 5px; }
+.product-view-single .product-display .product-col-right #content-1 .title-bar .title { color: #333333; font: normal 20px/20px Helvetica, Arial, sans-serif; padding-bottom: 3px; }
+.product-view-single .product-display .product-col-right #content-1 .title-bar .designer { color: #999999; float: left; font: normal 15px/15px Helvetica, Arial, sans-serif; }
+.product-view-single .product-display .product-col-right #content-1 .title-bar .price { color: #333333; float: right; font: normal 16px/16px Helvetica, Arial, sans-serif; text-align: right; }
+.product-view-single .product-display .product-col-right #content-1 .title-bar .price .original { color: #BBBBBB; display: inline-block; font: normal 13px/16px Helvetica, Arial, sans-serif; margin-right: 15px; }
+.product-view-single .product-display .product-col-right #content-1 .title-bar .price .original span { font-size: 14px; text-decoration: line-through; }
+.product-view-single .product-display .product-col-right #content-1 .title-bar .price .new { color: #CC0000; }
+.product-view-single .product-display .product-col-right #content-1 .details { color: #666666; font: normal 13px/17px Helvetica, Arial, sans-serif; margin-top: 20px; padding-left: 5px; position: relative; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls { background: #F9F9F9; border: solid #E0E0E0 1px; float: right; margin-left: 10px; padding: 20px; position: relative; width: 160px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls form { margin: 0px; padding: 0px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls a { cursor: pointer; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .out-of-stock { color: #CC0000; font-style: italic; margin-bottom: 20px; text-align: center; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .section { color: #999999; margin-bottom: 20px; position: relative; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .section .label { color: #666666; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .section .label.label { display: inline-block; margin-right: 5px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.color-swatches { list-style: none; margin: 0px; padding: 0px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.color-swatches li { background: #FFFFFF; border: solid #CCCCCC 1px; cursor: pointer; display: inline; float: left; margin-right: 5px; padding: 2px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.color-swatches li span { background: #000000; display: block; height: 20px; overflow: hidden; text-indent: -500px; width: 20px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.sizes { list-style: none; margin: 0px; padding: 0px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.sizes li { display: inline; float: left; margin: 0px 5px 5px 0px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.sizes li span { background: #FFFFFF; border: solid #CCCCCC 1px; cursor: pointer; display: block; font: normal 11px/25px Helvetica, Arial, sans-serif; height: 25px; overflow: hidden; text-align: center; width: 25px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.sizes li span:hover { border-color: #666666; color: #333333; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.sizes li.active span { border: solid #666666 2px; color: #333333; cursor: default; height: 23px; line-height: 23px; width: 23px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls ul.sizes li.out-of-stock span { background: #F9F9F9; border: solid #DDDDDD 1px; color: #CCCCCC; cursor: default; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls a.size-chart { background: #F9F9F9; border: solid #DDDDDD 1px; color: #999999; display: inline-block; font: normal 12px/23px Helvetica, Arial, sans-serif; height: 23px; padding: 0px 4px 0px 28px; position: relative; text-decoration: none; text-transform: lowercase; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls a.size-chart span { background: url(../images/background-general-sprite.png) -114px -222px no-repeat; display: block; height: 15px; left: 4px; position: absolute; top: 4px; width: 20px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls a.size-chart:hover { border-color: #999999; color: #666666; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls a.size-chart:hover span { background-position: -114px -247px }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls a.size-availability { color: #666666; font: normal 11px/11px Arial, Helvetica, sans-serif; position: absolute; right: -5px; top: 3px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls input.product-qty { background: #FFFFFF; border: solid #CCCCCC 1px; color: #666666; font: normal 12px/18px Helvetica, Arial, sans-serif; outline: none; padding: 4px 5px; width: 30px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions { position: relative; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-primary { background: url(../images/background-button-general-sprite.png) 0px 0px no-repeat; color: #FFFFFF; display: block; font: normal 14px/36px Helvetica, Arial, sans-serif; margin-bottom: 12px; padding-left: 4px; text-align: center; text-decoration: none; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-primary span { background: url(../images/background-button-general-sprite.png) right -38px no-repeat; display: block; height: 36px; padding-right: 4px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-primary:hover { background-position: 0px -76px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-primary:hover span { background-position: right -114px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-primary:active { background-position: 0px -152px; color: #CCCCCC; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-primary:active span { background-position: right -190px; height: 35px; padding-top: 1px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-secondary { background: url(../images/background-button-general-sprite.png) 0px -228px no-repeat; color: #666666; display: block; font: normal 12px/28px Helvetica, Arial, sans-serif; margin-top: 5px; padding-left: 4px; text-align: center; text-decoration: none; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-secondary span { background: url(../images/background-button-general-sprite.png) right -258px no-repeat; display: block; height: 28px; padding-right: 5px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-secondary:hover { background-position: 0px -288px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-secondary:hover span { background-position: right -318px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-secondary:active { background-position: 0px -348px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions a.button-secondary:active span { background-position: right -378px; height: 27px; padding-top: 1px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .actions .ajax-loader { background: url(../images/background-ajax-loader.gif) 0px 0px no-repeat; display: none; height: 16px; left: 72px; position: absolute; top: 10px; width: 16px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .status-wrapper { background: url(../images/background-speech-bubble.png) 0px 0px no-repeat; display: none; left: 0px; height: 60px; position: absolute; top: -67px; width: 200px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .status-wrapper .msg { color: #FFFFFF; font: normal 13px/50px Helvetica, Arial, sans-serif; text-align: center; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .status-wrapper .close { color: #999999; cursor: pointer; font: normal 8px/8px Helvetica, Arial, sans-serif; padding: 5px; position: absolute; right: 0px; text-align: right; text-transform: uppercase; top: 0px; }
+.product-view-single .product-display .product-col-right #content-1 .details .add-to-cart-controls .status-wrapper .close:hover { color: #FFFFFF; }
+.product-view-single .product-display .product-col-right #content-1 .details .care-instructions { margin-top: 40px; }
+.product-view-single .product-display .product-col-right #content-1 .details .care-instructions .title { color: #333333; font-size: 12px; font-weight: bold; }
+.product-view-single .product-display .product-col-right #content-1 .details .manufacturer-info { color: #BBBBBB; font: normal 11px/11px Helvetica, Arial, sans-serif; margin-top: 15px; }
+.product-view-single .product-display .product-col-right #content-1 .details .ask { margin-top: 40px; }
+.product-view-single .product-display .product-col-right #content-1 .details .ask a { color: #666666; display: inline-block; font-size: 12px; height: 16px; line-height: 16px; padding-left: 20px; position: relative; text-decoration: none; }
+.product-view-single .product-display .product-col-right #content-1 .details .ask a span { background: url(../images/background-general-sprite.png) -88px -222px no-repeat; display: block; height: 16px; left: 0px; overflow: hidden; position: absolute; top: 0px; width: 16px; }
+.product-view-single .product-display .product-col-right #content-1 .details .ask a:hover { text-decoration: underline; }
+.product-view-single .product-display .product-col-right #content-1 .details .ask a:hover span { background-position: -88px -248px; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing-buffer { height: 30px; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing { bottom: 0px; height: 20px; left: 0px; position: absolute; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing iframe { display: none; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing .twitter { background: url(../images/background-general-sprite.png) -180px -152px no-repeat; display: inline-block; float: left; height: 20px; margin-right: 10px; overflow: hidden; text-indent: -500px; width: 55px; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing .twitter:hover { background-position: -180px -182px; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing .facebook { background: url(../images/background-general-sprite.png) -245px -152px no-repeat; display: inline-block; float: left; height: 20px; margin-right: 10px; overflow: hidden; text-indent: -500px; width: 59px; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing .facebook:hover { background-position: -245px -182px; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing .pinterest { background: url(../images/background-general-sprite.png) -314px -152px no-repeat; display: inline-block; float: left; height: 20px; margin-right: 10px; overflow: hidden; text-indent: -500px; width: 40px; }
+.product-view-single .product-display .product-col-right #content-1 .details .social-sharing .pinterest:hover { background-position: -314px -182px; }
+.product-view-single .product-display .product-col-right #content-1 .complete-look { background: #F9F9F9; border: solid #E0E0E0 1px; margin-top: 15px; padding: 10px; }
+.product-view-single .product-display .product-col-right #content-1 .complete-look .title { color: #666666; font: bold 12px/12px Helvetica, Arial, sans-serif; margin-bottom: 8px; }
+.product-view-single .product-display .product-col-right #content-1 .complete-look ul { list-style: none; margin: 0px; padding: 0px; }
+.product-view-single .product-display .product-col-right #content-1 .complete-look ul li { display: inline; float: left; margin-right: 10px; }
+.product-view-single .product-display .product-col-right #content-1 .complete-look ul li img { border: solid #E0E0E0 1px; }
+.product-view-single .product-display .product-col-right #content-1 .complete-look ul li img:hover { border-color: #999999; }
+.product-view-single .product-display .product-col-right #content-2 { padding: 20px; }
+.product-view-single .product-display .product-col-right #content-2 .no-reviews { background: #F9F9F9; border: solid #E0E0E0 1px; font-style: italic; margin-bottom: 20px; padding: 20px; text-align: center; }
+.product-view-single .product-display .product-col-right #content-2 ul.reviews { border-top: solid #EEEEEE 1px; list-style: none; margin: 0px 0px 20px 0px; padding: 0px; }
+.product-view-single .product-display .product-col-right #content-2 ul.reviews li { border-bottom: solid #EEEEEE 1px; color: #666666; padding: 12px 10px; }
+.product-view-single .product-display .product-col-right #content-2 ul.reviews li .title { color: #333333; font: normal 16px/16px Helvetica, Arial, sans-serif; padding-bottom: 7px; }
+.product-view-single .product-display .product-col-right #content-2 ul.reviews li .details { font: normal 13px/16px Helvetica, Arial, sans-serif; padding-bottom: 2px; }
+.product-view-single .product-display .product-col-right #content-2 ul.reviews li .date { color: #999999; font: normal 12px/12px Helvetica, Arial, sans-serif; }
+.product-view-single .product-display .product-col-right #content-2 .review-form { background: #F9F9F9; border: solid #E0E0E0 1px; padding: 20px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form .title { color: #999999; font: normal 11px/11px Helvetica, Arial, sans-serif; text-align: center; text-transform: uppercase; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form { margin: 20px 0px 0px 0px; padding: 0px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form td { padding: 2px 0px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form td.label { font-size: 12px; font-weight: bold; padding-right: 10px; text-align: right; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form .input-text { background: #FFFFFF; border: solid #CCCCCC 1px; color: #666666; font: normal 12px/18px Helvetica, Arial, sans-serif; margin-right: 6px; outline: none; padding: 4px 5px; width: 340px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form .required { color: #CC0000; float: right; padding-top: 4px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form .button { float: none; margin: 0px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form .button span { background: url(../images/background-button-general-sprite.png) 0px -228px no-repeat; color: #666666; cursor: pointer; display: block; font: normal 12px/28px Helvetica, Arial, sans-serif; padding: 0px 0px 0px 4px; text-align: center; text-decoration: none; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form .button span span { background: url(../images/background-button-general-sprite.png) right -258px no-repeat; display: block; height: 28px; padding: 0px 5px 0px 0px; text-transform: none; width: 150px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form .button:hover span { background-position: 0px -288px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form form .button:hover span span { background-position: right -318px; }
+.product-view-single .product-display .product-col-right #content-2 .review-form .registered-users-only { margin-top: 20px; text-align: center; }
+.product-view-single .product-display .product-col-right #content-3 { padding: 20px; }
+.product-view-single .product-display .product-col-right #content-3 .block-related { border: none; margin: 0px; }
+.product-view-single .product-display .product-col-right #content-3 .block-related .block-content { background: none; padding: 0px; }
+.product-view-single .product-display .product-col-right #content-3 ul.related-products { border-top: solid #EEEEEE 1px; list-style: none; margin: 0px; padding: 0px; }
+.product-view-single .product-display .product-col-right #content-3 ul.related-products li { border-bottom: solid #EEEEEE 1px; color: #999999; font: normal 12px/15px Helvetica, Arial, sans-serif; margin: 0px; padding: 10px; }
+.product-view-single .product-display .product-col-right #content-3 ul.related-products .image { float: left; width: 66px; }
+.product-view-single .product-display .product-col-right #content-3 ul.related-products .details { float: left; padding-top: 5px; width: 437px; }
+.product-view-single .product-display .product-col-right #content-3 ul.related-products .details .name a { color: #444444; text-decoration: none; }
+.product-view-single .product-display .product-col-right #content-3 ul.related-products .details .name a:hover { color: #777777; text-decoration: underline; }
+.product-view-single .product-display .product-col-right #content-3 .empty { color: #999999; font: italic 12px/15px Helvetica, Arial, sans-serif; padding-top: 30px; height: 200px; text-align: center; }
+.product-view-single .recently-viewed { margin-top: 65px; padding-bottom: 20px; }
+.product-view-single .recently-viewed .title { border-bottom: solid #DDDDDD 1px; color: #999999; font: normal 20px/20px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; text-align: center; text-transform: lowercase; }
+.product-view-single .recently-viewed ul { list-style: none; margin: 10px 0px 0px 15px; padding: 0px; }
+.product-view-single .recently-viewed ul li { display: inline; float: left; margin-right: 11px; }
+.product-view-single .cloud-zoom-lens { background-color: #FFFFFF; border: solid #888888 1px; cursor: crosshair; margin: -1px; }
+.product-view-single .cloud-zoom-title { background-color: #000000; color: #FFFFFF; font: bold 10px/10px Arial, Helvetica, sans-serif; padding: 3px; position: absolute !important; text-align: center; top: 0px; width: 100%; }
+.product-view-single .cloud-zoom-big { border: none; overflow: hidden; }
+.product-view-single .cloud-zoom-loading { background: #222222; border: solid #000000 1px; color: #FFFFFF; padding: 3px; }
+.product-view-single .sizing-content-wrapper { display: none; }
+.product-view-single .added-to-cart-content-wrapper { display: none; }
+.catalog-product-view #fancybox-wrap { }
+.catalog-product-view #fancybox-wrap div.title { color: #333333; font: normal 25px/25px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; margin: 0px; padding: 15px 0px 0px 0px; text-align: center; text-transform: lowercase; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts { }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-1 { margin: 15px auto; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-1 tr.header td { background: #666666; color: #FFFFFF; font-size: 16px; font-weight: bold; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-1 tr.even { background: #EEEEEE; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-1 td { line-height: 30px; padding: 0px 15px; text-align: center; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-1 td.label { font-size: 14px; font-weight: bold; text-align: right; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-1 td.disclaimer { font: italic 12px/18px Helvetica, Arial, sans-serif; text-align: right; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-2 { border: solid #FFFFFF 0px; border-width: 1px 0px 0px 1px; margin: 15px auto; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-2 td { background: #EEEEEE; border: solid #FFFFFF 0px; border-width: 0px 1px 1px 0px; line-height: 30px; text-align: center; width: 40px; }
+.catalog-product-view #fancybox-wrap .sizing-content div.sizing-charts table.chart-2 td.label { font-size: 14px; font-weight: bold; padding: 0px 15px; text-align: right; width: auto; }
+.catalog-product-view #fancybox-wrap .sizing-content div.more { margin: 0px auto; padding-top: 25px; width: 260px; }
+.catalog-product-view #fancybox-wrap .sizing-content div.more a { background: #EEEEEE; border: solid #CCCCCC 1px; color: #999999; display: block; font: normal 10px/10px Helvetica, Arial, sans-serif; padding: 10px 0px; text-align: center; text-decoration: none; text-transform: uppercase; }
+.catalog-product-view #fancybox-wrap .sizing-content div.more a:hover { background: #E3E3E3; border: solid #BBBBBB 1px; color: #444444; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content { padding-top: 50px; text-align: center; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content div.message { color: #333333; font: normal 20px/20px Helvetica, Arial, sans-serif; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content div.actions { margin-top: 15px; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content div.actions a.button { background: url(../images/background-button-general-sprite.png) 0px -228px no-repeat; color: #666666; cursor: pointer; display: inline-block; font: normal 12px/28px Helvetica, Arial, sans-serif; margin: 0px 5px; padding-left: 4px; text-align: center; text-decoration: none; width: 160px; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content div.actions a.button span { background: url(../images/background-button-general-sprite.png) right -258px no-repeat; display: block; height: 28px; padding-right: 5px; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content div.actions a.button:hover { background-position: 0px -288px; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content div.actions a.button:hover span { background-position: right -318px; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content div.actions a.button:active { background-position: 0px -348px; }
+.catalog-product-view #fancybox-wrap .added-to-cart-content div.actions a.button:active span { background-position: right -378px; }
+.ask-about-product-form { padding: 0px 20px; }
+.ask-about-product-form .title { color: #333333; font: normal 25px/25px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; margin: 0px; padding: 15px 0px 20px 0px; text-align: center; text-transform: lowercase; }
+.ask-about-product-form form { margin: 0px; padding: 0px; }
+.ask-about-product-form form td { padding: 2px 0px; }
+.ask-about-product-form form .label { color: #777777; font: bold 14px/32px Helvetica, Arial, sans-serif; padding-right: 12px; text-align: right; }
+.ask-about-product-form form .textfield { background: #FFFFFF; border: solid #E0E0E0 1px; color: #777777; font: normal 13px/30px Helvetica, Arial, sans-serif; height: 30px; padding: 0px 10px; width: 390px; }
+.ask-about-product-form form textarea.textfield { height: auto; line-height: 18px; padding: 10px; }
+.ask-about-product-form form .textfield.error { background: #FAEBE7; border: solid #DD0000 1px; }
+.ask-about-product-form form a.button { background: url(../images/background-button-general-sprite.png) 0px -228px no-repeat; border: none; color: #666666; cursor: pointer; display: inline-block; font: normal 12px/28px Helvetica, Arial, sans-serif; outline: none; padding-left: 4px; text-align: center; text-decoration: none; width: 200px; }
+.ask-about-product-form form a.button span { background: url(../images/background-button-general-sprite.png) right -258px no-repeat; display: block; height: 28px; padding-right: 5px; }
+.ask-about-product-form form a.button:hover { background-position: 0px -288px; }
+.ask-about-product-form form a.button:hover span { background-position: right -318px; }
+.ask-about-product-form form a.button:active { background-position: 0px -348px; }
+.ask-about-product-form form a.button:active span { background-position: right -378px; }
+
+
+/* Styles for:  Footer Container */
+.footer-container { border-top: solid #E3E3E3 1px; }
+.footer-container .footer-wrapper { margin: 0px auto; position: relative; width: 960px; }
+.footer-container .footer-top { background: url(../images/background-footer-light-bar-top.png) 0px 0px repeat-x; padding: 20px 0px; }
+.footer-container .footer-top .section { color: #999999; float: left; font: normal 13px/18px Arial, Helvetica, sans-serif; }
+.footer-container .footer-top .section .title { color: #555555; font: normal 22px/22px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; margin-bottom: 5px; text-transform: lowercase; }
+.footer-container .footer-top .section a { text-decoration: none; }
+.footer-container .footer-top .section.section1 {width: 250px; }
+.footer-container .footer-top .section.section1 ul.social-media { list-style: none; margin: 0px; padding: 2px 0px 0px 0px; }
+.footer-container .footer-top .section.section1 ul.social-media li { display: inline; float: left; margin-right: 20px; }
+.footer-container .footer-top .section.section1 ul.social-media li a { background: url(../images/background-general-sprite.png) 0px 0px no-repeat; display: block; height: 35px; overflow: hidden; text-indent: -500px; width: 35px; }
+.footer-container .footer-top .section.section1 ul.social-media li a.facebook { background-position: 0px -132px; }
+.footer-container .footer-top .section.section1 ul.social-media li a.facebook:hover { background-position: 0px -177px; }
+.footer-container .footer-top .section.section1 ul.social-media li a.twitter { background-position: -45px -132px; }
+.footer-container .footer-top .section.section1 ul.social-media li a.twitter:hover { background-position: -45px -177px; }
+.footer-container .footer-top .section.section1 ul.social-media li a.email { background-position: -90px -132px; }
+.footer-container .footer-top .section.section1 ul.social-media li a.email:hover { background-position: -90px -177px; }
+.footer-container .footer-top .section.section1 ul.social-media li a.blog { background-position: -135px -132px; }
+.footer-container .footer-top .section.section1 ul.social-media li a.blog:hover { background-position: -135px -177px; }
+.footer-container .footer-top .section.section2 { width: 425px; }
+.footer-container .footer-top .section.section2 form { margin: 0px; padding: 0px; }
+.footer-container .footer-top .section.section2 form input.input-text { background: #FFFFFF; border: solid #DDDDDD 1px; color: #999999; font: normal 12px/12px Arial, Helvetica, sans-serif; outline: none; margin-right: 3px; padding: 4px 3px; width: 250px; }
+.footer-container .footer-top .section.section2 form button { background: url(../images/background-general-sprite.png) 0px -251px no-repeat; cursor: pointer; display: inline-block; height: 24px; overflow: hidden; text-indent: -500px; width: 65px; }
+.footer-container .footer-top .section.section2 form button:hover { background-position: 0px -285px; }
+.footer-container .footer-top .section.section2 form div.validation-advice { float: left; margin: 3px 0px 0px 45px; }
+.footer-container .footer-top .section.section3 { }
+.footer-container .footer-top .section.section4 { float: right; }
+.footer-container .footer-top ul.footer-links { list-style: none; margin: 0px; padding: 0px; }
+.footer-container .footer-top ul.footer-links a { color: #999999; display: block; text-transform: lowercase; }
+.footer-container .footer-top ul.footer-links a:hover { color: #555555; text-decoration: none; }
+.footer-container .footer-bottom { background: #FFFFFF url(../images/background-footer-gradient-bottom.png) 0px 0px repeat-x; border-top: solid #BBBBBB 1px; }
+.footer-container .footer-bottom .title { color: #555555; font: normal 22px/22px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; margin: 20px auto; text-align: center; text-transform: lowercase; width: 960px; }
+.footer-container .footer-bottom .referrals { background: url(../images/background-as-mentioned-in-logos.png) 0px 0px no-repeat; height: 255px; margin: 0px auto; padding-bottom: 40px; text-indent: -500px; width: 981px; }
+.footer-container .footer-bottom ul { list-style: none; margin: 0px; padding: 0px; }
+
+
+/* Styles for:  Shopping Cart Page */
+.checkout-cart-index div.content-area-padding { padding: 25px 0px; width: 900px !important; }
+.bevello-cart { }
+.bevello-cart .column-left { float: left; margin-top: 20px; width: 700px; }
+.bevello-cart .column-left .cart-wrapper { background: #EEEEEE; padding: 10px; }
+.bevello-cart .column-left .cart-wrapper form { margin: 0px; padding: 0px; }
+.bevello-cart .column-left .cart-wrapper .items td { background: #FFFFFF; border: solid #EEEEEE; border-width: 0px 1px 1px 0px; padding: 10px; }
+.bevello-cart .column-left .cart-wrapper .items tr.header td { background: #EEEEEE; font: normal 10px/10px Helvetica, Arial, sans-serif; padding-top: 2px; text-transform: uppercase; }
+.bevello-cart .column-left .cart-wrapper .items td.product { text-align: left; }
+.bevello-cart .column-left .cart-wrapper .items td.product .product-img { float: left; margin-right: 10px; }
+.bevello-cart .column-left .cart-wrapper .items td.product .product-details { color: #999999; float: left; font-size: 12px; }
+.bevello-cart .column-left .cart-wrapper .items td.product .product-details .name { font: bold 14px/18px Helvetica, Arial, sans-serif; }
+.bevello-cart .column-left .cart-wrapper .items td.product .product-details .name a { color: #444444; text-decoration: none; }
+.bevello-cart .column-left .cart-wrapper .items td.product .product-details .name a:hover { text-decoration: underline; }
+.bevello-cart .column-left .cart-wrapper .items td.product .product-details .label { font-weight: bold; }
+.bevello-cart .column-left .cart-wrapper .items td.qty { text-align: center; width: 40px; }
+.bevello-cart .column-left .cart-wrapper .items td.qty input { background: #FFFFFF; border: solid #CCCCCC 1px; font: normal 12px/12px Helvetica, Arial, sans-serif; outline: none; padding: 3px 0px; text-align: center; width: 30px; }
+.bevello-cart .column-left .cart-wrapper .items td.subtotal { text-align: right; width: 60px; }
+.bevello-cart .column-left .cart-wrapper .items td.action { text-align: center; width: 80px; }
+.bevello-cart .column-left .cart-wrapper .items td.action a.button-remove { background: #BBBBBB; color: #FFFFFF; display: inline-block; font: normal 11px/11px Helvetica, Arial, sans-serif; padding: 4px 10px; text-align: center; text-decoration: none; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+.bevello-cart .column-left .cart-wrapper .items td.action a.button-remove span.x { font-weight: bold; margin-right: 4px; }
+.bevello-cart .column-left .cart-wrapper .items td.action a.button-remove:hover { background: #999999; }
+.bevello-cart .column-left .cart-wrapper .update-cart-wrapper { float: right; padding: 10px 0px; }
+.bevello-cart .column-left .cart-wrapper .update-cart-wrapper a.button-update { background: url(../images/background-button-general-sprite.png) 0px -228px no-repeat; color: #666666; cursor: pointer; display: inline-block; font: normal 12px/28px Helvetica, Arial, sans-serif; padding-left: 4px; text-align: center; text-decoration: none; width: 150px; }
+.bevello-cart .column-left .cart-wrapper .update-cart-wrapper a.button-update span { background: url(../images/background-button-general-sprite.png) right -258px no-repeat; display: block; height: 28px; padding-right: 5px; }
+.bevello-cart .column-left .cart-wrapper .update-cart-wrapper a.button-update:hover { background-position: 0px -288px; }
+.bevello-cart .column-left .cart-wrapper .update-cart-wrapper a.button-update:hover span { background-position: right -318px; }
+.bevello-cart .column-left .cart-wrapper .update-cart-wrapper a.button-update:active { background-position: 0px -348px; }
+.bevello-cart .column-left .cart-wrapper .update-cart-wrapper a.button-update:active span { background-position: right -378px; }
+.bevello-cart .column-left .cart-wrapper .totals-wrapper { background: #FFFFFF; clear: right; margin-bottom: 20px; padding: 10px; float: right; }
+.bevello-cart .column-left .cart-wrapper .totals-wrapper td { background: #FFFFFF; text-align: right; }
+.bevello-cart .column-left .cart-wrapper .totals-wrapper th { padding: 0px 30px 0px 20px; }
+.bevello-cart .column-left .cart-wrapper .totals-wrapper td:first-child { padding: 0px 30px 0px 20px; }
+.bevello-cart .column-left .cart-wrapper .totals-wrapper tfoot td { color: #444444; font: bold 16px/16px Helvetica, Arial, sans-serif; padding-top: 5px !important; }
+.bevello-cart .column-left .cart-wrapper .checkout-wrapper { clear: right; float: right; }
+.bevello-cart .column-left .cart-wrapper .checkout-wrapper a.button-checkout { background: url(../images/background-button-general-sprite.png) 0px 0px no-repeat; color: #FFFFFF; cursor: pointer; display: inline-block; font: normal 14px/36px Helvetica, Arial, sans-serif; margin-bottom: 12px; padding-left: 4px; text-align: center; text-decoration: none; width: 220px; }
+.bevello-cart .column-left .cart-wrapper .checkout-wrapper a.button-checkout span { background: url(../images/background-button-general-sprite.png) right -38px no-repeat; display: block; height: 36px; padding-right: 4px; }
+.bevello-cart .column-left .cart-wrapper .checkout-wrapper a.button-checkout:hover { background-position: 0px -76px; }
+.bevello-cart .column-left .cart-wrapper .checkout-wrapper a.button-checkout:hover span { background-position: right -114px; }
+.bevello-cart .column-left .cart-wrapper .checkout-wrapper a.button-checkout:active { background-position: 0px -152px; color: #CCCCCC; }
+.bevello-cart .column-left .cart-wrapper .checkout-wrapper a.button-checkout:active span { background-position: right -190px; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form { background: #FFFFFF; float: left; font: normal 11px/11px Helvetica, Arial, sans-serif; margin: 10px 0px 0px 0px; padding: 10px; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form .title { font: bold 14px/18px Helvetica, Arial, sans-serif; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form input { background: #FFFFFF; border: solid #CCCCCC 1px; font: normal 12px/12px Helvetica, Arial, sans-serif; margin: 10px 0px; outline: none; padding: 5px 10px; width: 150px; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form a.button { background: url(../images/background-button-general-sprite.png) 0px -228px no-repeat; color: #666666; cursor: pointer; display: inline-block; font: normal 12px/28px Helvetica, Arial, sans-serif; margin-right: 8px; padding-left: 4px; text-align: center; text-decoration: none; width: 100px; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form a.button span { background: url(../images/background-button-general-sprite.png) right -258px no-repeat; display: block; height: 28px; padding-right: 5px; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form a.button:hover { background-position: 0px -288px; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form a.button:hover span { background-position: right -318px; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form a.button:active { background-position: 0px -348px; }
+.bevello-cart .column-left .cart-wrapper form#discount-coupon-form a.button:active span { background-position: right -378px; }
+.bevello-cart .column-left .cart-wrapper .taxes-shipping { background: #E3E3E3; clear: left; color: #999999; font-size: 12px; float: left; margin-top: 10px; padding: 10px; width: 300px; }
+.bevello-cart .column-right { color: #999999; float: right; margin-top: 20px; width: 170px; }
+.bevello-cart .column-right .contact { font-size: 12px; }
+.bevello-cart .column-right .contact a { color: #666666; }
+.bevello-cart .column-right .contact .phone { color: #555555; font: bold 18px/18px Helvetica, Arial, sans-serif; }
+.bevello-cart .column-right .payment-methods { font-size: 12px; margin-top: 40px; }
+.bevello-cart .column-right .payment-methods ul { list-style: none; margin: 0px; padding: 5px 0px 0px 0px; }
+.bevello-cart .column-right .payment-methods ul li { background: url(../images/background-general-sprite.png) 0px 0px no-repeat; display: block; float: left; height: 22px; margin-right: 10px; overflow: hidden; text-indent: -500px; width: 35px; }
+.bevello-cart .column-right .payment-methods ul li.visa { background-position: -75px -274px; }
+.bevello-cart .column-right .payment-methods ul li.mastercard { background-position: -120px -274px; }
+.bevello-cart .column-right .payment-methods ul li.amex { background-position: -165px -274px; }
+
+
+/* Styles for:  Checkout Page */
+.checkout-onepage-index { }
+.checkout-onepage-index .sidebar .block-progress { border: none; }
+.checkout-onepage-index .sidebar .block-progress .block-title { background: #E3E3E3; border: none; color: #555555; display: block; font: bold 11px/31px Helvetica, Arial, sans-serif; height: 31px; margin: 0px; padding: 0px 10px; text-transform: uppercase; }
+.checkout-onepage-index .sidebar .block-progress .block-content { background: none; padding: 0px; }
+.checkout-onepage-index .sidebar .block-progress dl { border-top: solid #E3E3E3 1px; margin: 0px; }
+.checkout-onepage-index .sidebar .block-progress dt { background: #F3F3F3; border: solid #E3E3E3; border-width: 0px 1px 1px 1px; color: #BBBBBB; display: block; font: normal 10px/30px Helvetica, Arial, sans-serif; height: 30px; margin: 0px; padding: 0px 10px; text-transform: uppercase; }
+.checkout-onepage-index .sidebar .block-progress dt.complete { color: #666666; }
+.checkout-onepage-index .sidebar .block-progress dt.complete a { float: right; }
+.checkout-onepage-index .sidebar .block-progress dd { border: solid #E3E3E3; border-width: 0px 1px 1px 1px; color: #999999; font: normal 12px/18px Helvetica, Arial, sans-serif; margin: 0px; padding: 10px; }
+.checkout-onepage-index .sidebar .block-progress dd p { margin: 0px; padding: 0px; }
+.checkout-onepage-index .col-main { padding: 7px 0px; }
+.checkout-onepage-index .col-main ol#checkoutSteps { list-style: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index .col-main .opc { position: relative; }
+.checkout-onepage-index .col-main .opc li .step-title { background: #EEEEEE; border: solid #DDDDDD 1px; border-top-color: #FFFFFF; color: #BBBBBB; font: normal 16px/38px Helvetica, Arial, sans-serif; height: 36px; padding: 0px 10px; }
+.checkout-onepage-index .col-main .opc li .step-title a.edit { display: none; float: right; font: normal 10px/38px Helvetica, Arial, sans-serif; text-transform: uppercase; }
+.checkout-onepage-index .col-main .opc li.allow .step-title { background: #CCCCCC; border: solid #BBBBBB 1px; border-top-color: #DDDDDD; color: #444444; cursor: pointer; }
+.checkout-onepage-index .col-main .opc li.allow .step-title a.edit { display: block; }
+.checkout-onepage-index .col-main .opc li.active .step-title { background: #444444; border: solid #333333 1px; color: #FFFFFF; cursor: default; }
+.checkout-onepage-index .col-main .opc li.active .step-title a.edit { display: none; }
+.checkout-onepage-index .col-main .opc .step { background: #FCFCFC; border: solid #DDDDDD 1px; border-top: 0px; padding: 25px 30px; position: relative; }
+.checkout-onepage-index .col-main .opc .step .title { color: #333333; font: normal 20px/20px Helvetica, Arial, sans-serif; margin-bottom: 15px; }
+.checkout-onepage-index .col-main .opc .step .button { background: url(../images/background-button-general-sprite.png) 0px -228px no-repeat; color: #666666; cursor: pointer; display: inline-block; font: normal 12px/28px Helvetica, Arial, sans-serif; padding-left: 4px; text-align: center; text-decoration: none; width: 120px; }
+.checkout-onepage-index .col-main .opc .step .button span { background: url(../images/background-button-general-sprite.png) right -258px no-repeat; display: block; height: 28px; padding-right: 5px; }
+.checkout-onepage-index .col-main .opc .step .button:hover { background-position: 0px -288px; }
+.checkout-onepage-index .col-main .opc .step .button:hover span { background-position: right -318px; }
+.checkout-onepage-index .col-main .opc .step .button:active { background-position: 0px -348px; }
+.checkout-onepage-index .col-main .opc .step .button:active span { background-position: right -378px; }
+.checkout-onepage-index .col-main .opc .buttons-set .please-wait { height: 28px; line-height: 28px; }
+/* Styles for:  Checkout Page  - Login */
+.checkout-onepage-index #opc-login { }
+.checkout-onepage-index #opc-login .col-left { float: left; padding: 0px; width: auto; }
+.checkout-onepage-index #opc-login .col-left .msg { margin-bottom: 5px; }
+.checkout-onepage-index #opc-login .col-left form { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-login .col-left form td { padding: 2px 0px; vertical-align: middle; }
+.checkout-onepage-index #opc-login .col-left form td.label { font-weight: bold; padding-right: 10px; text-align: right; }
+.checkout-onepage-index #opc-login .col-left form input.input-text { background: #FFFFFF; border: solid #CCCCCC 1px; color: #333333; font: normal 12px/18px Helvetica, Arial, sans-serif; outline: none; padding: 5px 8px; width: 175px; }
+.checkout-onepage-index #opc-login .col-left form .required { color: #CC0000; font: normal 12px/12px Helvetica, Arial, sans-serif; }
+.checkout-onepage-index #opc-login .col-left form .required.small { font-size: 11px; }
+.checkout-onepage-index #opc-login .col-left form .button { margin: 15px 0px 5px 0px; }
+.checkout-onepage-index #opc-login .col-left form .forgot-pass { color: #999999; font-size: 11px; }
+.checkout-onepage-index #opc-login .col-separator { background: #DDDDDD; float: left; height: 200px; margin: 0px 30px; width: 1px; }
+.checkout-onepage-index #opc-login .col-right { float: left; padding: 0px; width: auto; }
+.checkout-onepage-index #opc-login .col-right .msg { margin-bottom: 15px; }
+.checkout-onepage-index #opc-login .col-right ul.methods { list-style: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-login .col-right ul.methods li { margin-bottom: 3px; }
+.checkout-onepage-index #opc-login .col-right ul.methods li input { margin-right: 8px; margin-top: -1px; }
+.checkout-onepage-index #opc-login .col-right ul.methods li label { font-weight: bold; }
+.checkout-onepage-index #opc-login .col-right .button { margin-top: 15px; }
+/* Styles for:  Checkout Page  - Billing */
+.checkout-onepage-index #opc-billing { }
+.checkout-onepage-index #opc-billing form { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-billing form fieldset { border: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-billing form ul.form-list { list-style: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-billing form ul.form-list ul { list-style: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-billing form .input-box { width: auto; }
+.checkout-onepage-index #opc-billing form .fields { margin-bottom: 10px; }
+.checkout-onepage-index #opc-billing form .fields .field { width: 300px; }
+.checkout-onepage-index #opc-billing form .fields .field label { padding-right: 10px; }
+.checkout-onepage-index #opc-billing form .fields .field label em { color: #CC0000; float: none; font-weight: normal; line-height: 22px; right: 0px; }
+.checkout-onepage-index #opc-billing form input.input-text { background: #FFFFFF; border: solid #CCCCCC 1px; color: #333333; font: normal 12px/18px Helvetica, Arial, sans-serif; outline: none; padding: 7px 8px; width: 270px; }
+.checkout-onepage-index #opc-billing form .wide { margin-bottom: 4px; }
+.checkout-onepage-index #opc-billing form .wide.last { margin-bottom: 10px; }
+.checkout-onepage-index #opc-billing form .wide input.input-text { width: 570px; }
+.checkout-onepage-index #opc-billing form select { background: #FFFFFF; border: solid #CCCCCC 1px; color: #333333; font: normal 12px/18px Helvetica, Arial, sans-serif; outline: none; padding: 6px 6px; width: 288px; }
+.checkout-onepage-index #opc-billing form .control { margin-bottom: 4px; }
+.checkout-onepage-index #opc-billing form .control input { margin-right: 8px; }
+.checkout-onepage-index #opc-billing form .buttons-set { border: none; margin: 0px; padding: 25px 0px 0px 0px; text-align: left; }
+.checkout-onepage-index #opc-billing form .buttons-set .button { margin-bottom: 5px; }
+.checkout-onepage-index #opc-billing form .buttons-set .required { color: #CC0000; margin: 0px; padding: 0px; text-align: left; }
+/* Styles for:  Checkout Page  - Shipping Info */
+.checkout-onepage-index #opc-shipping { }
+.checkout-onepage-index #opc-shipping form { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-shipping form fieldset { border: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-shipping form ul.form-list { list-style: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-shipping form ul.form-list ul { list-style: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-shipping form .input-box { width: auto; }
+.checkout-onepage-index #opc-shipping form .fields { margin-bottom: 10px; }
+.checkout-onepage-index #opc-shipping form .fields .field { width: 300px; }
+.checkout-onepage-index #opc-shipping form .fields .field label { padding-right: 10px; }
+.checkout-onepage-index #opc-shipping form .fields .field label em { color: #CC0000; float: none; font-weight: normal; line-height: 22px; right: 0px; }
+.checkout-onepage-index #opc-shipping form input.input-text { background: #FFFFFF; border: solid #CCCCCC 1px; color: #333333; font: normal 12px/18px Helvetica, Arial, sans-serif; outline: none; padding: 7px 8px; width: 270px; }
+.checkout-onepage-index #opc-shipping form .wide { margin-bottom: 4px; }
+.checkout-onepage-index #opc-shipping form .wide.last { margin-bottom: 10px; }
+.checkout-onepage-index #opc-shipping form .wide input.input-text { width: 570px; }
+.checkout-onepage-index #opc-shipping form select { background: #FFFFFF; border: solid #CCCCCC 1px; color: #333333; font: normal 12px/18px Helvetica, Arial, sans-serif; outline: none; padding: 6px 6px; width: 288px; }
+.checkout-onepage-index #opc-shipping form .control { margin-bottom: 4px; }
+.checkout-onepage-index #opc-shipping form .control input { margin-right: 8px; }
+.checkout-onepage-index #opc-shipping form .buttons-set { border: none; margin: 0px; padding: 25px 0px 0px 0px; text-align: left; }
+.checkout-onepage-index #opc-shipping form .buttons-set .button { margin-bottom: 5px; }
+.checkout-onepage-index #opc-shipping form .buttons-set .required { color: #CC0000; margin: 0px; padding: 0px; text-align: left; }
+/* Styles for:  Checkout Page  - Shipping Method */
+.checkout-onepage-index #opc-shipping_method { }
+.checkout-onepage-index #opc-shipping_method form { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-shipping_method form dl { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-shipping_method form dl dt { display: none; margin: 0px; }
+.checkout-onepage-index #opc-shipping_method form dl dd { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-shipping_method form dl dd ul { list-style: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-shipping_method form dl dd ul li { margin-bottom: 4px; }
+.checkout-onepage-index #opc-shipping_method form dl dd ul li input { margin-right: 8px; margin-top: -1px; }
+.checkout-onepage-index #opc-shipping_method form .buttons-set { border: none; margin: 0px; padding: 25px 0px 0px 0px; text-align: left; }
+/* Styles for:  Checkout Page  - Payment */
+.checkout-onepage-index #opc-payment  { }
+.checkout-onepage-index #opc-payment form { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-payment form dl { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-payment form dl dt { display: none; margin: 0px; }
+.checkout-onepage-index #opc-payment form dl dd { margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-payment form dl dd ul { list-style: none; margin: 0px; padding: 0px; }
+.checkout-onepage-index #opc-payment form dl dd ul li { margin-bottom: 10px; }
+.checkout-onepage-index #opc-payment form label { padding-right: 10px; }
+.checkout-onepage-index #opc-payment form label em { color: #CC0000; float: none; font-weight: normal; line-height: 22px; right: 0px; }
+.checkout-onepage-index #opc-payment form .input-box { width: auto; }
+.checkout-onepage-index #opc-payment form input.input-text { background: #FFFFFF; border: solid #CCCCCC 1px; color: #333333; font: normal 12px/18px Helvetica, Arial, sans-serif; outline: none; padding: 7px 8px; width: 270px; }
+.checkout-onepage-index #opc-payment form select { background: #FFFFFF; border: solid #CCCCCC 1px; color: #333333; font: normal 12px/18px Helvetica, Arial, sans-serif; outline: none; padding: 6px 6px; width: 288px; }
+.checkout-onepage-index #opc-payment form .v-fix select { width: 139px; }
+.checkout-onepage-index #opc-payment .buttons-set { border: none; margin: 0px; padding: 25px 0px 0px 0px; text-align: left; }
+.checkout-onepage-index #opc-payment .buttons-set .button { margin-bottom: 5px; }
+.checkout-onepage-index #opc-payment .buttons-set .required { color: #CC0000; margin: 0px; padding: 0px; text-align: left; }
+/* Styles for:  Checkout Page  - Review */
+.checkout-onepage-index #opc-review { }
+.checkout-onepage-index #opc-review table tfoot tr.last td { color: #555555; }
+.checkout-onepage-index #opc-review .buttons-set { border: none; margin: 0px; padding: 25px 30px; }
+.checkout-onepage-index #opc-review .buttons-set .button { background: url(../images/background-button-general-sprite.png) 0px 0px no-repeat; color: #FFFFFF; cursor: pointer; display: inline-block; font: normal 14px/36px Helvetica, Arial, sans-serif; padding-left: 4px; text-align: center; text-decoration: none; width: 150px; }
+.checkout-onepage-index #opc-review .buttons-set .button span { background: url(../images/background-button-general-sprite.png) right -38px no-repeat; display: block; height: 36px; padding-right: 4px; }
+.checkout-onepage-index #opc-review .buttons-set .button:hover { background-position: 0px -76px; }
+.checkout-onepage-index #opc-review .buttons-set .button:hover span { background-position: right -114px; }
+.checkout-onepage-index #opc-review .buttons-set .button:active { background-position: 0px -152px; color: #CCCCCC; }
+.checkout-onepage-index #opc-review .buttons-set .button:active span { background-position: right -190px; }
+/* Styles for:  Checkout Page  - Success */
+.checkout-success { }
+.checkout-success h1 { margin-top: 15px; }
+.checkout-success a.button-secondary { background: url(../images/background-button-general-sprite.png) 0px -228px no-repeat; color: #666666; display: block; font: normal 12px/28px Helvetica, Arial, sans-serif; margin-top: 5px; padding-left: 4px; text-align: center; text-decoration: none; width: 180px; }
+.checkout-success a.button-secondary span { background: url(../images/background-button-general-sprite.png) right -258px no-repeat; display: block; height: 28px; padding-right: 5px; }
+.checkout-success a.button-secondary:hover { background-position: 0px -288px; }
+.checkout-success a.button-secondary:hover span { background-position: right -318px; }
+.checkout-success a.button-secondary:active { background-position: 0px -348px; }
+.checkout-success a.button-secondary:active span { background-position: right -378px; height: 27px; padding-top: 1px; }
+.checkout-success .promo-wrapper { background: #F9F9F9; border: solid #E0E0E0 1px; margin-top: 50px; padding: 20px; width: 650px; }
+.checkout-success .promo-wrapper .title { color: #333333; font: normal 20px/20px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; margin-bottom: 20px; text-align: center; text-transform: lowercase; }
+.checkout-success .promo-wrapper .promo { float: left; padding: 0px 15px; text-align: center; width: 275px; }
+.checkout-success .promo-wrapper .promo .promo-title { color: #333333; font: normal 15px/15px Helvetica, Arial, sans-serif; margin-bottom: 5px; }
+.checkout-success .promo-wrapper .promo .details { height: 45px; }
+.checkout-success .promo-wrapper .promo a { margin: 0px auto; }
+.checkout-success .promo-wrapper .or-divider { float: left; height: 110px; position: relative; width: 30px; }
+.checkout-success .promo-wrapper .or-divider .or { background: #F9F9F9; color: #333333; font: normal 20px/20px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; left: 0px; margin: 0px; padding: 3px 0px 5px 0px; position: absolute; text-align: center; text-transform: lowercase; top: 35px; width: 30px; z-index: 2; }
+.checkout-success .promo-wrapper .or-divider .line { border-left: solid #E0E0E0 1px; border-right: solid #FFFFFF 1px; height: 110px; left: 14px; position: absolute; top: 0px; z-index: 1; }
+
+
+/* Styles for:  CMS Page */
+.cms-page-view .col1-layout div.content-area div.content-area-padding { padding: 25px 0px; width: 900px; }
+
+/* Styles for:  CMS Page - Home */
+.cms-home {}
+.cms-home .main { padding-top: 41px; width: 990px; }
+.cms-home div.content-area-top { display: none; }
+.cms-home div.content-area-bottom { display: none; }
+.cms-home div.content-area { background: none; }
+.cms-home div.content-area div.content-area-padding { margin: 0px; width: auto; }
+.cms-home div.home-body-wrapper { margin: 0px auto; width: 960px; }
+.cms-home div.featured-image { background: url(../images/background-home-page-featured-image.png) 0px 0px no-repeat; height: 542px; padding-top: 10px; position: relative; width: 990px; }
+.cms-home div.featured-image div.logo { background: url(../images/background-general-sprite.png) -104px -8px no-repeat; height: 34px; left: 25px; position: absolute; top: 506px; width: 130px; z-index: 999; }
+.cms-home div.featured-image div.image-wrapper { background: #000000; margin: 0px 0px 0px 25px; height: 530px; overflow: hidden; width: 940px; }
+.cms-home div.featured-image div.image-wrapper ul { list-style: none; margin: 0px; padding: 0px; }
+.cms-home div.featured-image div.image-wrapper ul li { border: none; padding: 0px; }
+.cms-home div.featured-image div.controls { display: none; left: 35px; position: absolute; top: 20px; z-index: 2; }
+.cms-home div.featured-image div.controls a { background: url(../images/background-general-sprite.png) 0px 0px no-repeat; cursor: pointer; display: inline-block; float: left; height: 40px; margin-right: 10px; overflow: hidden; width: 40px; }
+.cms-home div.featured-image div.controls a.prev { background-position: -180px -52px; }
+.cms-home div.featured-image div.controls a.prev:hover { background-position: -180px -102px; }
+.cms-home div.featured-image div.controls a.next { background-position: -230px -52px; }
+.cms-home div.featured-image div.controls a.next:hover { background-position: -230px -102px; }
+.cms-home div.featured-image div.control-buffer { background: url(../images/background-home-page-featured-image-controls-buffer.png) 0px 0px no-repeat; display: none; height: 200px; left: 25px; position: absolute; top: 10px; width: 250px; z-index: 1; }
+.cms-home div.new-arrivals { margin-top: 30px; }
+.cms-home div.new-arrivals div.title { border-bottom: solid #DDDDDD 1px; color: #999999; font: normal 25px/25px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; padding: 0px 0px 0px 3px; text-transform: lowercase; }
+.cms-home div.new-arrivals ul.product-list { list-style: none; margin: 13px 0px 0px 0px; padding: 0px; }
+.cms-home div.new-arrivals ul.product-list li { display: inline; float: left; margin-right: 16px; }
+.cms-home div.new-arrivals ul.product-list li.last { margin-right: 0px; }
+.cms-home div.new-arrivals ul.product-list li a { display: block; width: 106px; }
+.cms-home div.new-arrivals ul.product-list li a div.img { background: url(../images/background-home-page-new-arrivals.png) top left no-repeat; padding: 5px 5px 0px 5px; }
+.cms-home div.new-arrivals ul.product-list li a div.cap { background: url(../images/background-home-page-new-arrivals.png) bottom left no-repeat; height: 12px; }
+.cms-home div.designers { border: solid #DDDDDD; border-width: 1px 0px; height: 86px; margin-top: 46px; position: relative; }
+.cms-home div.designers .scroller-display { display: block; height: 60px; left: 50px; position: absolute; top: 13px; width: 860px; }
+.cms-home div.designers .scroller-display .scrollWrapper { height: 100%; overflow: hidden; position: relative; width: 100%; }
+.cms-home div.designers .scroller-display .scrollableArea { height: 100%; position: relative; width: auto; }
+.cms-home div.designers .scroller-display .button { display: block !important; height: 86px; position: absolute; width: 50px; }
+.cms-home div.designers .scroller-display .button.button-left { cursor: w-resize; left: -50px; top: -13px; }
+.cms-home div.designers .scroller-display .button.button-right { cursor: e-resize; right: -50px; top: -13px; }
+.cms-home div.designers .scroller-display .button span { background: url(../images/background-general-sprite.png) 0px 0px no-repeat; height: 19px; left: 19px; position: absolute; top: 33px; width: 12px; }
+.cms-home div.designers .scroller-display .button.button-left span { background-position: 0px -222px; }
+.cms-home div.designers .scroller-display .button.button-right span { background-position: -44px -222px; }
+.cms-home div.designers .scroller-display .button.button-left:hover span { background-position: -22px -222px; }
+.cms-home div.designers .scroller-display .button.button-right:hover span { background-position: -66px -222px; }
+.cms-home div.designers .scroller-display a { background: url(../images/background-designer-logo-sprite-home.png) 0px 60px no-repeat; display: block; float: left; height: 60px; margin: 0px 40px; overflow: hidden; position: relative; text-align: left; text-indent: -500px; }
+.cms-home div.designers .scroller-display a.aryn-k { background-position: 0px 0px; width: 179px; }
+.cms-home div.designers .scroller-display a.bcbgeneration { background-position: 0px -60px; width: 200px; }
+.cms-home div.designers .scroller-display a.bcbg-max-azria { background-position: 0px -120px; width: 200px; }
+.cms-home div.designers .scroller-display a.bella-luxx { background-position: 0px -180px; width: 200px; }
+.cms-home div.designers .scroller-display a.bobi { background-position: 0px -240px; width: 120px; }
+.cms-home div.designers .scroller-display a.c-luce { background-position: 0px -300px; width: 134px; }
+.cms-home div.designers .scroller-display a.collective-concepts { background-position: 0px -360px; width: 200px; }
+.cms-home div.designers .scroller-display a.ellison { background-position: 0px -420px; width: 164px; }
+.cms-home div.designers .scroller-display a.esley { background-position: 0px -480px; width: 162px; }
+.cms-home div.designers .scroller-display a.french-connection-uk { background-position: 0px -540px; width: 170px; }
+.cms-home div.designers .scroller-display a.genetic-denim { background-position: 0px -600px; width: 200px; }
+.cms-home div.designers .scroller-display a.glam { background-position: 0px -660px; width: 184px; }
+.cms-home div.designers .scroller-display a.greylin { background-position: 0px -720px; width: 200px; }
+.cms-home div.designers .scroller-display a.hudson { background-position: 0px -780px; width: 200px; }
+.cms-home div.designers .scroller-display a.jaloux { background-position: 0px -840px; width: 200px; }
+.cms-home div.designers .scroller-display a.james-joy { background-position: 0px -900px; width: 200px; }
+.cms-home div.designers .scroller-display a.judith-march { background-position: 0px -960px; width: 85px; }
+.cms-home div.designers .scroller-display a.laila-jayde { background-position: 0px -1020px; width: 200px; }
+.cms-home div.designers .scroller-display a.la-made { background-position: 0px -1080px; width: 200px; }
+.cms-home div.designers .scroller-display a.laundry-by-shelli-segal { background-position: 0px -1140px; width: 176px; }
+.cms-home div.designers .scroller-display a.max-and-cleo { background-position: 0px -1200px; width: 200px; }
+.cms-home div.designers .scroller-display a.melie-bianco { background-position: 0px -1260px; width: 200px; }
+.cms-home div.designers .scroller-display a.minuet { background-position: 0px -1320px; width: 177px; }
+.cms-home div.designers .scroller-display a.paige { background-position: 0px -1380px; width: 126px; }
+.cms-home div.designers .scroller-display a.plenty-by-tracy-reese { background-position: 0px -1440px; width: 65px; }
+.cms-home div.designers .scroller-display a.sam-edelman { background-position: 0px -1500px; width: 200px; }
+.cms-home div.designers .scroller-display a.tart-collection { background-position: 0px -1560px; width: 124px; }
+.cms-home div.designers .scroller-display a.theme { background-position: 0px -1620px; width: 153px; }
+.cms-home div.designers .scroller-display a.tricia-fix { background-position: 0px -1680px; width: 196px; }
+.cms-home div.designers .scroller-display a.trinity { background-position: 0px -1740px; width: 153px; }
+.cms-home div.designers .scroller-display a.true-religion { background-position: 0px -1800px; width: 200px; }
+.cms-home div.designers .scroller-display a.tulle { background-position: 0px -1860px; width: 200px; }
+.cms-home div.designers .scroller-display a.vava { background-position: 0px -1920px; width: 95px; }
+.cms-home div.designers .scroller-display a.velvet-heart { background-position: 0px -1980px; width: 200px; }
+.cms-home div.designers .scroller-display a.vince-camuto { background-position: 0px -2040px; width: 121px; }
+.cms-home div.designers .scroller-display a.voom-by-joy-han { background-position: 0px -2100px; width: 88px; }
+.cms-home div.designers .buffer-left { background: url(../images/background-designer-logo-buffer.png) 0px 0px no-repeat; display: block; height: 86px; left: 50px; overflow: hidden; position: absolute; top: 0px; width: 50px; }
+.cms-home div.designers .buffer-right { background: url(../images/background-designer-logo-buffer.png) -50px 0px no-repeat; display: block; height: 86px; overflow: hidden; position: absolute; right: 50px; top: 0px; width: 50px; }
+
+/* Styles for:  CMS Page - Designers */
+.cms-designers { }
+.cms-designers h2 { margin-bottom: 20px; }
+.cms-designers table { margin-bottom: 40px; }
+.cms-designers table td { padding: 20px 0px; width: 50%; vertical-align: middle; }
+.cms-designers table tr.odd td { background: #F9F9F9; }
+.cms-designers table tr.odd td .wrapper { border-right-color: #E9E9E9; }
+.cms-designers table td.left-cell .wrapper { border-right: solid #EEEEEE 1px; padding: 0px 20px; }
+.cms-designers table td.left-cell .wrapper .name a { color: #555555; font-weight: bold; }
+.cms-designers table td.right-cell .wrapper { background: url(../images/background-designer-logo-sprite.png) 0px 0px no-repeat; height: 50px; margin: 0px auto; overflow: hidden; text-indent: -999px; width: 220px; }
+.cms-designers table td.right-cell .wrapper.aryn-k { background-position: 0px 0px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.bcbg-max-azria { background-position: 0px -130px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.bcbgeneration { background-position: 0px -80px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.bella-luxx { background-position: 0px -180px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.bobi { background-position: 0px -230px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.c-luce { background-position: 0px -310px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.charlie-jade { background-position: 0px 0px; display: none; height: 100px; }
+.cms-designers table td.right-cell .wrapper.collective-concepts { background-position: 0px -390px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.ellison { background-position: 0px -440px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.esley { background-position: 0px -520px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.fluxus { background-position: 0px 0px; display: none; height: 100px; }
+.cms-designers table td.right-cell .wrapper.french-connection { background-position: 0px -600px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.genetic-denim { background-position: 0px -680px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.glam { background-position: 0px -730px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.greylin { background-position: 0px -780px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.hudson { background-position: 0px -830px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.jaloux { background-position: 0px -880px; height: 60px; }
+.cms-designers table td.right-cell .wrapper.laila-jayde { background-position: 0px -1115px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.la-made { background-position: 0px -1165px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.laundry { background-position: 0px -1215px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.max-cleo { background-position: 0px -1295px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.melie-bianco { background-position: 0px -1345px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.michael-kors { background-position: 0px 0px; display: none; height: 100px; }
+.cms-designers table td.right-cell .wrapper.minuet { background-position: 0px -1395px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.paige { background-position: 0px -1445px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.plenty { background-position: 0px -1525px; height: 120px; }
+.cms-designers table td.right-cell .wrapper.theme { background-position: 0px -1805px; height: 90px; }
+.cms-designers table td.right-cell .wrapper.tricia-fix { background-position: 0px -1895px; height: 80px; }
+.cms-designers table td.right-cell .wrapper.true-religion { background-position: 0px -2065px; height: 50px; }
+.cms-designers table td.right-cell .wrapper.tulle { background-position: 0px -2115px; height: 60px; }
+.cms-designers table td.right-cell .wrapper.vava { background-position: 0px -2175px; height: 100px; }
+.cms-designers table td.right-cell .wrapper.velvet-heart { background-position: 0px -2275px; height: 60px; }
+.cms-designers table td.right-cell .wrapper.vince-camuto { background-position: 0px -2335px; height: 110px; }
+.cms-designers table td.right-cell .wrapper.voom { background-position: 0px -2445px; height: 110px; }
+
+/* Styles for:  CMS Page - Designer Products */
+.cms-designer-products { }
+.cms-designer-products .product-view-list { padding-top: 7px; }
+.cms-designer-products .product-view-list h1 { padding-bottom: 10px; }
+
+/* Styles for:  CMS Page - Store Locations - Profile */
+.cms-store-profile { }
+.cms-store-profile .store-utility-bar { background: #F6F6F6; border: solid #E0E0E0 1px; margin-bottom: 30px; padding: 10px; }
+.cms-store-profile .store-utility-bar h1 { float: left; height: 30px; line-height: 30px; padding-left: 5px; }
+.cms-store-profile .store-utility-bar .dropdown { float: right; height: 30px; position: relative; }
+.cms-store-profile .store-utility-bar .dropdown .field { background: #FFFFFF; border: solid #E0E0E0 1px; cursor: default; height: 28px; position: relative; width: 330px; }
+.cms-store-profile .store-utility-bar .dropdown .field .content { color: #999999; display: inline-block; font: italic 14px/28px "Times New Roman", Times, serif; padding-left: 15px; width: 282px; }
+.cms-store-profile .store-utility-bar .dropdown .field .icon { background: url(../images/background-general-sprite.png) -168px -221px no-repeat; display: block; height: 6px; position: absolute; right: 11px; top: 11px; width: 11px; }
+.cms-store-profile .store-utility-bar .dropdown .options { background: #FFFFFF; border: solid #E0E0E0; border-width: 0px 1px 1px 1px; color: #999999; display: none; font: normal 12px/22px Helvetica, Arial, sans-serif; position: absolute; right: 0px; top: 29px; width: 330px; z-index: 500; }
+.cms-store-profile .store-utility-bar .dropdown .options ul { list-style: none; margin: 0px; padding: 10px 0px; }
+.cms-store-profile .store-utility-bar .dropdown .options ul li { cursor: pointer; padding: 0px 15px; }
+.cms-store-profile .store-utility-bar .dropdown .options ul li:hover { background: #F0F0F0; color: #777777; }
+.cms-store-profile .map-wrapper { border: solid #DDDDDD 1px; float: right; padding: 2px; }
+.cms-store-profile .map-wrapper #map_canvas { background: #DDDDDD; height: 360px; width: 550px; }
+.cms-store-profile .details { float: left; width: 300px; }
+.cms-store-profile .details .store-image { border: solid #DDDDDD 1px; margin-bottom: 20px; padding: 2px; }
+.cms-store-profile .details .store-name { color: #333333; font: normal 20px/20px Helvetica, Arial, sans-serif; padding-bottom: 1px; }
+.cms-store-profile .details .address { color: #888888; font: normal 15px/19px Helvetica, Arial, sans-serif; }
+.cms-store-profile .details .additional-info { color: #888888; font: normal 12px/18px Helvetica, Arial, sans-serif; margin-top: 20px; }
+.cms-store-profile .details .additional-info .label { color: #666666; font-weight: bold; }
+.cms-store-profile .details .additional-info a { color: #888888; }
+/* Styles for:  CMS Page - Store Locations - Main */
+.cms-store-profile .all-locations { }
+.cms-store-profile .all-locations .state { margin: 50px 0px 20px 0px; }
+.cms-store-profile .all-locations .state .name { border-bottom: solid #333333 1px; color: #333333; font: normal 20px/20px "Book Antiqua", Georgia, "Times New Roman", Times, Georgia, serif; margin-bottom: 10px; padding: 0px 0px 2px 15px; text-transform: lowercase; }
+.cms-store-profile .all-locations .state ul { float: left; line-height: 20px; list-style: none; margin: 0px 30px 0px 0px; padding: 0px; }
+.cms-store-profile .all-locations .state ul li { }
+.cms-store-profile .all-locations .state ul li.city { color: #333333; font-size: 14px; font-weight: bold; }
+.cms-store-profile .all-locations .state ul li a { color: #666666; text-decoration: none; }
+.cms-store-profile .all-locations .state ul li a:hover { color: #333333; text-decoration: underline; }
+.cms-store-profile .all-locations .state ul.first { margin-left: 15px; }
+.cms-store-profile .all-locations .state ul.last { margin-right: 0px; }
+/* Styles for:  CMS Page - Store Locations - Main (ORIGINAL)
+.cms-store-locations { }
+.cms-store-locations ul.store-locations { list-style: none; margin: 20px 0px 0px 0px; padding: 0px; }
+.cms-store-locations ul.store-locations li { display: inline; float: left; margin: 0px 15px 25px 0px; }
+.cms-store-locations ul.store-locations li.last { margin-right: 0px; }
+.cms-store-locations ul.store-locations li div.loc { color: #333333; font-weight: bold; margin-top: 8px; } */
+
+/* Styles for:  CMS Page - Shipping & Returns */
+.cms-shipping { }
+.cms-shipping table.shipping-rates td.label { padding-right: 12px; }
+
+/* Styles for:  CMS Page - Sizing */
+.cms-sizing { }
+.cms-sizing h1.centered { text-align: center; }
+.cms-sizing div.sizing-charts { }
+.cms-sizing div.sizing-charts table.chart-1 { margin: 15px auto; }
+.cms-sizing div.sizing-charts table.chart-1 tr.header td { background: #666666; color: #FFFFFF; font-size: 16px; font-weight: bold; }
+.cms-sizing div.sizing-charts table.chart-1 tr.even { background: #EEEEEE; }
+.cms-sizing div.sizing-charts table.chart-1 td { line-height: 30px; padding: 0px 15px; text-align: center; }
+.cms-sizing div.sizing-charts table.chart-1 td.label { font-size: 14px; font-weight: bold; text-align: right; }
+.cms-sizing div.sizing-charts table.chart-1 td.disclaimer { font: italic 12px/18px Helvetica, Arial, sans-serif; text-align: right; }
+.cms-sizing div.sizing-charts table.chart-2 { border: solid #FFFFFF 0px; border-width: 1px 0px 0px 1px; margin: 15px auto; }
+.cms-sizing div.sizing-charts table.chart-2 td { background: #EEEEEE; border: solid #FFFFFF 0px; border-width: 0px 1px 1px 0px; line-height: 30px; text-align: center; width: 40px; }
+.cms-sizing div.sizing-charts table.chart-2 td.label { font-size: 14px; font-weight: bold; padding: 0px 15px; text-align: right; width: auto; }
+.cms-sizing div.how-to-measure { margin: 40px auto 0px auto; width: 500px; }
+.cms-sizing div.how-to-measure div.model { float: right; margin-left: 20px; padding-top: 10px; }
+.cms-sizing div.how-to-measure strong { color: #555555; font-size: 14px; }
+.cms-sizing div.your-shape { margin-top: 60px; }
+.cms-sizing div.your-shape ul.shapes { list-style: none; margin: 0px; padding: 0px; }
+.cms-sizing div.your-shape ul.shapes li.shape { display: inline; float: left; margin-right: 30px; width: 202px; }
+.cms-sizing div.your-shape ul.shapes li.shape ul { list-style: none; margin: 0px; padding: 0px; }
+.cms-sizing div.your-shape ul.shapes li.shape ul li { padding-top: 15px; }
+.cms-sizing div.your-shape ul.shapes li.shape.last { margin-right: 0px; }
+.cms-sizing div.your-shape ul.shapes li.shape div.model { float: right; margin-top: 55px; }
+
+/* Styles for:  CMS Page - News & Press */
+.cms-news { }
+.cms-news ul.articles { border-top: solid #DDDDDD 1px; list-style: none; margin: 20px 0px 0px 0px; padding: 0px; }
+.cms-news ul.articles li { border-bottom: solid #DDDDDD 1px; display: block; padding: 20px 15px; }
+.cms-news ul.articles li .logo { float: right; margin-left: 20px; }
+.cms-news ul.articles li div.date { font: normal 11px/11px Helvetica, Arial, sans-serif; text-transform: uppercase; }
+.cms-news ul.articles li a { display: block; font: bold 14px/14px Helvetica, Arial, sans-serif; padding: 4px 0px; }
+.cms-news ul.articles li span.source { font-style: italic; }
+
+/* Styles for:  CMS Page - Look of the Day */
+.cms-look-of-the-day { }
+.cms-look-of-the-day h1 { margin-top: 15px; }
+.cms-look-of-the-day h2 { transform: skew(350deg,0deg); -ms-transform: skew(350deg,0deg); -webkit-transform: skew(350deg,0deg); -o-transform: skew(350deg,0deg); -moz-transform: skew(350deg,0deg); }
+
+/* Styles for:  CMS Page - User Pictures */
+.cms-bombshells { }
+.cms-bombshells h1 { margin-top: 15px; }
+.cms-bombshells .promo-photo { float: left; margin: 30px 20px 30px 0px; width: 300px; }
+.cms-bombshells .promo-text { float: left; margin-top: 30px; padding-top: 42px; width: 380px; }
+.cms-bombshells .promo-text .title { color: #333333; font: normal 20px/23px Helvetica, Arial, sans-serif; margin-bottom: 15px; }
+.cms-bombshells .promo-text .details { font: normal 15px/20px Helvetica, Arial, sans-serif; }
+.cms-bombshells ul.gallery { list-style: none; margin: 30px 0px 0px 0px; padding: 0px; }
+.cms-bombshells ul.gallery li { border: solid #DDDDDD 1px; display: inline; float: left; margin: 0px 20px 20px 0px; padding: 5px; }
+.cms-bombshells ul.gallery li.last { margin-right: 0px; }
+.cms-bombshells ul.gallery li .display-wrapper { height: 148px; overflow: hidden; position: relative; width: 148px; }
+.cms-bombshells ul.gallery li .display-wrapper .overlay { height: 148px; left: 0px; position: absolute; top: 148px; width: 148px; }
+.cms-bombshells ul.gallery li .display-wrapper .filter { background: #000000; height: 148px; left: 0px; position: absolute; top: 0px; width: 148px; z-index: 1; }
+.cms-bombshells ul.gallery li .display-wrapper .text { color: #FFFFFF; font: normal 12px/16px Arial, Helvetica, sans-serif; height: 138px; left: 0px; padding: 5px; position: absolute; text-shadow: 1px 1px #000000; top: 0px; width: 138px; z-index: 2; }
+.cms-bombshells ul.gallery li .display-wrapper .text .user { padding: 2px 5px 0px 5px; }
+.cms-bombshells ul.gallery li .display-wrapper .text .divider { background: none; border-top: solid #000000 1px; border-bottom: solid #4C4C4C 1px; height: 0px; margin: 5px 0px; }
+.cms-bombshells ul.gallery li .display-wrapper .text .product { padding: 0px 5px; }
+.cms-bombshells ul.gallery li .display-wrapper .text .controls { position: absolute; right: 8px; top: 120px; }
+.cms-bombshells ul.gallery li .display-wrapper .text .controls .button { background: url(../images/background-general-sprite.png) 0px 0px no-repeat; cursor: pointer; display: block; float: left; height: 20px; margin-left: 10px; overflow: hidden; text-indent: -999px; }
+.cms-bombshells ul.gallery li .display-wrapper .text .controls .button-big-pic { background-position: -189px -212px; width: 19px; }
+.cms-bombshells ul.gallery li .display-wrapper .text .controls .button-big-pic:hover { background-position: -189px -242px; }
+.cms-bombshells ul.gallery li .display-wrapper .text .controls .button-product { background-position: -218px -212px; width: 26px; }
+.cms-bombshells ul.gallery li .display-wrapper .text .controls .button-product:hover { background-position: -218px -242px; }
+
+/* Styles for:  CMS Page - Refer-A-Friend */
+.cms-refer-a-friend { }
+.cms-refer-a-friend h1 { margin-top: 15px; }
+.cms-refer-a-friend h2 { text-transform: lowercase; transform: skew(350deg,0deg); -ms-transform: skew(350deg,0deg); -webkit-transform: skew(350deg,0deg); -o-transform: skew(350deg,0deg); -moz-transform: skew(350deg,0deg); }

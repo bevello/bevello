@@ -1,0 +1,591 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Minerva Shipping Module
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Minerva
+ * @package    Minerva_Shipping
+ * @copyright  Copyright (c) 2008 Sherrie Rohde (http://www.sherrierohde.com)
+ * @author     Sherrie Rohde (sherrie.rohde@gmail.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+  <sections>
+    <carriers>
+      <groups>
+        <msmultiflat translate="label" module="shipping">
+          <label>Pickup at Event / Multiple Flatrates (Powered by Minerva)</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>1</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <active translate="label">
+              <label>Enabled</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </active>
+            <sort_order translate="label">
+              <label>Sort order</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>100</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </sort_order>
+            <title translate="label">
+              <label>Title</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </title>
+            <name1 translate="label">
+              <label>Event / Method 1 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name1>
+            <price1 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>5</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price1>
+            <details1 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>6</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details1>
+            <type1 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>7</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type1>
+			<min_shipping1 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>8</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping1>
+			<max_shipping1 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>9</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping1>
+            <name2 translate="label">
+              <label>Event / Method 2 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name2>
+            <price2 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price2>
+            <details2 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>12</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details2>
+            <type2 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>13</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type2>
+			<min_shipping2 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>14</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping2>
+			<max_shipping2 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>15</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping2>
+            <name3 translate="label">
+              <label>Event / Method 3 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>16</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name3>
+            <price3 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>17</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price3>
+            <details3 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>18</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details3>
+            <type3 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>19</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type3>
+			<min_shipping3 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping3>
+			<max_shipping3 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>21</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping3>
+            <name4 translate="label">
+              <label>Event / Method 4 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>22</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name4>
+            <price4 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>23</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price4>
+            <details4 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>24</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details4>
+            <type4 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>25</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type4>
+			<min_shipping4 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>26</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping4>
+			<max_shipping4 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>27</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping4>
+            <name5 translate="label">
+              <label>Event / Method 5 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>28</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name5>
+            <price5 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>29</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price5>
+            <details5 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details5>
+            <type5 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>31</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type5>
+			<min_shipping5 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>32</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping5>
+			<max_shipping5 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>33</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping5>
+            <name6 translate="label">
+              <label>Event / Method 6 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>34</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name6>
+            <price6 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>36</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price6>
+            <details6 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>37</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details6>
+            <type6 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>38</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type6>
+			<min_shipping6 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>39</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping6>
+			<max_shipping6 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping6>
+            <name7 translate="label">
+              <label>Event / Method 7 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>41</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name7>
+            <price7 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>42</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price7>
+            <details7 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>43</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details7>
+            <type7 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>44</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type7>
+			<min_shipping7 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>45</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping7>
+			<max_shipping7 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>46</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping7>
+            <name8 translate="label">
+              <label>Event / Method 8 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>47</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name8>
+            <price8 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>48</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price8>
+            <details8 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>49</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details8>
+            <type8 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type8>
+			<min_shipping8 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>51</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping8>
+			<max_shipping8 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>52</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping8>
+            <name9 translate="label">
+              <label>Event / Method 9 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>53</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name9>
+            <price9 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>54</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price9>
+            <details9 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>55</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details9>
+            <type9 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>56</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type9>
+			<min_shipping9 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>57</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping9>
+			<max_shipping9 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>58</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping9>
+            <name10 translate="label">
+              <label>Event / Method 10 >></label>
+              <frontend_type>text</frontend_type>
+              <sort_order>59</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name10>
+            <price10 translate="label">
+              <label>• Price (0.00)</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </price10>
+            <details10 translate="label">
+              <label>• Details</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>61</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </details10>
+            <type10 translate="label">
+              <label>• Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_shipping_flatrate</source_model>
+              <sort_order>62</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </type10>
+			<min_shipping10 translate="label">
+              <label>• Minimum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>63</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </min_shipping10>
+			<max_shipping10 translate="label">
+              <label>• Maximum order amount</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>64</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </max_shipping10>
+            <sallowspecific translate="label">
+              <label>Ship to applicable countries</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>44</sort_order>
+              <frontend_class>shipping-applicable-country</frontend_class>
+              <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </sallowspecific>
+            <specificcountry translate="label">
+              <label>Ship to Specific countries</label>
+              <frontend_type>multiselect</frontend_type>
+              <sort_order>91</sort_order>
+              <source_model>adminhtml/system_config_source_country</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </specificcountry>
+            <showmethod translate="label">
+              <label>Show method if not applicable</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>92</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </showmethod>
+            <specificerrmsg translate="label">
+              <label>Displayed Error Message</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>80</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </specificerrmsg>
+          </fields>
+        </msmultiflat>
+      </groups>
+    </carriers>
+  </sections>
+</config>

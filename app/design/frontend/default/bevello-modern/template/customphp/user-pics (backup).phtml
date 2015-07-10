@@ -1,0 +1,126 @@
+<?php
+// Create a collection of user pics.  Entries will be displayed in the order they are here.
+$user_pics = array(
+	array(
+		"user_pic" => "sample1",
+		"user_name" => "Kate Smith",
+		"user_loc" =>"Raleigh, NC",
+		"product_name" => "Ellison Yellow Pocket Tunic",
+		"product_url" => "ellison-yellow-pocket-tunic",
+	),
+	array(
+		"user_pic" => "sample2",
+		"user_name" => "Walter Winchell",
+		"user_loc" =>"Montgomery, AL",
+		"product_name" => "Splendid Maritime Henley",
+		"product_url" => "splendid-maritime-henley",
+	),
+	array(
+		"user_pic" => "sample3",
+		"user_name" => "Richard Crenna",
+		"user_loc" =>"Springfield, IL",
+		"product_name" => "Jack by BB Dakota Churchill Dress",
+		"product_url" => "jack-by-bb-dakota-churchill-dress",
+	),
+	array(
+		"user_pic" => "sample4",
+		"user_name" => "Bob Barker",
+		"user_loc" =>"Tallahassee, FL",
+		"product_name" => "True Religion Joey Flare Denim",
+		"product_url" => "true-religion-joey-flare-denim",
+	),
+	array(
+		"user_pic" => "sample5",
+		"user_name" => "Sylvester Stallone",
+		"user_loc" =>"Augusta, ME",
+		"product_name" => "Superdry Blacklabel Cargo Pants",
+		"product_url" => "superdry-blacklabel-cargo-pants",
+	),
+	array(
+		"user_pic" => "sample6",
+		"user_name" => "Mack Sennett",
+		"user_loc" =>"Lincoln, NE",
+		"product_name" => "Superdry Technical Windcheater",
+		"product_url" => "superdry-technical-windcheater",
+	),
+	array(
+		"user_pic" => "sample7",
+		"user_name" => "Diana Ross",
+		"user_loc" =>"Albany, NY",
+		"product_name" => "Tulle Military Coat",
+		"product_url" => "tulle-military-coat-1",
+	),
+	array(
+		"user_pic" => "sample8",
+		"user_name" => "Dolly Parton",
+		"user_loc" =>"Richmond, VA",
+		"product_name" => "BCBGeneration Ariel Sparkle Peep Toe Pumps",
+		"product_url" => "bcbgeneration-ariel-sparkle-peep-toe-pumps",
+	),
+	array(
+		"user_pic" => "sample9",
+		"user_name" => "Bernadette Peters",
+		"user_loc" =>"Madison, WI",
+		"product_name" => "Teal and Gold Chandelier Earrings",
+		"product_url" => "teal-and-gold-chandelier-earrings",
+	),
+	array(
+		"user_pic" => "sample10",
+		"user_name" => "Robin Williams",
+		"user_loc" =>"Jackson, MS",
+		"product_name" => "Multi-Stranded Hot Pink Beaded Necklace Set",
+		"product_url" => "multi-stranded-hot-pink-beaded-necklace-set",
+	)
+);
+?>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	// ***** Set the opacity of the overlay filters *****
+	$('ul.gallery li div.display-wrapper div.overlay div.filter').fadeTo(0, 0.75);
+	
+	// ***** User Picture Entry Hover Interaction *****
+	$('ul.gallery li').hover(
+		function() { $(this).find('div.overlay').stop().animate({ top: '0px' }, 200); },
+		function() { $(this).find('div.overlay').stop().animate({ top: '148px' }, 200); }
+	);
+	
+	// ***** Fancybox Lightbox Integration *****
+	$('ul.gallery a.button-big-pic').fancybox({
+		centerOnScroll: true,
+		overlayColor: '#000000',
+		overlayOpacity: 0.75,
+		titleShow: true,
+		titlePosition: 'inside',
+		transitionIn: 'elastic',
+		transitionOut: 'elastic'
+	});
+});
+</script>
+
+<h1 class="slanted">User Pics</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eros quam, rutrum at volutpat id, venenatis ut lacus. Vivamus at neque vel ligula pharetra rhoncus. Ut vel urna et risus suscipit porttitor et vel arcu. In lobortis, nulla quis blandit scelerisque, sapien turpis feugiat nulla, quis suscipit libero urna nec odio. Ut molestie sagittis mollis. Vestibulum vulputate massa in felis sodales viverra fringilla nulla aliquam. Maecenas volutpat tincidunt posuere. Aliquam tempus mauris et nulla laoreet sed porta leo feugiat. Proin faucibus semper mi, ut sagittis quam laoreet quis.</p>
+
+<?php
+$pic_count = 0;
+$pics_per_row = 4;
+echo '<ul class="gallery">';
+foreach($user_pics as $pic) {
+	$pic_count++;
+	echo '<li'.((($pic_count % $pics_per_row) == 0) ? ' class="last"' : '').'>';
+	echo '<div class="display-wrapper">';
+		echo '<img src="'.$this->getUrl().'media/user-pics/'.$pic['user_pic'].'-thumb.jpg" border="0" height="148" width="148" />';
+		echo '<div class="overlay">';
+			echo '<div class="text">';
+				echo '<div class="user">'.$pic['user_name'].'<br/>'.$pic['user_loc'].'</div>';
+				echo '<div class="divider"></div>';
+				echo '<div class="product">'.$pic['product_name'].'</div>';
+				echo '<a class="button button-big-pic" rel="group" href="'.$this->getUrl().'media/user-pics/'.$pic['user_pic'].'.jpg" title="'.$pic['product_name'].' &nbsp;-&nbsp; '.$pic['user_name'].' from '.$pic['user_loc'].'">View a Larger Picture</a>';
+				echo '<a class="button button-product" href="'.$this->getUrl().$pic['product_url'].'">View the Product</a>';
+			echo '</div>';
+			echo '<div class="filter"></div>';
+		echo '</div>';
+	echo '</div>';
+	echo '</li>';
+}
+echo '</ul>';
+?>

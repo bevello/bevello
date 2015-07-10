@@ -1,0 +1,94 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="google-site-verification" content="pXhymFCGMzbqObdVidFcF8TeHvbhIwMRgdz52mOVk8c" />
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('js/'); ?>fancybox/jquery.fancybox-1.3.4.css" />
+<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" language="javascript">
+$.noConflict();
+jQuery(document).ready(function($) {
+	// Beta Mode Box
+	$('div.beta-box div.button').click(function() {
+		if($(this).parent('div.beta-box').hasClass('collapsed')) {
+			$(this).parent('div.beta-box').find('div.content').css({ 'visibility':'visible' });
+			$(this).parent('div.beta-box').animate({ top: '0px' }, 200, function() {
+				$(this).addClass('expanded');
+				$(this).removeClass('collapsed');
+				$('div.beta-box div.button').html('Close');
+			});
+		}
+		else {
+			$(this).parent('div.beta-box').animate({ top: '-107px' }, 200, function(){
+				$(this).find('div.content').css({ 'visibility':'hidden'});
+				$(this).addClass('collapsed');
+				$(this).removeClass('expanded');
+				$('div.beta-box div.button').html('Beta Mode');
+			});
+		}
+	});
+	
+	// If Magento attempts to display a notification to the user, then convert the notification into a slidedown message
+	if($('div.status-message div.message ul.messages').length > 0) {
+		// Integrate a title into the notification depending on the notification level
+		var notification_title = '';
+		switch($('ul.messages').find('li').attr('class')) {
+			case 'error-msg': notification_title = 'Error'; break;
+			case 'success-msg': notification_title = 'Success'; break;
+			case 'note-msg': notification_title = 'Note'; break;
+			case 'notice-msg': notification_title = 'Notice'; break;
+			default: notification_title = 'Other'; break;
+		}
+		$('div.status-message div.title').html(notification_title);
+		$('div.status-message').delay(500).animate({ top: '-2px' }, 500);
+		var animate_status_message = setTimeout(function() { $('div.status-message').animate({ top: '-112px' }, 300); }, 7000);
+	}
+	// Close the message if the user requests it
+	$('div.status-message div.button-close').click(function() {
+		$('div.status-message').animate({ top: '-112px' }, 500);
+	});
+});
+</script>

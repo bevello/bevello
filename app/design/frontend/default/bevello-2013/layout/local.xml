@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- Noindex Nofollow for pages that we don't want search engines to index/follow
+instead of rel="nofollow"
+-->
+
+<layout version="0.1.0">
+
+    <!-- cart -->
+    <checkout_cart_index>
+        <reference name="head">
+            <action method="setRobots"><value>NOINDEX,NOFOLLOW</value></action>
+        </reference>
+    </checkout_cart_index>
+
+    <!-- customer pages -->
+    <customer_account_login>
+        <reference name="head">
+            <action method="setRobots"><value>NOINDEX,NOFOLLOW</value></action>
+        </reference>
+    </customer_account_login>
+
+    <customer_account_create>
+        <reference name="head">
+            <action method="setRobots"><value>NOINDEX,NOFOLLOW</value></action>
+        </reference>
+    </customer_account_create>
+
+    <customer_account>
+        <reference name="head">
+            <action method="setRobots"><value>NOINDEX,NOFOLLOW</value></action>
+        </reference>
+    </customer_account>
+
+    <customer_account_index>
+        <reference name="head">
+            <action method="setRobots"><value>NOINDEX,NOFOLLOW</value></action>
+        </reference>
+    </customer_account_index>
+
+</layout>

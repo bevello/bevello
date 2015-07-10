@@ -1,0 +1,231 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+
+//custom function to load media gallery into product collection for alternate image slider.  Fixes previous magento bad practice below (loading in a loop)
+function addMediaGalleryAttributeToCollection(Mage_Catalog_Model_Resource_Product_Collection $_productCollection) {
+    $_mediaGalleryAttributeId = Mage::getSingleton('eav/config')->getAttribute('catalog_product', 'media_gallery')->getAttributeId();
+    $_read = Mage::getSingleton('core/resource')->getConnection('catalog_read');
+
+
+	$pageCur = $_productCollection->getCurPage();
+	$pageSize = $_productCollection->getPageSize();
+	$offset = $pageSize * ($pageCur - 1);
+
+	$ids = $_productCollection->getAllIds($pageSize, $offset);
+
+	// added check on products number: if 0 ids the following query breaks
+	if (count($ids) > 0) {
+				
+		$_mediaGalleryData = $_read->fetchAll('
+			SELECT
+				main.entity_id, `main`.`value_id`, `main`.`value` AS `file`,
+				`value`.`label`, `value`.`position`, `value`.`disabled`, `default_value`.`label` AS `label_default`,
+				`default_value`.`position` AS `position_default`,
+				`default_value`.`disabled` AS `disabled_default`
+			FROM `bve_catalog_product_entity_media_gallery` AS `main`
+				LEFT JOIN `bve_catalog_product_entity_media_gallery_value` AS `value`
+					ON main.value_id=value.value_id AND value.store_id=' . Mage::app()->getStore()->getId() . '
+				LEFT JOIN `bve_catalog_product_entity_media_gallery_value` AS `default_value`
+					ON main.value_id=default_value.value_id AND default_value.store_id=0
+			WHERE (
+				main.attribute_id = ' . $_read->quote($_mediaGalleryAttributeId) . ')
+				AND (main.entity_id IN (' . $_read->quote($_productCollection->getAllIds()) . '))
+			ORDER BY IF(value.position IS NULL, default_value.position, value.position) ASC
+		');
+	
+	
+		$_mediaGalleryByProductId = array();
+		foreach ($_mediaGalleryData as $_galleryImage) {
+			$k = $_galleryImage['entity_id'];
+			unset($_galleryImage['entity_id']);
+			if (!isset($_mediaGalleryByProductId[$k])) {
+				$_mediaGalleryByProductId[$k] = array();
+			}
+			$_mediaGalleryByProductId[$k][] = $_galleryImage;
+		}
+		unset($_mediaGalleryData);
+		foreach ($_productCollection as &$_product) {
+			$_productId = $_product->getData('entity_id');
+			if (isset($_mediaGalleryByProductId[$_productId])) {
+				$_product->setData('media_gallery', array('images' => $_mediaGalleryByProductId[$_productId]));
+			}
+		}
+		unset($_mediaGalleryByProductId);
+	}
+    return $_productCollection;
+}
+?>
+
+
+<?php $_productCollection = addMediaGalleryAttributeToCollection($this->getLoadedProductCollection()); ?>
+<div class="product-view-list">
+	<!-- <?php
+	$category_assets = array(
+		array('url'=>'dresses/solid', 'text'=>'Dresses - Solid', 'img'=>'category-banner-dresses.jpg'),
+		array('url'=>'dresses/printed', 'text'=>'Dresses - Printed', 'img'=>'category-banner-dresses.jpg'),
+		array('url'=>'dresses/special-occasion', 'text'=>'Dresses - Special Occasion', 'img'=>'category-banner-dresses.jpg'),
+		array('url'=>'dresses/strapless', 'text'=>'Dresses - Strapless', 'img'=>'category-banner-dresses.jpg'),
+		array('url'=>'dresses/maxi', 'text'=>'Dresses - Maxi', 'img'=>'category-banner-dresses.jpg'),
+		array('url'=>'dresses', 'text'=>'Dresses', 'img'=>'category-banner-dresses.jpg'),
+		array('url'=>'tops/blouses', 'text'=>'Tops - Blouses', 'img'=>'category-banner-tops.jpg'),
+		array('url'=>'tops/knits-tees', 'text'=>'Tops - Knits & Tees', 'img'=>'category-banner-tops.jpg'),
+		array('url'=>'tops/tunics', 'text'=>'Tops - Tunics', 'img'=>'category-banner-tops.jpg'),
+		array('url'=>'tops/long-sleeve', 'text'=>'Tops - Long Sleeve', 'img'=>'category-banner-tops.jpg'),
+		array('url'=>'tops/sweaters', 'text'=>'Tops - Sweaters', 'img'=>'category-banner-tops.jpg'),
+		array('url'=>'tops', 'text'=>'Tops', 'img'=>'category-banner-tops.jpg'),
+		array('url'=>'bottoms/denim', 'text'=>'Bottoms - Denim', 'img'=>'category-banner-bottoms.jpg'),
+		array('url'=>'bottoms/pants', 'text'=>'Bottoms - Pants', 'img'=>'category-banner-bottoms.jpg'),
+		array('url'=>'bottoms/leggings', 'text'=>'Bottoms - Leggings', 'img'=>'category-banner-bottoms.jpg'),
+		array('url'=>'bottoms/shorts', 'text'=>'Bottoms - Shorts', 'img'=>'category-banner-bottoms.jpg'),
+		array('url'=>'bottoms/skirts', 'text'=>'Bottoms - Skirts', 'img'=>'category-banner-bottoms.jpg'),
+		array('url'=>'bottoms', 'text'=>'Bottoms', 'img'=>'category-banner-bottoms.jpg'),
+		array('url'=>'outerwear/blazers', 'text'=>'Outerwear - Blazers', 'img'=>'category-banner-outerwear.jpg'),
+		array('url'=>'outerwear/jackets', 'text'=>'Outerwear - Jackets', 'img'=>'category-banner-outerwear.jpg'),
+		array('url'=>'outerwear/coats', 'text'=>'Outerwear - Coats', 'img'=>'category-banner-outerwear.jpg'),
+		array('url'=>'outerwear/leather', 'text'=>'Outerwear - Leather', 'img'=>'category-banner-outerwear.jpg'),
+		array('url'=>'outerwear', 'text'=>'Outerwear', 'img'=>'category-banner-outerwear.jpg'),
+		array('url'=>'shoes/sandals', 'text'=>'Shoes - Sandals', 'img'=>'category-banner-shoes.jpg'),
+		array('url'=>'shoes/flats', 'text'=>'Shoes - Flats', 'img'=>'category-banner-shoes.jpg'),
+		array('url'=>'shoes/boots', 'text'=>'Shoes - Boots', 'img'=>'category-banner-shoes.jpg'),
+		array('url'=>'shoes/heels', 'text'=>'Shoes - Heels', 'img'=>'category-banner-shoes.jpg'),
+		array('url'=>'shoes/wedges', 'text'=>'Shoes - Wedges', 'img'=>'category-banner-shoes.jpg'),
+		array('url'=>'shoes', 'text'=>'Shoes', 'img'=>'category-banner-shoes.jpg'),
+		array('url'=>'accessories/earrings', 'text'=>'Accessories - Earrings', 'img'=>'category-banner-jewelry.jpg'),
+		array('url'=>'accessories/necklaces', 'text'=>'Accessories - Necklaces', 'img'=>'category-banner-jewelry.jpg'),
+		array('url'=>'accessories/bracelets', 'text'=>'Accessories - Bracelets', 'img'=>'category-banner-jewelry.jpg'),
+		array('url'=>'accessories/rings', 'text'=>'Accessories - Rings', 'img'=>'category-banner-jewelry.jpg'),
+		array('url'=>'accessories/belts', 'text'=>'Accessories - Belts', 'img'=>'category-banner-jewelry.jpg'),
+		array('url'=>'accessories/bags-wallets', 'text'=>'Accessories - Bags & Wallets', 'img'=>'category-banner-jewelry.jpg'),
+		array('url'=>'accessories/scarves', 'text'=>'Accessories - Scarves', 'img'=>'category-banner-jewelry.jpg'),
+		array('url'=>'accessories', 'text'=>'Accessories', 'img'=>'category-banner-jewelry.jpg'),
+		array('url'=>'sale', 'text'=>'On Sale Items', 'img'=>'sale.jpg')
+	);
+	// Retrieve the URL and use it to determine what category image to display
+	foreach($category_assets as $c) {
+		if(strpos($_SERVER['REQUEST_URI'], $c['url']) !== false) {
+			echo '<div class="category-header-image">'."\n";
+			echo '<h1 style="background-image: url('."'".($this->getSkinUrl('images/media/product-category-header-image/'.$c['img']))."'".');">'.$c['text'].'</h1>'."\n";
+			echo '</div>'."\n";
+			break;
+		}
+	}
+	?> -->
+	<?php if(!$_productCollection->count()) { ?>
+		<div class="no-products-listed"><div class="msg">There are no products matching the selection.</div></div>
+	<?php } else { ?>
+		<?php echo $this->getToolbarHtml() ?>
+		<?php
+		$collection_count = $_productCollection->count();
+		$items_per_row = 4; //$this->getColumnCount();
+		$item_count = 0;
+		echo '<ul class="product-list">'."\n";
+		foreach($_productCollection as $_product) {
+			$item_count++;
+			$product_designer = $_product->getAttributeText('designer');
+			$isMadeInUSA = ($_product->getAttributeText('country_of_manufacture') === 'United States');
+			$isExclusive = ($product_designer === 'MOSSIQUE' || $product_designer === 'Julie Billiart' || $_product->getAttributeText('exclusive') === 'Yes');
+			$product_class = '';
+			if($item_count == 1) { $product_class = 'first'; }
+			if($item_count == $items_per_row) { $product_class = 'last'; }
+			echo '<li'.((!empty($product_class)) ? ' class="'.$product_class.'"' : '').'>'."\n";
+				// Get the last image in the product's image gallery
+				// Bad magento coding practice - No loads in a for each loop!
+                //$this_product = Mage::getModel('catalog/product')->load($_product->getId());
+				$this_product_count = 0;
+				$this_product_image_last = '';
+
+				foreach($_product->getMediaGalleryImages() as $img) {
+					$this_product_count++;
+					$this_product_image_last = $img;
+                }
+				// Display a single image or an image slider, depending on how many images are in the gallery
+				if($this_product_count <= 1) {
+					echo '<div class="img"><a href="'.$_product->getProductUrl().'"><img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" /></a><div></div>';
+                } else {
+					echo '<div class="img multiple"><a href="'.$_product->getProductUrl().'">';
+					echo '<span class="img-slider">';
+					echo '<img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" />';
+                    echo '<img src="'.$this->helper('catalog/image')->init($_product, 'image', $this_product_image_last->getFile())->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" />';
+                    echo '</span>';
+					echo '</a>';
+					echo '<div class="img-slider-controller">+</div>';
+				}
+				if($isMadeInUSA && $isExclusive) {
+					echo '<div class="icons"><img src="'.$this->getSkinUrl('images/icon_exclusive.png').'" alt="exclusive" /><div></div><img src="'.$this->getSkinUrl('images/icon_madeinusa.png').'" alt="madeinusa" /></div>';
+				} else if($isMadeInUSA) {
+					echo '<div class="icons"><img src="'.$this->getSkinUrl('images/icon_madeinusa.png').'" alt="madeinusa" /></div>';
+				} else if($isExclusive) {
+					echo '<div class="icons"><img src="'.$this->getSkinUrl('images/icon_exclusive.png').'" alt="exclusive" /></div>';
+				}
+				echo '</div>'."\n";
+				if(!empty($product_designer)) { echo '<div class="designer"><h2>'.$product_designer.'</h2></div>'."\n"; }
+				echo '<div class="name"><h2><a href="'.$_product->getProductUrl().'">'.$this->htmlEscape($_product->getName()).'</a></h2></div>'."\n";
+				echo '<div class="details">'."\n";
+				//echo $this->getPriceHtml($_product, true); [Display regular and special price (if one exists)]
+				$temp_price_original = number_format($_product->getPrice(), 2);
+				$temp_price_final = number_format($_product->getFinalPrice(), 2);
+				if($temp_price_original != $temp_price_final) {
+					echo '<span class="new">$'.$temp_price_final.'</span>'."\n";
+					echo '<span class="original">$'.$temp_price_original.'</span>'."\n";
+				} else {
+					echo '$'.$temp_price_final."\n";
+				}
+				echo '</div>'."\n";
+			echo '</li>'."\n";
+			if($item_count == $items_per_row) { $item_count = 0; }
+		}
+		echo '</ul><br />'."\n";
+		?>
+		<?php echo $this->getToolbarHtml() ?>
+	<?php } ?>
+</div><!-- .product-view-list -->
+
+
+<script type="text/javascript">
+	(function($){
+		// ***** Product Alternate Image Hover Interaction *****
+		var isTouch = false,
+			$list = $('ul.product-list');
+
+		$list.html($list.html().replace(/>\s+</g,'><'));
+
+		var $controllers = $list.find('li div.img div.img-slider-controller'),
+			show = function(elem) { $(elem).parent('div.img').find('span.img-slider').stop().animate({ left: '-100%' }, 200);},
+			hide = function(elem) { $(elem).parent('div.img').find('span.img-slider').stop().animate({ left: '0' }, 200); };
+
+		$controllers.on('touchstart', function(e){isTouch=true;show(this);e.preventDefault();});
+		$controllers.on('touchend', function(e){isTouch=true;hide(this);e.preventDefault();});
+		$controllers.on('mouseover', function(){if(!isTouch)show(this);});
+		$controllers.on('mouseout', function(){if(!isTouch)hide(this);});
+	})(jQuery);
+</script>
+

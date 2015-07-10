@@ -1,0 +1,146 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="header-container">
+	<div class="status-message">
+		<div class="wrapper">
+			<div class="title"></div>
+			<div class="message"><?php echo $this->getChildHtml('global_messages'); ?></div>
+			<div class="button-close"></div>
+		</div>
+	</div>
+	<div class="headertop">
+		<div class="utility-menu row">
+			<?php echo $this->getChildHtml('topLinks'); // Utility Links ?>
+			<?php echo $this->getChildHtml('topBar'); // Search Bar ?>
+		</div>
+	</div>
+	<div class="header-wrapper">
+		<a class="logo" href="<?php echo $this->getUrl(''); ?>">bevello</a>
+		<div class="primary-menu">
+			<div id="mobilenav">
+				<a href="#">Menu</a>
+				<div id="nav-expand-top"><span></span><span></span><span></span></div>
+			</div>
+			<?php echo $this->getChildHtml('topMenu'); ?>
+		</div>
+
+
+		<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/'); ?>waypoints.min.js"></script>
+		<script type="text/javascript" src="<?php echo $this->getSkinUrl('js/'); ?>waypoints-sticky.min.js"></script>
+		<script type="text/javascript">
+			(function(window, $){
+				var $nav = $('.primary-menu').first();
+
+				//Clear whitespace between elements for smoothness with inline-block
+				$nav.html($nav.html().replace(/>\s+</g,'><'));
+
+				var toggleMenu = function($li, $expand){
+					if(typeof $expand !== 'object'){
+						$expand = $li.children('.nav-expand').first();
+					}
+					if($li.hasClass('nav-menu-expanded')){
+						$li.removeClass('nav-menu-expanded');
+						$expand.text('+');
+					}else{
+						$li.addClass('nav-menu-expanded');
+						$expand.text('‐');
+						/*$li.find('.nav-expand').each(function(){
+							$(this).position({
+								my: 'right center',
+								at: 'right center',
+								of: $(this).siblings('a')
+							})
+						});*/
+					}
+				};
+
+				$nav.on('click', '.nav-expand', function(ev){
+					var $expand = $(ev.target);
+					toggleMenu($expand.parent().first(), $expand);
+					ev.preventDefault();
+				});
+
+				/*
+				 * Uncomment to disable navigation on top-level items and make them expand when tapped instead
+				 */
+				/*$nav.on('click', 'ul#nav > .parent > a', function(ev){
+					var $li = $(ev.target).closest('li');
+					toggleMenu($li);
+					ev.preventDefault();
+				});*/
+
+				$nav.on('mouseup', '#mobilenav', function(ev){
+					ev.preventDefault();
+					$('.nav-container', $nav).toggleClass('nav-top-menu-expanded');
+					$nav.find('.nav-expand').each(function(){
+						/*$(this).position({
+							my: 'right center',
+							at: 'right center',
+							of: $(this).siblings('a')
+						})*/
+					});
+				});
+
+				$nav.on('click', '#mobilenav', function(ev){ev.preventDefault();});
+
+				$nav.find(".parent").each(function(i,e){
+					$(e).append($('<div class="nav-expand">+</div>'));
+				});
+
+		        /*******************************
+		         * Sticky nav
+		         */
+				$nav.waypoint('sticky');
+			})(window, jQuery);
+		</script>
+
+		<div class="free-shipping"><span class="boldshipping">Free Standard Shipping<br /></span><span class="slantedshipping">on all Orders Over $100</span></div>
+		<?php /*
+		<div class="social-media">
+			<ul>
+			<li><a class="facebook" href="#" target="_blank">Facebook</a></li>
+			<li><a class="twitter" href="#" target="_blank">Twitter</a></li>
+			<li><a class="email" href="#" target="_blank">Newsletter Signup</a></li>
+			<li><a class="blog" href="#" target="_blank">Blog</a></li>
+			</ul>
+		</div>
+		*/ ?>
+		
+		<?php
+		/*
+		<p class="top-promo" title="<?php echo $this->__('Free Shipping on orders over 50$'); ?>"><?php echo $this->__('Free Shipping on orders over 50$'); ?></p>
+		<div class="quick-access">
+			<?php echo $this->getChildHtml('store_language') ?>
+			<p class="welcome-msg"><?php echo $this->getWelcome()?></p>
+			<?php echo $this->getChildHtml('topLinks') ?>
+		</div>
+		<?php //echo $this->getChildHtml('topBar') ?>
+		<?php //echo $this->getChildHtml('topContainer'); ?>
+		*/
+		?>
+	</div>
+</div>

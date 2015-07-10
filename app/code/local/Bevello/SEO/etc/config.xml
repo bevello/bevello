@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bevello_SEO>
+            <version>1.0.0</version>
+        </Bevello_SEO>
+    </modules>
+    <global>
+        <models>
+            <Bevello_SEO>
+                <class>Bevello_SEO_Model</class>
+            </Bevello_SEO>
+        </models>
+    </global>
+    <frontend>
+        <events>
+            <catalog_controller_product_view>
+                <observers>
+                    <Bevello_SEO>
+                        <class>Bevello_SEO/Observer</class>
+                        <method>productView</method>
+                    </Bevello_SEO>
+                </observers>
+            </catalog_controller_product_view>
+        </events>
+    </frontend>
+</config>

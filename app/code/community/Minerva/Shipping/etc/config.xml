@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config>
+  <default>
+    <carriers>
+      <msmultiflat>
+        <active>1</active>
+        <sallowspecific>0</sallowspecific>
+        <model>Minerva_Shipping_Model_Carrier_Multiflat</model>
+        <name>Pickup at Event</name>
+        <title>No Charge</title>
+        <type>I</type>
+        <details>Enter pickup instructions here.</details>
+        <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+        <handling_type>F</handling_type>
+      </msmultiflat>
+    </carriers>
+  </default>
+  <modules>
+    <Minerva_Shipping>
+      <version>1.3.0</version>
+    </Minerva_Shipping>
+  </modules>
+  <global>
+    <models>
+      <msmultiflat>
+        <class>Minerva_Shipping_Model</class>
+      </msmultiflat>
+    </models>
+    <resources>
+      <!-- resource identifier -->
+      <msmultiflat_setup>
+        <setup>
+          <!-- which module to look for install/upgrade files in -->
+          <module>Minerva_Shipping</module>
+        </setup>
+        <!-- specify database connection for this resource -->
+        <connection>
+          <!-- do not create new connection, use predefined core setup connection -->
+          <use>core_setup</use>
+        </connection>
+      </msmultiflat_setup>
+    </resources>
+  </global>
+</config>

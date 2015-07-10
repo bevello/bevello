@@ -1,0 +1,155 @@
+<?php
+// Create a collection of user pics.  Entries will be displayed in the order they are here.
+$user_pics = array(
+	array(
+		"user_pic" => "20120228-AW-RM-RALEIGH",
+		"user_name" => "Alex Watkins & Rachel Musselwhite",
+		"user_loc" =>"Raleigh, NC & Chesapeake, VA",
+		"product_name" => "Beaded Blue Minuet Dress",
+		"product_url" => "beaded-blue-minuet-dress",
+	),
+	array(
+		"user_pic" => "20120228-AB-CARY",
+		"user_name" => "Amanda Brookie",
+		"user_loc" =>"Cary, NC",
+		"product_name" => "",
+		"product_url" => "",
+	),
+	array(
+		"user_pic" => "20120228-CC2-GREENVILLE",
+		"user_name" => "Caroline Cook",
+		"user_loc" =>"Greenville, NC",
+		"product_name" => "",
+		"product_url" => "",
+	),
+	array(
+		"user_pic" => "20120228-CC-SWEETBRIAR",
+		"user_name" => "Charlotte Cohen",
+		"user_loc" =>"Sweet Briar, VA",
+		"product_name" => "Jack by BB Dakota Churchill Dress",
+		"product_url" => "dresses/solid/jack-by-bb-dakota-churchill-dress",
+	),
+	array(
+		"user_pic" => "20120228-EB-RALEIGH",
+		"user_name" => "Erin Bonney",
+		"user_loc" =>"Raleigh, NC",
+		"product_name" => "",
+		"product_url" => "",
+	),
+	array(
+		"user_pic" => "20120228-IB-CHARLOTTE",
+		"user_name" => "Isabella Bartolucci",
+		"user_loc" =>"Charlotte, NC",
+		"product_name" => "Tulle Back Pleated Coat",
+		"product_url" => "tulle-back-pleated-coat",
+	),
+	array(
+		"user_pic" => "20120228-KM-ZEBULON",
+		"user_name" => "Kaitlin Moss",
+		"user_loc" =>"Zebulon, NC",
+		"product_name" => "VaVa by Joy Han Zoe Pin Tube Dress",
+		"product_url" => "dresses/strapless/vava-by-joy-han-zoe-pin-tube-dress",
+	),
+	array(
+		"user_pic" => "20120228-KH-JK-VIRGINIABEACH",
+		"user_name" => "Katie Heilenday & Jaimie Klingbail",
+		"user_loc" =>"Virginia Beach, VA",
+		"product_name" => "",
+		"product_url" => "",
+	),
+	array(
+		"user_pic" => "20120228-NG-ARLINGTON",
+		"user_name" => "Noel Grimm",
+		"user_loc" =>"Arlington, VA",
+		"product_name" => "Collective Concepts Tribal Print Top",
+		"product_url" => "tops/blouses/collective-concepts-tribal-print-top",
+	),
+	array(
+		"user_pic" => "20120228-SW-CHAPELHILL",
+		"user_name" => "Samantha Ward",
+		"user_loc" =>"Chapel Hill, NC",
+		"product_name" => "",
+		"product_url" => "",
+	),
+	array(
+		"user_pic" => "20120228-SW-LOUISVILLE",
+		"user_name" => "Shelby Wagenseller",
+		"user_loc" =>"Louisville, KY",
+		"product_name" => "",
+		"product_url" => "",
+	),
+	array(
+		"user_pic" => "20120229-SW-GREENVILLE",
+		"user_name" => "Summer Wilson",
+		"user_loc" =>"Greenville, NC",
+		"product_name" => "",
+		"product_url" => "",
+	),
+	array(
+		"user_pic" => "20120229-SB-CHARLOTTE",
+		"user_name" => "Sydney Bassard",
+		"user_loc" =>"Charlotte, NC",
+		"product_name" => "Theme Gathered Cocktail Dress",
+		"product_url" => "dresses/solid/theme-gathered-cocktail-dress",
+	)
+);
+?>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	// ***** Set the opacity of the overlay filters *****
+	$('ul.gallery li div.display-wrapper div.overlay div.filter').fadeTo(0, 0.75);
+	
+	// ***** User Picture Entry Hover Interaction *****
+	$('ul.gallery li').hover(
+		function() { $(this).find('div.overlay').stop().animate({ top: '0px' }, 200); },
+		function() { $(this).find('div.overlay').stop().animate({ top: '148px' }, 200); }
+	);
+	
+	// ***** Fancybox Lightbox Integration *****
+	$('ul.gallery a.button-big-pic').fancybox({
+		centerOnScroll: true,
+		overlayColor: '#000000',
+		overlayOpacity: 0.75,
+		titleShow: true,
+		titlePosition: 'inside',
+		transitionIn: 'elastic',
+		transitionOut: 'elastic'
+	});
+});
+</script>
+
+<h1 class="slanted">Become one of our Bevello Bombshells</h1>
+<div class="promo-photo"><img src="<?php echo $this->getSkinUrl('images/media/image-bombshell-promotion.jpg'); ?>" alt="Become one of our Bevello Bombshells" border="0" height="280" width="300" /></div>
+<div class="promo-text">
+	<div class="title">Snap a photo of yourself in bevello gear<br/>and receive 15% in savings</div>
+	<div class="details">No one looks better in bevello than our beloved bombshells. We want to show you off to the world so everyone can appreciate just how beautiful you are! We want to thank you for all of your love & support and sharing your bevello moments with us! Please feel free to send all your bombshell photos, including your name & hometown, to help@bevello.com & receive 15% off your next online purchase as a "thank you" from the bevello family!</div>
+</div>
+<div class="clear"></div>
+
+<h1 class="slanted">Our Latest Bombshells ...</h1>
+<?php
+$pic_count = 0;
+$pics_per_row = 4;
+echo '<ul class="gallery">';
+foreach($user_pics as $pic) {
+	$pic_count++;
+	echo '<li'.((($pic_count % $pics_per_row) == 0) ? ' class="last"' : '').'>';
+	echo '<div class="display-wrapper">';
+		echo '<img src="'.$this->getUrl().'media/user-pics/'.$pic['user_pic'].'-thumb.jpg" border="0" height="148" width="148" />';
+		echo '<div class="overlay">';
+			echo '<div class="text">';
+				echo '<div class="user">'.$pic['user_name'].'<br/>'.$pic['user_loc'].'</div>';
+				echo '<div class="divider"></div>';
+				echo '<div class="product">'.$pic['product_name'].'</div>';
+				echo '<div class="controls">';
+				echo '<a class="button button-big-pic" rel="group" href="'.$this->getUrl().'media/user-pics/'.$pic['user_pic'].'.jpg" title="'.$pic['product_name'].' &nbsp;-&nbsp; '.$pic['user_name'].' from '.$pic['user_loc'].'">View a Larger Picture</a>';
+				echo (!empty($pic['product_url'])) ? '<a class="button button-product" href="'.$this->getUrl().$pic['product_url'].'">View the Product</a>' : '';
+				echo '</div>';
+			echo '</div>';
+			echo '<div class="filter"></div>';
+		echo '</div>';
+	echo '</div>';
+	echo '</li>';
+}
+echo '</ul>';
+?>

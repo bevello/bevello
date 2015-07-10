@@ -1,0 +1,117 @@
+<?php
+//store event graphic
+if (new DateTime() < new DateTime("2015-06-21 00:01:00")):
+?>
+<div style="padding-top: 10px;"><a href="http://www.bevello.com/swing-into-summer-event"><img src="/images/06.11.15_SummerEvent_HOMEPAGEBANNER-01.jpg"/></a></div>
+<?php endif; ?>
+<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery.bxSlider.min.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery.ui.widget.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery.smoothDivScroll-1.1-min.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery.easyModal.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery.subscribePopup.js"></script>
+<script type="text/javascript">
+$.noConflict();
+jQuery(document).ready(function($) {
+	// Header Image Rotation
+	var featured_image = $('div.featured-image ul.slider').bxSlider({
+		auto: true,
+		autoControls: false,
+		autoHover: true,
+		controls: false,
+		mode: 'horizontal',
+		pause: 5000,
+		speed: 500
+	});
+	$('div.featured-image div.image-wrapper').hover(
+		function() {
+			$('div.featured-image div.controls').fadeIn(250);
+			//$('div.featured-image div.control-buffer').fadeIn(250);
+		},
+		function() {
+			$('div.featured-image div.controls').fadeOut(250);
+			//$('div.featured-image div.control-buffer').fadeOut(250);
+		}
+	);
+	$('div.featured-image div.controls a.prev').hover(
+		function() { featured_image.stopShow(); },
+		function() { featured_image.startShow(); }
+	);
+	$('div.featured-image div.controls a.next').hover(
+		function() { featured_image.stopShow(); },
+		function() { featured_image.startShow(); }
+	);
+	$('div.featured-image div.controls a.prev').click(function() { featured_image.goToPreviousSlide(); });
+	$('div.featured-image div.controls a.next').click(function() { featured_image.goToNextSlide(); });
+	
+	// Designer Logo Scroller
+	$("div#makeMeScrollable").smoothDivScroll({
+		autoScroll: 'onstart',
+		autoScrollDirection: 'backandforth',
+		autoScrollStep: 1,
+		autoScrollInterval: 10,
+		scrollStep: 5,
+		scrollInterval: 10,
+		visibleHotSpots: 'always'
+	});
+	$('div.scrollWrapper').hover(
+		function() { $("div#makeMeScrollable").smoothDivScroll("stopAutoScroll"); },
+		function() { $("div#makeMeScrollable").smoothDivScroll("startAutoScroll"); }
+	);
+	var scroller_restart = '';
+	$('div.designers .button').hover(
+		function() { clearTimeout(scroller_restart); },
+		function() { scroller_restart = setTimeout(function() { $("div#makeMeScrollable").smoothDivScroll("startAutoScroll"); }, 3000); }
+	);
+});
+</script>
+
+<div class="featured-image">
+	<div class="image-wrapper">
+		<ul class="slider">
+            <?php
+
+            $collection = Mage::getModel('slider/slider')->getCollection();
+            foreach ($collection as $item) {
+				if ($item->getStatus() == 1) {
+					?>
+					<li><a href="<?= $item->getLink(); ?>"><img src="/media/<?= $item->getImage(); ?>"
+																alt="<?= $item->getAlt(); ?>" border="0" height="525"
+																width="960"/></a></li>
+				<?php
+				}
+            }
+            ?>
+		</ul>
+		<div class="controls">
+			<a class="prev"></a>
+			<a class="next"></a>
+		</div>
+		<a class="mobilearrow mobileprev"></a>
+		<a class="mobilearrow mobilenext"></a>
+		<?php /*<div class="control-buffer"></div>*/ ?>
+	</div>
+</div><!-- .featured-image -->
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery-ui.animations.min.js"></script>
+<script type="text/javascript">
+	(function($){
+		$(document).ready(function(){
+			var $featuredImage = $('.featured-image'),
+				$left = $featuredImage.find('.mobileprev'),
+				$right = $featuredImage.find('.mobilenext');
+			$left.position({
+				my: 'left center',
+				at: 'left center',
+				of: $featuredImage
+			});
+			$right.position({
+				my: 'right center',
+				at: 'right center',
+				of: $featuredImage
+			});
+			$left.click(function(){$featuredImage.find('.controls .prev').click()});
+			$right.click(function(){$featuredImage.find('.controls .next').click()});
+		});
+	})(jQuery);
+</script>
+

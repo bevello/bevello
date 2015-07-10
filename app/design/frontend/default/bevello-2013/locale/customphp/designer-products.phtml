@@ -1,0 +1,68 @@
+<?php
+// Retrieve all possible designer options from the designer attribute
+$designer = array();
+$designer_attribute = Mage::getModel('eav/config')->getAttribute('catalog_product', 'designer');
+foreach($designer_attribute->getSource()->getAllOptions(true, true) as $option){
+	if(!empty($option['label']) && !empty($option['value'])) {
+		$designer_label = strtolower($option['label']);
+		$designer_label = preg_replace('/[^a-z0-9 ]/', '', $designer_label);
+		$designer_label = str_replace(' ', '-', $designer_label);
+		$designer[$designer_label] = array('id'=>$option['value'], 'name'=>$option['label']);
+	}
+}
+
+// Retrieve the requested designer from the URL
+$designer_request = stripslashes(trim($_GET['by']));
+
+// Attempt to display the products of the requested designer
+echo '<div class="product-view-list">'."\n";
+	// If the requested designer is empty or invalid, then display an appropriate message to the user
+	if(empty($designer_request) || !array_key_exists($designer_request, $designer)) {
+		echo '<h1 class="slanted">Designer Products</h1>'."\n";
+		echo '<div class="no-products-listed"><div class="msg">There are no products matching this selection.</div></div>'."\n";
+	} else {
+		// Retrieve all products which are designed by the requested designer
+		$_products = Mage::getModel('catalog/product')->getCollection()
+			->addAttributeToSelect(array('small_image', 'name', 'designer', 'price'))
+			->addAttributeToFilter('designer', array('eq' => $designer[$designer_request]['id']))
+			//->addAttributeToFilter('sku', array('like' => 'tp%'))
+			->load();
+		// Display those products to the user
+		echo '<h1 class="slanted">designer:&nbsp; '.$designer[$designer_request]['name'].'</h1>'."\n";
+		if(!$_products->count()) {
+			echo '<div class="no-products-listed"><div class="msg">There are no products currently available from this designer.</div></div>'."\n";
+		} else {
+			$items_per_row = 3;
+			$item_count = 0;
+			echo '<ul class="product-list">'."\n";
+			foreach($_products as $_product) {
+				// First, make sure that the current product isn't a child of a configurable product.  If it is, then skip it.
+				$configurable_product = Mage::getModel('catalog/product_type_configurable');
+				$parent_ids = $configurable_product->getParentIdsByChild($_product->getId());
+				if(!empty($parent_ids)) { continue; }
+				// Otherwise, display the product
+				$item_count++;
+				$product_designer = $_product->getAttributeText('designer');
+				$product_class = '';
+				if($item_count == 1) { $product_class = 'first'; }
+				if($item_count == $items_per_row) { $product_class = 'last'; }
+				echo '<li'.((!empty($product_class)) ? ' class="'.$product_class.'"' : '').'>'."\n";
+				echo '<div class="img"><a href="'.$_product->getProductUrl().'"><img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" /></a></div>'."\n";
+				echo '<div class="name"><h2><a href="'.$_product->getProductUrl().'">'.$this->htmlEscape($_product->getName()).'</a></h2></div>'."\n";
+				echo '<div class="details">'."\n";
+				if(!empty($product_designer)) { echo 'By: '.$product_designer.'<br/>'."\n"; }
+				$temp_price_original = number_format($_product->getPrice(), 2);
+				$temp_price_final = number_format($_product->getFinalPrice(), 2);
+				echo '$'.$temp_price_final."\n";
+				if($temp_price_original != $temp_price_final) {
+					echo '<span class="original">$'.$temp_price_original.'</span>'."\n";
+				}
+				echo '</div>'."\n";
+				echo '</li>'."\n";
+				if($item_count == $items_per_row) { $item_count = 0; }
+			}
+			echo '</ul>'."\n";
+			echo '<div class="clear"></div>';
+		}
+	}
+echo '</div>'."\n";

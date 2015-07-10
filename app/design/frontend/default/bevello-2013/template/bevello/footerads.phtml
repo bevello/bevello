@@ -1,0 +1,31 @@
+<div class="footerRow">
+	<?php
+	$rows = Mage::getModel('footerrow/footerrow')->getCollection()->addFilter('status',1);
+
+	foreach($rows as $row) {
+		$collection = Mage::getModel('footerads/footerads')->getCollection()->addFilter('status',1)->addFilter('rowId',$row["rowId"]);
+		if($collection->count()) {
+			echo '<ul>';
+			foreach ($collection as $item) {
+				/*
+				switch($size){
+					case 1:
+						?>
+						<li class="footerAdOne"><a href="<?= $item->getLink(); ?>"><img src="/media/<?= $item->getImage(); ?>" alt="<?= $item->getAlt(); ?>" /></a></li>
+						<?php
+						break;
+					case 2:
+						?>
+						<li class="footerAd"><a href="<?= $item->getLink(); ?>"><img src="/media/<?= $item->getImage(); ?>" alt="<?= $item->getAlt(); ?>" /></a></li>
+						<?php
+				}*/
+				?>
+				<li class="footerSlider"><a href="<?= $item->getLink(); ?>"><img src="/media/<?= $item->getImage(); ?>"
+																			 alt="<?= $item->getAlt(); ?>"/></a></li>
+				<?php
+			}
+			echo '</ul>';
+		}
+	}
+	?>
+</div>

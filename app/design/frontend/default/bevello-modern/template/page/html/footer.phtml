@@ -1,0 +1,91 @@
+﻿ <?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<div class="smalldivider"></div>
+
+<div class="footer-container">
+	<div class="footer-top">
+		<div class="footer-wrapper">
+			<div class="section section1">
+				<div class="title slanted">Connect with Bevello</div>
+				<ul class="footer-links">
+					<li><a href="http://twitter.com/#!/bevello" target="_blank"><img src="<?php echo $this->getSkinUrl('images/twitter-small.png'); ?>" class="socialfootericon" />Twitter</a></li>
+					<li><a href="<?php echo $this->getUrl(''); ?>contact"><img src="<?php echo $this->getSkinUrl('images/email-small.png'); ?>" class="socialfootericon" />Email</a></li>
+					<li><a href="http://pinterest.com/bevello/" target="_blank"><img src="<?php echo $this->getSkinUrl('images/pinterest-small.png'); ?>" class="socialfootericon" />Pinterest</a></li>
+					<li><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fbevelloboutique&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=332043610228614" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px; margin-top:10px;" allowTransparency="true"></iframe></li>
+				</ul>
+			</div>
+			<div class="section section2">
+				<div class="title slanted">About Bevello</div>
+				<ul class="footer-links">
+					<li><a href="<?php echo $this->getUrl(''); ?>philosophy">Bevello Philosophy</a></li>
+					<li><a href="<?php echo $this->getUrl(''); ?>store-locations">Bevello Locations</a></li>
+					<li><a href="<?php echo $this->getUrl(''); ?>careers">Career Opportunities</a></li>
+				        <li><a href="<?php echo $this->getUrl(''); ?>programs">Bevello Exclusives</a></li>
+					<li><a href="<?php echo $this->getUrl(''); ?>news">News & Press</a></li>
+					<li><a href="<?php echo $this->getUrl(''); ?>contact">Contact Us</a></li>
+				</ul>
+			</div>
+			<div class="section section3">
+				<div class="title slanted">Help</div>
+				<ul class="footer-links">
+					<li><a href="<?php echo $this->getUrl(''); ?>shipping">Shipping & Returns</a></li>
+					<li><a href="<?php echo $this->getUrl(''); ?>sizing">Sizing</a></li>
+					<li><a href="<?php echo $this->getUrl(''); ?>privacy-security">Privacy & Security</a></li>
+					<li><a href="<?php echo $this->getUrl(''); ?>client-services">Client Services</a></li>
+				</ul>
+			</div>
+			<div class="section section4">
+				<div class="free-shipping"><span class="boldshipping">Free Standard Shipping</span><span class="slantedshipping">on all orders over $100</span></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<div class="copyright">© 2013 bevello all rights reserved.</div>
+		<div class="clear" style="clear:both;"></div>
+	</div>
+	
+	<?php /*
+	<div class="footer-wrapper">
+		<div class="footer">
+			<?php echo $this->getChildHtml('bottomContainer') ?>
+			<div class="f-right">
+				<img src="<?php echo $this->getSkinUrl('images/media/footer_callout.png');?>" class="footer-callout" alt="" />
+				<?php echo $this->getChildHtml('store_switcher') ?>
+			</div>
+			<div class="f-left">
+				<?php echo $this->getChildHtml('cms_footer_links') ?>
+				<?php echo $this->getChildHtml('footer_links') ?>
+				<?php echo $this->getChildHtml('newsletter') ?>
+				<p class="bugs"><?php echo $this->__('Help Us to Keep Magento Healthy') ?> - <a href="http://www.magentocommerce.com/bug-tracking" onclick="this.target='_blank'"><strong><?php echo $this->__('Report All Bugs') ?></strong></a> <?php echo $this->__('(ver. %s)', Mage::getVersion()) ?></p>
+				<address><?php echo $this->getCopyright() ?></address>
+			</div>
+		</div>
+	</div>
+	*/ ?>
+</div>

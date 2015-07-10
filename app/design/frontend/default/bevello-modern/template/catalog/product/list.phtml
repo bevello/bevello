@@ -1,0 +1,248 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	// ***** Product Alternate Image Hover Interaction *****
+	$('ul.product-list li div.img div.img-slider-controller').hover(
+		function() { $(this).parent('div.img').find('div.img-slider').stop().animate({ left: '-200px' }, 200); },
+		function() { $(this).parent('div.img').find('div.img-slider').stop().animate({ left: '0px' }, 200); }
+	);
+});
+</script>
+
+
+<?php $_productCollection = $this->getLoadedProductCollection(); ?>
+<div class="product-view-list">
+	<?php
+	$category_assets = array(
+		array('url'=>'dresses/solid', 'text'=>'Dresses - Solid', 'img'=>'dresses.jpg'),
+		array('url'=>'dresses/printed', 'text'=>'Dresses - Printed', 'img'=>'dresses.jpg'),
+		array('url'=>'dresses/special-occasion', 'text'=>'Dresses - Special Occasion', 'img'=>'dresses.jpg'),
+		array('url'=>'dresses/strapless', 'text'=>'Dresses - Strapless', 'img'=>'dresses.jpg'),
+		array('url'=>'dresses/maxi', 'text'=>'Dresses - Maxi', 'img'=>'dresses.jpg'),
+		array('url'=>'dresses', 'text'=>'Dresses', 'img'=>'dresses.jpg'),
+		array('url'=>'tops/blouses', 'text'=>'Tops - Blouses', 'img'=>'tops.jpg'),
+		array('url'=>'tops/knits-tees', 'text'=>'Tops - Knits & Tees', 'img'=>'tops.jpg'),
+		array('url'=>'tops/tunics', 'text'=>'Tops - Tunics', 'img'=>'tops.jpg'),
+		array('url'=>'tops/long-sleeve', 'text'=>'Tops - Long Sleeve', 'img'=>'tops.jpg'),
+		array('url'=>'tops/sweaters', 'text'=>'Tops - Sweaters', 'img'=>'tops.jpg'),
+		array('url'=>'tops', 'text'=>'Tops', 'img'=>'tops.jpg'),
+		array('url'=>'bottoms/denim', 'text'=>'Bottoms - Denim', 'img'=>'bottoms.jpg'),
+		array('url'=>'bottoms/pants', 'text'=>'Bottoms - Pants', 'img'=>'bottoms.jpg'),
+		array('url'=>'bottoms/leggings', 'text'=>'Bottoms - Leggings', 'img'=>'bottoms.jpg'),
+		array('url'=>'bottoms/shorts', 'text'=>'Bottoms - Shorts', 'img'=>'bottoms.jpg'),
+		array('url'=>'bottoms/skirts', 'text'=>'Bottoms - Skirts', 'img'=>'bottoms.jpg'),
+		array('url'=>'bottoms', 'text'=>'Bottoms', 'img'=>'bottoms.jpg'),
+		array('url'=>'outerwear/blazers', 'text'=>'Outerwear - Blazers', 'img'=>'outerwear.jpg'),
+		array('url'=>'outerwear/jackets', 'text'=>'Outerwear - Jackets', 'img'=>'outerwear.jpg'),
+		array('url'=>'outerwear/coats', 'text'=>'Outerwear - Coats', 'img'=>'outerwear.jpg'),
+		array('url'=>'outerwear/leather', 'text'=>'Outerwear - Leather', 'img'=>'outerwear.jpg'),
+		array('url'=>'outerwear', 'text'=>'Outerwear', 'img'=>'outerwear.jpg'),
+		array('url'=>'shoes/sandals', 'text'=>'Shoes - Sandals', 'img'=>'shoes.jpg'),
+		array('url'=>'shoes/flats', 'text'=>'Shoes - Flats', 'img'=>'shoes.jpg'),
+		array('url'=>'shoes/boots', 'text'=>'Shoes - Boots', 'img'=>'shoes.jpg'),
+		array('url'=>'shoes/heels', 'text'=>'Shoes - Heels', 'img'=>'shoes.jpg'),
+		array('url'=>'shoes/wedges', 'text'=>'Shoes - Wedges', 'img'=>'shoes.jpg'),
+		array('url'=>'shoes', 'text'=>'Shoes', 'img'=>'shoes.jpg'),
+		array('url'=>'accessories/earrings', 'text'=>'Accessories - Earrings', 'img'=>'accessories.jpg'),
+		array('url'=>'accessories/necklaces', 'text'=>'Accessories - Necklaces', 'img'=>'accessories.jpg'),
+		array('url'=>'accessories/bracelets', 'text'=>'Accessories - Bracelets', 'img'=>'accessories.jpg'),
+		array('url'=>'accessories/rings', 'text'=>'Accessories - Rings', 'img'=>'accessories.jpg'),
+		array('url'=>'accessories/belts', 'text'=>'Accessories - Belts', 'img'=>'accessories.jpg'),
+		array('url'=>'accessories/bags-wallets', 'text'=>'Accessories - Bags & Wallets', 'img'=>'accessories.jpg'),
+		array('url'=>'accessories/scarves', 'text'=>'Accessories - Scarves', 'img'=>'accessories.jpg'),
+		array('url'=>'accessories', 'text'=>'Accessories', 'img'=>'accessories.jpg'),
+		array('url'=>'sale', 'text'=>'On Sale Items', 'img'=>'sale.jpg')
+	);
+	// Retrieve the URL and use it to determine what category image to display
+	foreach($category_assets as $c) {
+		if(strpos($_SERVER['REQUEST_URI'], $c['url']) !== false) {
+			echo '<div class="category-header-image">'."\n";
+			echo '<h1 style="background-image: url('."'".($this->getSkinUrl('images/media/product-category-header-image/'.$c['img']))."'".');">'.$c['text'].'</h1>'."\n";
+			echo '</div>'."\n";
+			break;
+		}
+	}
+	?>
+	<?php if(!$_productCollection->count()) { ?>
+		<div class="no-products-listed"><div class="msg">There are no products matching the selection.</div></div>
+	<?php } else { ?>
+		<?php echo $this->getToolbarHtml() ?>
+		<?php
+		$collection_count = $_productCollection->count();
+		$items_per_row = 3; //$this->getColumnCount();
+		$item_count = 0;
+		echo '<ul class="product-list">'."\n";
+		foreach($_productCollection as $_product) {
+			$item_count++;
+			$product_designer = $_product->getAttributeText('designer');
+			$product_class = '';
+			if($item_count == 1) { $product_class = 'first'; }
+			if($item_count == $items_per_row) { $product_class = 'last'; }
+			echo '<li'.((!empty($product_class)) ? ' class="'.$product_class.'"' : '').'>'."\n";
+				// Get the last image in the product's image gallery
+				$this_product = Mage::getModel('catalog/product')->load($_product->getId());
+				$this_product_count = 0;
+				$this_product_image_last = '';
+				foreach($this_product->getMediaGalleryImages() as $img) {
+					$this_product_count++;
+					$this_product_image_last = $img;
+                }
+				// Display a single image or an image slider, depending on how many images are in the gallery
+				if($this_product_count <= 1) {
+					echo '<div class="img"><a href="'.$_product->getProductUrl().'"><img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" /></a></div>'."\n";
+				} else {
+					echo '<div class="img multiple"><a href="'.$_product->getProductUrl().'">';
+					echo '<div class="img-slider">';
+					echo '<img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" />';
+					echo '<img src="'.$this->helper('catalog/image')->init($_product, 'image', $this_product_image_last->getFile())->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" />';
+					echo '</div>';
+					echo '</a>';
+					echo '<div class="img-slider-controller">+</div>';
+					echo '</div>'."\n";
+				}
+				echo '<div class="name"><h2><a href="'.$_product->getProductUrl().'">'.$this->htmlEscape($_product->getName()).'</a></h2></div>'."\n";
+				echo '<div class="details">'."\n";
+				if(!empty($product_designer)) { echo 'By: '.$product_designer.'<br/>'."\n"; }
+				//echo $this->getPriceHtml($_product, true); [Display regular and special price (if one exists)]
+				$temp_price_original = number_format($_product->getPrice(), 2);
+				$temp_price_final = number_format($_product->getFinalPrice(), 2);
+				if($temp_price_original != $temp_price_final) {
+					echo '<span class="new">$'.$temp_price_final.'</span>'."\n";
+					echo '<span class="original">$'.$temp_price_original.'</span>'."\n";
+				} else {
+					echo '$'.$temp_price_final."\n";
+				}
+				echo '</div>'."\n";
+			echo '</li>'."\n";
+			if($item_count == $items_per_row) { $item_count = 0; }
+		}
+		echo '</ul>'."\n";
+		?>
+	<?php } ?>
+</div><!-- .product-view-list -->
+
+
+<?php /* ?>
+<?php $_productCollection = $this->getLoadedProductCollection(); ?>
+<?php if(!$_productCollection->count()): ?>
+<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+<div class="category-products">
+    <?php echo $this->getToolbarHtml() ?>
+    <?php // List mode ?>
+    <?php if($this->getMode()!='grid'): ?>
+    <?php $_iterator = 0; ?>
+    <ol class="products-list" id="products-list">
+    <?php foreach ($_productCollection as $_product): ?>
+        <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+            <?php // Product Image ?>
+            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(170); ?>" width="170" height="170" alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" /></a>
+            <?php // Product description ?>
+            <div class="product-shop">
+                <div class="f-fix">
+                    <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName())?></a></h2>
+                    <?php if($_product->getRatingSummary()): ?>
+                    <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                    <?php endif; ?>
+                    <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php if($_product->isSaleable()): ?>
+                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                    <?php else: ?>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif; ?>
+                    <div class="desc std">
+                        <?php echo nl2br($this->htmlEscape($_product->getShortDescription())) ?>
+                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="link-more"><?php echo $this->__('Learn More') ?></a>
+                    </div>
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    <?php endforeach; ?>
+    </ol>
+    <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+
+    <?php else: ?>
+
+    <?php // Grid Mode ?>
+
+    <?php $_collectionSize = $_productCollection->count() ?>
+    <?php $_columnCount = $this->getColumnCount(); ?>
+    <?php $i=0; foreach ($_productCollection as $_product): ?>
+        <?php if ($i++%$_columnCount==0): ?>
+        <ul class="products-grid">
+        <?php endif ?>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(170); ?>" width="170" height="170" alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" /></a>
+                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h2>
+                <?php if($_product->getRatingSummary()): ?>
+                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                <?php endif; ?>
+                <?php echo $this->getPriceHtml($_product, true) ?>
+                <div class="actions">
+                    <?php if($_product->isSaleable()): ?>
+                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                    <?php else: ?>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif; ?>
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </li>
+        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        </ul>
+        <?php endif ?>
+        <?php endforeach ?>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+    <?php endif; ?>
+
+    <div class="toolbar-bottom">
+        <?php echo $this->getToolbarHtml() ?>
+    </div>
+</div>
+<?php endif; ?>
+<?php /**/ ?>

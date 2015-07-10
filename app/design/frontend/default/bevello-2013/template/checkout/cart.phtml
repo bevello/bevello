@@ -1,0 +1,231 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Shopping cart template
+ *
+ * @see Mage_Checkout_Block_Cart
+ */
+?>
+
+<?php /**/ ?>
+<script type="text/javascript" language="javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+	$('form#discount-coupon-form .button').click(function() {
+
+		if($(this).hasClass('coupon-remove')) {
+			$('form#discount-coupon-form #remove-coupon').val('1');
+		} else {
+			$('form#discount-coupon-form #remove-coupon').val('0');
+		}
+		$('form#discount-coupon-form').submit();
+	});
+	/*
+	var discountForm = new VarienForm('discount-coupon-form');
+	discountForm.submit = function (isRemove) {
+		if (isRemove) {
+			$('coupon_code').removeClassName('required-entry');
+			$('remove-coupone').value = "1";
+		} else {
+			$('coupon_code').addClassName('required-entry');
+			$('remove-coupone').value = "0";
+		}
+		return VarienForm.prototype.submit.bind(discountForm)();
+	}
+	*/
+});
+</script>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="bevello-cart">
+	<h1 class="slanted">Your Shopping Bag</h1>
+	<div class="column-left">
+		<div class="cart-wrapper">
+			<form id="update-cart-form" action="<?php echo $this->getUrl('checkout/cart/updatePost'); ?>" method="post">
+				<table class="items" border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr class="header">
+					<td class="product">Product</td>
+					<td class="qty">Qty</td>
+					<td class="subtotal">Subtotal</td>
+					<td class="action"></td>
+				</tr>
+				<?php
+				foreach($this->getItems() as $_item) {
+					echo $this->getItemHtml($_item);
+				}
+				?>
+				</table>
+				<div class="update-cart-wrapper">
+					<?php /*<a class="button-update" href=""><span>Update Shopping Bag</span></a>*/ ?>
+					<button id="update-cart" type="submit" title="<?php echo $this->__('Update Shopping Cart') ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart') ?></span></span></button>
+				</div>
+			</form>
+			<!--
+			<div class="checkout-banner"><a href="<?php echo $this->getUrl('aspca-donations'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/aspca_cart_banner.jpg'); ?>" alt="ASPCA Donations" height="199" width="680" /></a></div>
+			-->
+		<?php echo $this->getChildHtml('coupon'); ?>
+
+                <?php if(Mage::getStoreConfig('giftcards/default/show_in_shopping_cart')): ?>
+                <?php echo $this->getChildHtml('giftcards') ?>
+                <?php endif; ?>
+				<div class="totals-wrapper"><?php echo $this->getChildHtml('totals'); ?></div>
+				<div class="taxes-shipping">Any additional taxes and shipping costs will be applied during the checkout process.</div>
+				<div class="checkout-wrapper">
+                    <ul class="checkout-types">
+                        <?php echo $this->getChildHtml('methods') ?>
+                    </ul>
+                </div>
+
+                <div class="clear"></div>
+		</div>
+	</div>
+	<div class="column-right">
+		<div class="contact">
+			<div class="phone">1-877-500-5020</div>
+			If you have any questions about your order, please <a href="<?php echo $this->getUrl(''); ?>contact">Contact Us</a>
+		</div>
+		<div class="payment-methods">
+			Methods of Payment<br/>
+			<ul>
+			<li class="visa">Visa</li>
+			<li class="mastercard">MasterCard</li>
+			<li class="amex">American Express</li>
+			</ul>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+
+
+<?php /* ?>
+<div class="cart">
+    <div class="page-title title-buttons">
+        <h1><?php echo $this->__('Shopping Cart') ?></h1>
+        <?php if(!$this->hasError()): ?>
+        <ul class="checkout-types">
+            <?php echo $this->getChildHtml('top_methods') ?>
+        </ul>
+        <?php endif; ?>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getChildHtml('form_before') ?>
+    <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
+        <fieldset>
+            <table id="shopping-cart-table" class="data-table cart-table">
+                <col width="1" />
+                <col width="1" />
+                <col />
+            <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                <col width="1" />
+            <?php endif ?>
+            <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+            <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+                <col width="1" />
+            <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+            <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+
+            <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+                <thead>
+                    <tr>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center">&nbsp;</th>
+                        <th rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+                        <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product Name') ?></span></th>
+                        <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><span class="nobr"><?php echo $this->__('Move to Wishlist') ?></span></th>
+                        <?php endif ?>
+                        <th class="a-center" colspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Unit Price') ?></span></th>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Qty') ?></th>
+                        <th class="a-center" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Subtotal') ?></th>
+                    </tr>
+                    <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+                    <tr>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                    </tr>
+                    <?php endif; ?>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="50" class="a-right">
+                            <?php if($this->getContinueShoppingUrl()): ?>
+                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+                            <?php endif; ?>
+                            <button type="submit" title="<?php echo $this->__('Update Shopping Cart') ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart') ?></span></span></button>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                <?php foreach($this->getItems() as $_item): ?>
+                    <?php echo $this->getItemHtml($_item) ?>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+        </fieldset>
+    </form>
+    <div class="cart-collaterals">
+        <div class="col2-set">
+            <div class="col-1">
+                <?php if($_crosssell = $this->getChildHtml('crosssell')): ?>
+                    <?php echo $_crosssell; ?>
+                <?php else: ?>
+                <div class="no-crosssell">
+                    <img src="<?php echo $this->getSkinUrl('images/media/callout1.jpg') ?>" alt="" />
+                    <img src="<?php echo $this->getSkinUrl('images/media/fpo_no_crosssell.gif') ?>" alt="" />
+                </div>
+                <?php endif; ?>
+            </div>
+            <div class="col-2">
+                <?php echo $this->getChildHtml('coupon') ?>
+                <?php if(Mage::getStoreConfig('giftcards/default/show_in_shopping_cart')): ?>
+                <?php echo $this->getChildHtml('giftcards') ?>
+                <?php endif; ?>
+                <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?>
+                <div class="totals">
+                    <?php echo $this->getChildHtml('totals'); ?>
+                    <?php if(!$this->hasError()): ?>
+                    <ul class="checkout-types">
+                        <?php echo $this->getChildHtml('methods') ?>
+                    </ul>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php */ ?>

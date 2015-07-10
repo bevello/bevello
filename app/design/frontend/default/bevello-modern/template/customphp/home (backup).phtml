@@ -1,0 +1,162 @@
+<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery.bxSlider.min.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery.ui.widget.js"></script>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>jquery.smoothDivScroll-1.1-min.js"></script>
+<script type="text/javascript">
+$.noConflict();
+jQuery(document).ready(function($) {
+	// Header Image Rotation
+	var featured_image = $('div.featured-image ul.slider').bxSlider({
+		auto: true,
+		autoControls: false,
+		autoHover: true,
+		controls: false,
+		mode: 'vertical',
+		pause: 7000,
+		speed: 500
+	});
+	$('div.featured-image div.image-wrapper').hover(
+		function() {
+			$('div.featured-image div.controls').fadeIn(250);
+			//$('div.featured-image div.control-buffer').fadeIn(250);
+		},
+		function() {
+			$('div.featured-image div.controls').fadeOut(250);
+			//$('div.featured-image div.control-buffer').fadeOut(250);
+		}
+	);
+	$('div.featured-image div.controls a.prev').hover(
+		function() { featured_image.stopShow(); },
+		function() { featured_image.startShow(); }
+	);
+	$('div.featured-image div.controls a.next').hover(
+		function() { featured_image.stopShow(); },
+		function() { featured_image.startShow(); }
+	);
+	$('div.featured-image div.controls a.prev').click(function() { featured_image.goToPreviousSlide(); });
+	$('div.featured-image div.controls a.next').click(function() { featured_image.goToNextSlide(); });
+	
+	// Designer Logo Scroller
+	$("div#makeMeScrollable").smoothDivScroll({
+		autoScroll: 'onstart',
+		autoScrollDirection: 'backandforth',
+		autoScrollStep: 1,
+		autoScrollInterval: 10,
+		scrollStep: 5,
+		scrollInterval: 10,
+		visibleHotSpots: 'always'
+	});
+	$('div.scrollWrapper').hover(
+		function() { $("div#makeMeScrollable").smoothDivScroll("stopAutoScroll"); },
+		function() { $("div#makeMeScrollable").smoothDivScroll("startAutoScroll"); }
+	);
+	var scroller_restart = '';
+	$('div.designers .button').hover(
+		function() { clearTimeout(scroller_restart); },
+		function() { scroller_restart = setTimeout(function() { $("div#makeMeScrollable").smoothDivScroll("startAutoScroll"); }, 3000); }
+	);
+});
+</script>
+
+<div class="featured-image">
+	<div class="logo"></div>
+	<div class="image-wrapper">
+		<ul class="slider">
+		<!--
+		******************************************************
+		HEY KATHRYN, I'M HERE TO HELP YOU ALONG.  I'M NOT REAL
+		<li><a href="<?php echo $this->getUrl('bottoms/skirts/bcbgeneration-stripe-panel-skirt'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/bcbgeneration-stripe-panel-skirt.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		******************************************************
+		-->
+		
+		<li><a href="<?php echo $this->getUrl('bottoms/skirts/bcbgeneration-stripe-panel-skirt'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/bcbgeneration-stripe-panel-skirt.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		<li><a href="<?php echo $this->getUrl('tops/tunics/superdry-samantha-shirt-dress'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/superdry-samantha-shirt-dress.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		<li><a href="<?php echo $this->getUrl('accessories/necklaces/multi-disk-chain-necklace-1'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/multi-disk-chain-necklace.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		<li><a href="<?php echo $this->getUrl('accessories/necklaces/green-teardrop-double-strand-necklace'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/green-teardrop-double-strand-necklace.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		<li><a href="<?php echo $this->getUrl('bcbgeneration-strapless-pleat-dress'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/bcbgeneration-strapless-pleat-dress.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		<li><a href="<?php echo $this->getUrl('max-and-cleo-strapless-dot-dress'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/max-and-cleo-strapless-dot-dress.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		<li><a href="<?php echo $this->getUrl('collective-concepts-blocks-top-1'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/collective-concepts-blocks-top.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		<li><a href="<?php echo $this->getUrl('ellison-pocket-tunic'); ?>"><img src="<?php echo $this->getSkinUrl('images/media/home-header-image/ellison-pocket-tunic.jpg'); ?>" alt="" border="0" height="530" width="940" /></a></li>
+		</ul>
+		<div class="controls">
+			<a class="prev"></a>
+			<a class="next"></a>
+		</div>
+		<?php /*<div class="control-buffer"></div>*/ ?>
+	</div>
+</div><!-- .featured-image -->
+
+<div class="home-body-wrapper">
+	<?php
+	// Retrieve all products that are in the "New Arrivals" category (Category ID: 43)
+	$_products = Mage::getModel('catalog/category')->load(43)
+		->getProductCollection()
+		->addAttributeToSelect('*') // all products...
+		->addAttributeToFilter('status', 1) // ... that are enabled ...
+		->addAttributeToFilter('visibility', 4); // ... and visible
+	// Store the necessary product data inside an array
+	$collection = array();
+	foreach($_products as $_product) {
+		$collection[] = array(
+			'url' => $_product->getUrlKey(),
+			'img' => '<img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(96,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="96" />'
+		);
+	}
+	// Randomly choose and display the required number of products from the collection
+	$collection_count = count($collection);
+	$max_items_displayed = 8;
+	if($collection_count) {
+		if($collection_count > $max_items_displayed) { shuffle($collection); }
+		echo '<div class="new-arrivals">'."\n";
+			echo '<div class="title slanted">New Arrivals</div>'."\n";
+			echo '<ul class="product-list">'."\n";
+			$current_count = 0;
+			foreach($collection as $item) {
+				$current_count++;
+				echo '<li'.(($current_count==$max_items_displayed) ? ' class="last"' : '').'>';
+				echo '<a href="'.$item['url'].'">';
+				echo '<div class="img">'.$item['img'].'</div>';
+				echo '<div class="cap"></div>';
+				echo '</a>';
+				echo '</li>';
+				if($current_count == $max_items_displayed) { break; }
+			}
+			echo '</ul>'."\n";
+		echo '</div><!-- .new-arrivals -->'."\n";
+	}
+	?>
+	<div class="clear"></div>
+	<div class="designers">
+		<div class="scroller-display" id="makeMeScrollable">
+			<div class="scrollWrapper">
+				<div class="scrollableArea">
+					<?php
+					// Retrieve all possible designer options from the designer attribute
+					$possible_designers = array('aryn-k', 'bcbgeneration', 'bcbg-max-azria', 'bella-luxx', 'bobi', 'c-luce', 'collective-concepts', 'ellison', 'esley', 'french-connection-uk', 'genetic-denim', 'glam', 'greylin', 'hudson', 'jaloux', 'james-joy', 'judith-march', 'laila-jayde', 'la-made', 'laundry-by-shelli-segal', 'max-and-cleo', 'melie-bianco', 'minuet', 'paige', 'plenty-by-tracy-reese', 'sam-edelman', 'tart-collection', 'theme', 'tricia-fix', 'trinity', 'true-religion', 'tulle', 'vava', 'velvet-heart', 'vince-camuto', 'voom-by-joy-han');
+					$designer = array();
+					$designer_attribute = Mage::getModel('eav/config')->getAttribute('catalog_product', 'designer');
+					foreach($designer_attribute->getSource()->getAllOptions(true, true) as $option){
+						if(!empty($option['label']) && !empty($option['value'])) {
+							$designer_label = strtolower($option['label']);
+							$designer_label = preg_replace('/[^a-z0-9 ]/', '', $designer_label);
+							$designer_label = str_replace(' ', '-', $designer_label);
+							if(in_array($designer_label, $possible_designers)) {
+								$designer[$designer_label] = $option['label'];
+							}
+						}
+					}
+					// Sort the designers and display them appropriately to the page
+					ksort($designer);
+					foreach($designer as $key=>$val) {
+						echo '<a class="'.$key.'" href="'.$this->getUrl('').'designer-products?by='.$key.'">'.$val.'</a>'."\n";
+					}
+					?>
+				</div>
+			</div>
+			<div class="button button-left scrollingHotSpotLeft"><span></span></div>
+			<div class="button button-right scrollingHotSpotRight"><span></span></div>
+		</div>
+		<div class="buffer-left"></div>
+		<div class="buffer-right"></div>
+	</div><!-- .designers -->
+</div><!-- .home-body-wrapper -->

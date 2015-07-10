@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /index.php/admin/
+Disallow: checkout/cart/
+Disallow: checkout/onepage/

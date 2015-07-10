@@ -1,0 +1,76 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="header-container">
+	<div class="status-message">
+		<div class="wrapper">
+			<div class="title"></div>
+			<div class="message"><?php echo $this->getChildHtml('global_messages'); ?></div>
+			<div class="button-close"></div>
+		</div>
+	</div>
+	<div class="header-wrapper">
+		<a class="logo" href="<?php echo $this->getUrl(''); ?>">bevello</a>
+		<div class="primary-menu"><?php echo $this->getChildHtml('topMenu'); ?></div>
+		<div class="utility-menu">
+			<?php echo $this->getChildHtml('topLinks'); // Utility Links ?>
+			<?php echo $this->getChildHtml('topBar'); // Search Bar ?>
+		</div>
+		<div class="free-shipping"><span class="slanted">Enjoy Free Standard Shipping on all Orders Over $150</span></div>
+		<div class="beta-box collapsed">
+			<div class="content">
+				<div class="padding">
+					<div class="title">Beta Mode</div>
+					Welcome to the newly remodeled bevello website. We've gone to great lengths to provide you, our customer, with a wonderful online shopping experience. If you really like the new site, or if you happen to notice anything out of the ordinary, please <a href="<?php $this->getUrl(''); ?>/contact">let us know</a>. We appreciate your patience and understanding as we continue to make adjustments and work out any of the kinks.
+				</div>
+			</div>
+			<div class="button">Beta Mode</div>
+		</div>
+		<?php /*
+		<div class="social-media">
+			<ul>
+			<li><a class="facebook" href="#" target="_blank">Facebook</a></li>
+			<li><a class="twitter" href="#" target="_blank">Twitter</a></li>
+			<li><a class="email" href="#" target="_blank">Newsletter Signup</a></li>
+			<li><a class="blog" href="#" target="_blank">Blog</a></li>
+			</ul>
+		</div>
+		*/ ?>
+		
+		<?php
+		/*
+		<p class="top-promo" title="<?php echo $this->__('Free Shipping on orders over 50$'); ?>"><?php echo $this->__('Free Shipping on orders over 50$'); ?></p>
+		<div class="quick-access">
+			<?php echo $this->getChildHtml('store_language') ?>
+			<p class="welcome-msg"><?php echo $this->getWelcome()?></p>
+			<?php echo $this->getChildHtml('topLinks') ?>
+		</div>
+		<?php //echo $this->getChildHtml('topBar') ?>
+		<?php //echo $this->getChildHtml('topContainer'); ?>
+		*/
+		?>
+	</div>
+</div>

@@ -1,0 +1,594 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2009 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+
+
+<?php
+$_helper = $this->helper('catalog/output');
+$_product = $this->getProduct();
+
+?>
+<script type="text/javascript" language="javascript" src="<?php echo $this->getSkinUrl('js/'); ?>cloud-zoom.1.0.2.min.js"></script>
+<script type="text/javascript" language="javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+	// Create a variable to indicate if an "Add to Cart" request is being processed
+	var add_to_cart_processing = false;
+	
+	// Change the content block display in the right column as the user clicks on the various content tabs.
+	$('div.product-col-right ul.content-tabs li').click(function() {
+		if(!$(this).hasClass('active')) {
+			$('div.product-col-right ul.content-tabs li').removeClass('active');
+			$('div.product-col-right div.content-block-wrapper div.content-block').removeClass('active');
+			$(this).addClass('active');
+			var content_block_id = $(this).attr('id');
+			content_block_id = content_block_id.replace('tab-', '');
+			$('div.product-col-right div.content-block-wrapper div#content-'+content_block_id).addClass('active');
+		}
+	});
+	
+	// Add a Fancybox popup to the "Ask about this product" link
+	$('div.ask a').fancybox({
+		'href': '/custom/ask-about-product.php?product_name=<?php echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>&product_url=<?php echo urlencode($this->helper('core/url')->getCurrentUrl()); ?>',
+		'type': 'iframe',
+		'autoDimensions': false,
+		'centerOnScroll': true,
+		'height': 340,
+		'width': 560,
+		'overlayColor': '#000000',
+		'overlayOpacity': 0.5,
+		'scrolling': 'no',
+		'titleShow': false,
+		'transitionIn': 'elastic',
+		'transitionOut': 'fade'
+	});
+	
+	// Record the selected size of an item inside a form element whenever a user clicks on one of the product size buttons
+	$('div.add-to-cart-controls ul.sizes li').not('.out-of-stock').click(function() {
+		$('div.add-to-cart-controls ul.sizes li').removeClass('active');
+		$(this).addClass('active');
+		var size_value_index = $(this).attr('id');
+		size_value_index = size_value_index.replace('size-value-', '');
+		$('div.add-to-cart-controls input.product-size').val(size_value_index);
+	});
+	
+	// Add a Fancybox popup to the "size availability" link
+	$('div.add-to-cart-controls a.size-availability').fancybox({
+		'autoDimensions': false,
+		'centerOnScroll': true,
+		'height': 340,
+		'width': 560,
+		'overlayColor': '#000000',
+		'overlayOpacity': 0.5,
+		'scrolling': 'no',
+		'titleShow': false,
+		'transitionIn': 'elastic',
+		'transitionOut': 'fade',
+		'content': '<p>This is just a <span style="color: #FF0000;">test</span></p>'
+	});
+	
+	// Add a Fancybox popup to the "size chart" link
+	$('div.add-to-cart-controls a.size-chart').fancybox({
+		'autoDimensions': false,
+		'centerOnScroll': true,
+		'height': 420,
+		'width': 700,
+		'overlayColor': '#000000',
+		'overlayOpacity': 0.5,
+		'scrolling': 'no',
+		'titleShow': false,
+		'transitionIn': 'elastic',
+		'transitionOut': 'fade',
+		'content': $('div.sizing-content-wrapper').html()
+	});
+	
+	// Add a Fancybox popup to the fake "Already Added to Cart" button
+	$('div.added-to-cart-content-button').fancybox({
+		'autoDimensions': false,
+		'centerOnScroll': true,
+		'height': 160,
+		'width': 560,
+		'overlayColor': '#000000',
+		'overlayOpacity': 0.5,
+		'scrolling': 'no',
+		'titleShow': false,
+		'transitionIn': 'fade',
+		'transitionOut': 'fade',
+		'content': $('div.added-to-cart-wrapper').html()
+	});
+	$('div.added-to-cart-content div.actions a.button.close').live('click', function() { $.fancybox.close(); });
+	
+	// Process the user's request whenever the user clicks the "Add to Cart" button
+	$('div.add-to-cart-controls div.actions a.button-primary').click(function() {
+		// Hide any status message that may be visible
+		$('div.add-to-cart-controls div.status-wrapper').hide();
+		// Retrieve the various pieces of the product
+		var product_id = $('div.product-view-single').attr('id');
+		product_id = product_id.replace('product-id-', '');
+		var product_qty = parseInt($('div.add-to-cart-controls input.product-qty').val());
+		// If there is a "size" option available for this particular product, then retrieve those values as well
+		if($('div.add-to-cart-controls ul.sizes').length > 0) {
+			var has_size_option = true;
+			var product_size_scale = $('div.add-to-cart-controls ul.sizes').attr('id');
+			product_size_scale = product_size_scale.replace('size-scale-', '');
+			var product_size = $('div.add-to-cart-controls input.product-size').val();
+		}
+		// Validate the request
+		var valid_request = true;
+		var status_message = '';
+		if(valid_request!=false && (has_size_option && product_size=='')) {
+			valid_request = false;
+			status_message = 'Please select a size.';
+		}
+		if(valid_request!=false && (isNaN(product_qty) || product_qty==0)) {
+			valid_request = false;
+			status_message = 'Please provide a quantity.';
+		}
+		// If the request appears to be valid, then process the request
+		if(valid_request) {
+			if(!add_to_cart_processing) {
+				add_to_cart_processing = true;
+				var post_data = '';
+				post_data = 'product='+product_id+'&qty='+product_qty;
+				if(has_size_option) { post_data += '&super_attribute['+product_size_scale+']='+product_size; }
+
+			        <?php if($_product->getTypeId() == 'giftcards'):?>
+			            if($('#card-amount')[0]) {post_data += '&card_amount='+$('#card-amount')[0].value};
+			            if($('#mail-to')[0]) {post_data += '&mail_to='+$('#mail-to')[0].value};
+			            if($('#mail-to-email')[0]) {post_data += '&mail_to_email='+$('#mail-to-email')[0].value};
+			            if($('#mail-from')[0]) {post_data += '&mail_from='+$('#mail-from')[0].value};
+			            if($('#mail-message')[0]) {post_data += '&mail_message='+$('#mail-message')[0].value};
+			            if($('#offline-country')[0]) {post_data += '&offline_country='+$('#offline-country')[0].value};
+			            if($('#offline-state')[0]) {post_data += '&offline_state='+$('#offline-state')[0].value};
+			            if($('#offline-city')[0]) {post_data += '&offline_city='+$('#offline-city')[0].value};
+			            if($('#offline-street')[0]) {post_data += '&offline_street='+$('#offline-street')[0].value};
+			            if($('#offline-phone')[0]) {post_data += '&offline_phone='+$('#offline-phone')[0].value};
+			            if($('#offline-zip')[0]) {post_data += '&offline_zip='+$('#offline-zip')[0].value};
+			            if($('#mail_delivery_date')[0]) {post_data += '&mail_delivery_date='+$('#mail_delivery_date')[0].value};
+			        <?php endif;?>
+
+				post_data = encodeURI(post_data);
+				$.ajax({
+					type: 'POST',
+					url: '<?php echo $this->getBaseUrl(); ?>checkout/cart/add',
+					data: post_data,
+					beforeSend: function() {
+						$('div.add-to-cart-controls div.actions a.button-primary span').html('');
+						$('div.add-to-cart-controls div.actions div.ajax-loader').show();
+					},
+					error: function() {
+						$('div.add-to-cart-controls div.actions div.ajax-loader').hide();
+						$('div.add-to-cart-controls div.actions a.button-primary span').html($('div.add-to-cart-controls div.actions a.button-primary span').attr('buttontext'));
+						$('div.add-to-cart-controls div.status-wrapper div.msg').html('Internal Error.');
+						$('div.add-to-cart-controls div.status-wrapper').fadeTo(200, 0.85);
+						add_to_cart_processing = false;
+					},
+					success: function(data) {
+						$('div.add-to-cart-controls div.actions div.ajax-loader').hide();
+						$('div.add-to-cart-controls div.actions a.button-primary span').html($('div.add-to-cart-controls div.actions a.button-primary span').attr('buttontext'));
+						// Update the shopping cart value in the header
+						var shopping_cart_count = parseInt($('div.header-container div.utility-menu span.shopping-cart-qty').html()) + parseInt(product_qty);
+						$('div.header-container div.utility-menu span.shopping-cart-qty').html(shopping_cart_count);
+						// Trigger the Fancybox popup
+						$('div.added-to-cart-content-button').trigger('click');
+						add_to_cart_processing = false;
+					}
+				});
+			}
+		} else {
+			$('div.add-to-cart-controls div.status-wrapper div.msg').html(status_message);
+			$('div.add-to-cart-controls div.status-wrapper').fadeTo(200, 0.85);
+		}
+	});
+	
+	// Close the "Add to Cart" status message upon request
+	$('div.add-to-cart-controls div.status-wrapper div.close').click(function() {
+		$(this).parent('div.status-wrapper').fadeOut(100);
+	});
+});
+</script>
+
+<?php if($_product->getTypeId() == 'giftcards'):?>
+<div class="product-view-single" id="product-id-<?php echo $_product->getId(); ?>">
+	<?php else: ?>
+<div class="product-view-single" itemscope itemtype="http://schema.org/Product" id="product-id-<?php echo $_product->getId(); ?>">
+	<?php endif; ?>
+	<div class="content-area-padding">
+		<?php echo $this->getLayout()->getBlock('breadcrumbs')->toHtml(); ?>
+		<div class="product-display">
+		
+			<div class="product-col-left">
+				<?php
+				// Display the product images
+				echo $this->getChildHtml('media');
+				?>
+				<div class="clear"></div>
+				<div class="product-image-controls">Click Above for Larger Images &amp; Zoom Capabilities</div>
+				<div class="model-details">
+					<?php
+					$photo_model_size = $_product->getPhotoModelSize();
+					$photo_model_profile = $_product->getPhotoModelProfile();
+					if(!empty($photo_model_size)) { echo '<div><span class="label">Model Size:</span> '.$photo_model_size.'</div>'; }
+					if(!empty($photo_model_profile)) { echo '<div><span class="label">Model Profile:</span> '.$photo_model_profile.'</div>'; }
+					?>
+				</div>
+			</div><!-- .product-col-left -->
+			
+			<div class="product-col-right">
+				<ul class="content-tabs">
+				<li id="tab-1" class="tab active"><span>Details &amp; Shopping</span></li>
+				<li id="tab-2" class="tab"><span>Customer Reviews</span></li>
+				<li id="tab-3" class="tab"><span>You May Also Like ...</span></li>
+				</ul><!-- .content-tabs -->
+				<div class="content-block-wrapper clear">
+
+						<div id="content-1" class="content-block active">
+							<div class="title-bar">
+								<div class="title"><h1 class="productTitle" itemprop="name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1></div>
+								<div class="designer" itemprop="brand"><?php echo $_product->getAttributeText('designer'); ?></div>
+								<?php if($_product->getTypeId() != 'giftcards'):?>
+								<div class="price" ><?php
+									$temp_price_original = number_format($_product->getPrice(), 2);
+									$temp_price_final = number_format($_product->getFinalPrice(), 2);
+									if($temp_price_original != $temp_price_final) {
+										echo '<div class="original">Originally: <span>$'.$temp_price_original.'</span></div>';
+										echo '<span class="new">$'.$temp_price_final.'</span>';
+									} else {
+										echo '$'.$temp_price_final;
+									}
+								?></div>
+								<?php endif; ?>
+								<div class="clear"></div>
+							</div>
+							<div class="details">
+								<!-- schema.org tags -->
+								<?php if($_product->getTypeId() != 'giftcards'):?>
+								<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+								<?php endif; ?>
+									<div itemprop="price" style="display: none;"><?= '$'.$temp_price_final; ?></div>
+									<div class="add-to-cart-controls">
+
+											<?php
+											// Retrieve all available sizes and quantities from child products (based on child product inventory).
+											$product_qty = 0;
+											if($_product->getTypeId() == "configurable") {
+												// Retrieve all possible sizes of the child products
+												$available_sizes = array();
+												$size_scale = '';
+												$configurable_attributes = $_product->getTypeInstance(true)->getConfigurableAttributesAsArray($_product);
+												foreach($configurable_attributes as $attr_set) {
+													$size_scale = $attr_set['attribute_code'];
+													$size_scale_id = $attr_set['attribute_id'];
+													if(in_array($size_scale, array('size_clothing_general', 'size_clothing_numeric', 'size_denim', 'size_shoes', 'donation_amount'))) {
+														foreach($attr_set['values'] as $size_attr) {
+															$available_sizes[$size_attr['value_index']] = array(
+																'label' => $size_attr['label'],
+																'value_index' => $size_attr['value_index'],
+																'qty' => 0
+															);
+														}
+													}
+												}
+												// Retrieve all child products and determine the quantity of each product size
+												$child_products = $_product->getTypeInstance('catalog/product_type_configurable')->getUsedProducts();
+												foreach($child_products as $cp) {
+													// Be sure that you're looking for the right sizing scale when recording the quantity values
+													if($size_scale == 'size_clothing_general') { $available_sizes[$cp->getSizeClothingGeneral()]['qty'] = intval($cp->getStockItem()->getQty()); }
+													if($size_scale == 'size_clothing_numeric') { $available_sizes[$cp->getSizeClothingNumeric()]['qty'] = intval($cp->getStockItem()->getQty()); }
+													if($size_scale == 'size_denim') { $available_sizes[$cp->getSizeDenim()]['qty'] = intval($cp->getStockItem()->getQty()); }
+													if($size_scale == 'size_shoes') { $available_sizes[$cp->getSizeShoes()]['qty'] = intval($cp->getStockItem()->getQty()); }
+													if($size_scale == 'donation_amount') { $available_sizes[$cp->getDonationAmount()]['qty'] = intval($cp->getStockItem()->getQty()); }
+													$product_qty += intval($cp->getStockItem()->getQty());
+												}
+											} else {
+												$product_qty += intval($_product->getStockItem()->getQty());
+											}
+											?>
+											<?php if($product_qty == 0) { ?>
+												<link itemprop="availability" href="http://schema.org/OutOfStock" /><div class="out-of-stock">We're Sorry.<br/>This Item is Out of Stock.</div></link>
+											<?php } else { ?>
+												<link itemprop="availability" href="http://schema.org/InStock" /></link>
+												<?php if($_product->getTypeId() == "configurable") { ?>
+												<div class="section size">
+													<?php if($size_scale == 'donation_amount') { ?>
+													<div class="label">Amount</div>
+													<?php } else { ?>
+													<div class="label">Size</div>
+													<?php } ?>
+													<ul class="sizes" id="size-scale-<?php echo $size_scale_id; ?>">
+													<?php
+													foreach($available_sizes as $sizes) {
+
+														if($sizes['qty'] > 0) {
+															echo '<li id="size-value-'.$sizes['value_index'].'">';
+															echo '<span>'.$sizes['label'].'</span>';
+															echo '</li>';
+														} else {
+															echo '<li class="out-of-stock" id="size-value-'.$sizes['value_index'].'">';
+															echo '<span>'.$sizes['label'].'</span>';
+															echo '</li>';
+														}
+													}
+													?>
+													</ul>
+													<div class="clear"></div>
+													<?php if($size_scale !== 'donation_amount') { ?>
+													<a class="size-chart"><span></span>Size Chart</a>
+													<a id="size-chart-mobile-btn" style="display:none;"><span></span>Size Chart</a>
+													<?php } ?>
+													<script type="text/javascript">
+														(function($){
+															$('#size-chart-mobile-btn').on('click', function(event){
+																$('#sizing-guide-inline').toggleClass('mobile-expanded');
+																event.preventDefault();
+															});
+														})(jQuery);
+													</script>
+
+													<div class="sizing-content-wrapper" id="sizing-guide-inline">
+														<div class="sizing-content">
+															<div class="title slanted">Sizing Guide</div>
+															<div class="sizing-charts">
+																<table class="chart-1" align="center" border="0" cellpadding="0" cellspacing="0">
+																	<tr class="header"><td></td><td>XXS</td><td>XS</td><td>S</td><td>M</td><td>L</td><td>XL</td></tr>
+																	<tr class="odd"><td class="label">Size</td><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td></tr>
+																	<tr class="even"><td class="label">Bust</td><td>31</td><td>32</td><td>33</td><td>34</td><td>35</td><td>36</td></tr>
+																	<tr class="odd"><td class="label">Waist</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+																	<tr class="even"><td class="label">Hip</td><td>35</td><td>36</td><td>37</td><td>38</td><td>39</td><td>40</td></tr>
+																	<tr class="odd"><td class="disclaimer" colspan="7">measured in inches</td></tr>
+																</table>
+																<div class="chart-2-wrap"><table class="chart-2" align="center" border="0" cellpadding="0" cellspacing="0">
+																	<tr><td class="label">US</td><td>5</td><td>5.5</td><td>6</td><td>6.5</td><td>7</td><td>7.5</td><td>8</td><td>8.5</td><td>9</td><td>9.5</td><td>10</td></tr>
+																	<tr><td class="label">Europe</td><td>35-36</td><td>36</td><td>36-37</td><td>37</td><td>37-38</td><td>38</td><td>38-39</td><td>39</td><td>39-40</td><td>40</td><td>40-41</td></tr>
+																</table></div><div class="scroll-info slanted">Swipe left for more.</div>
+															</div>
+															<div class="more"><a href="/sizing">Learn More from our Sizing Guide</a></div>
+														</div>
+													</div>
+
+													<?php /* TEMPORARILY REMOVE UNTIL SERVICE IS AVAILABLE <a class="size-availability">availability</a> */ ?>
+													<input type="hidden" class="product-size" />
+												</div>
+												<?php } ?>
+												<div class="section qty">
+													<div class="label inline">Qty.</div>
+													<input type="text" class="product-qty" value="1" />
+												</div>
+											<?php } ?>
+											<div class="actions">
+												<?php if($product_qty != 0) { ?><a class="button-primary"><span buttontext="Add to Shopping Bag">Add to Shopping Bag</span></a><?php } ?>
+												<a class="button-secondary" href="<?php echo $this->helper('wishlist')->getAddUrl($_product); ?>"><span>Add to Wishlist</span></a>
+												<?php if($this->canEmailToFriend()){ ?>
+												<a class="button-secondary" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product); ?>"><span>Send to a Friend</span></a>
+												<?php } ?>
+												<div class="ajax-loader"></div>
+											</div>
+											<div class="status-wrapper">
+												<div class="msg"></div>
+												<div class="close">close</div>
+											</div>
+									</div><!-- .add-to-cart-controls -->
+								</div>
+								<?php if($_product->getTypeId() == 'giftcards'):?>
+										<?php echo $this->getChildHtml('product_type_data') ?>
+								<?php endif; ?>
+								<div class="description">
+								<?php
+								if($temp_price_original != $temp_price_final && stristr($_product->getDescription(), 'final sale') === FALSE) { ?>
+									<b>All sale items are final sale!</b><br /><br />
+								<?php }
+								echo '<h2 class="productDesc" itemprop="description">'.$_product->getDescription().'</h2>'; ?></div>
+								<?php
+								$composition_care_instructions = $_product->getCompositionCare();
+								if(!empty($composition_care_instructions)) { ?>
+								<div class="care-instructions">
+									<div class="title">Composition &amp; Care</div>
+									<?php echo nl2br($composition_care_instructions); ?>
+								</div>
+								<?php } ?>
+								<!--
+								<?php
+								$manufacturer = trim($_product->getAttributeText('country_of_manufacture'));
+								if(!empty($manufacturer)) { ?>
+									<div class="manufacturer-info">Made in <?php echo $manufacturer; ?></div>
+								<?php } ?>
+								//-->
+								<div class="ask"><a href="#" onclick="return false;"><span></span>Ask us about this product</a></div>
+								<?php
+								$product_designer = $_product->getAttributeText('designer');
+								$isMadeInUSA = ($_product->getAttributeText('country_of_manufacture') === 'United States');
+								$isExclusive = ($product_designer === 'MOSSIQUE' || $product_designer === 'Julie Billiart' || $_product->getAttributeText('exclusive') === 'Yes');
+								if($isMadeInUSA || $isExclusive) { ?>
+									<div class="icon-legend">
+										<?php
+										if($isExclusive) { ?>
+											<img src="<?php echo $this->getSkinUrl('images/icon_exclusive.png'); ?>" />
+											<span>bevello exclusive</span><br /><span></span>
+										<?php } ?>
+										<?php
+										if($isMadeInUSA) { ?>
+												<img src="<?php echo $this->getSkinUrl('images/icon_madeinusa.png'); ?>" />
+												<span>made in USA</span>
+										<?php } ?>
+									</div>
+								<?php } ?>
+								<div class="social-sharing">
+									<?php
+									// Twitter
+									$bitly_long_url = $this->helper('core/url')->getCurrentUrl();
+									$bitly_login = 'bvelove';
+									$bitly_app_key = 'R_6026ffff834c7718b292fd98c37dc191';
+									$bitly_connection = 'http://api.bit.ly/shorten?version=2.0.1&amp;longUrl='.urlencode($bitly_long_url).'&amp;login='.$bitly_login.'&amp;apiKey='.$bitly_app_key.'&amp;format=json';
+									$bitly_resp = file_get_contents($bitly_connection);
+									$bitly_resp_json = @json_decode($bitly_resp, true);
+									$bitly_short_url = $bitly_resp_json['results'][$bitly_long_url]['shortUrl'];
+									$tweet = urlencode('Look at this beautiful item I just found on bevello.com - '.$bitly_short_url);
+									echo '<a class="twitter" href="http://twitter.com/home?status='.$tweet.'" target="_blank">Tweet This</a>';
+									// Facebook
+									echo '<a class="facebook" href="http://www.facebook.com/sharer.php?u='.urlencode($this->helper('core/url')->getCurrentUrl()).'&t='.urlencode($_helper->productAttribute($_product, $_product->getName(), 'name')).'" target="_blank">Share on Facebook</a>'."\n";
+									// Pinterest
+									echo '<a class="pinterest" href="http://pinterest.com/pin/create/button/?url='.urlencode($this->helper('core/url')->getCurrentUrl()).'&media='.urlencode($this->helper('catalog/image')->init($_product, 'image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(355,null)).'" target="_blank">Pin It!</a>'."\n";
+									// Wanelo
+									$wanelo_title = strtoupper($_helper->productAttribute($_product, $_product->getName(), 'name'));
+									if ($_product->getAttributeText('designer') != '') {
+										$wanelo_title .= ' by '.strtoupper($_product->getAttributeText('designer'));
+									}
+									echo '<a class="wanelo-save-button" href="//wanelo.com/" data-url="'.urlencode($this->helper('core/url')->getCurrentUrl()).'" data-title="'.$wanelo_title.'" data-image="'.$this->helper('catalog/image')->init($_product, 'image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(355,null).'" data-price="'.number_format($_product->getFinalPrice(), 2).'"></a><script async="true" type="text/javascript" src="//cdn-saveit.wanelo.com/bookmarklet/3/save.js"></script>';
+									?>
+								</div>
+								<div class="social-sharing-buffer"></div>
+								<div class="clear"></div>
+
+							</div>
+							<?php echo $this->getChildHtml('upsell'); ?>
+						</div><!-- #content-1 -->
+					</div>
+					<div id="content-2" class="content-block">
+						<?php echo $this->getChildHtml('reviews'); ?> 
+					</div><!-- #content-2 -->
+					<div id="content-3" class="content-block">
+						<?php echo $this->getChildHtml('related'); ?>
+					</div><!-- #content-3 -->
+				</div><!-- .content-block-wrapper -->
+			</div><!-- .product-col-right -->
+			
+			<div class="clear"></div>
+		</div><!-- product-display -->
+		<?php echo $this->getChildHtml('product_recently_viewed'); ?>
+	</div><!-- .content-area-padding -->
+
+	
+	<div class="added-to-cart-content-wrapper">
+		<div class="added-to-cart-content-button"></div>
+		<div class="added-to-cart-wrapper">
+			<div class="added-to-cart-content">
+				<div class="message">This item has been added to your shopping cart.</div>
+				<div class="actions">
+					<a class="button close"><span>Continue Shopping</span></a>
+					<a class="button" href="<?php echo $this->getBaseUrl(); ?>checkout/cart/"><span>Proceed to Checkout</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- .product-view-single -->
+
+
+
+
+<?php /* ?>
+<?php
+    $_helper = $this->helper('catalog/output');
+    $_product = $this->getProduct();
+?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view">
+    <div class="product-essential">
+    <form action="<?php echo $this->getAddToCartUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+
+        <div class="product-shop">
+            <div class="product-name">
+                <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+            </div>
+
+            <?php if ($this->canEmailToFriend()): ?>
+                <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
+            <?php endif; ?>
+
+            <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+            <?php echo $this->getChildHtml('alert_urls') ?>
+            <?php echo $this->getChildHtml('product_type_data') ?>
+            <?php echo $this->getTierPriceHtml() ?>
+
+            <?php if (!$this->hasOptions()):?>
+                <div class="add-to-box">
+                    <?php if($_product->isSaleable()): ?>
+                        <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                            <span class="or"><?php echo $this->__('OR') ?></span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php echo $this->getChildHtml('addto') ?>
+                </div>
+            <?php else:?>
+                <?php echo $this->getChildHtml('addto') ?>
+            <?php endif; ?>
+
+            <?php if ($_product->getShortDescription()):?>
+                <div class="short-description">
+                    <h2><?php echo $this->__('Quick Overview') ?></h2>
+                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                </div>
+            <?php endif;?>
+
+            <?php echo $this->getChildHtml('other');?>
+
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+            <?php endif;?>
+
+        </div>
+
+        <div class="product-img-box">
+            <?php echo $this->getChildHtml('media') ?>
+        </div>
+
+        <div class="clearer"></div>
+        <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+        <?php endif;?>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+            var productAddToCartForm = new VarienForm('product_addtocart_form');
+            productAddToCartForm.submit = function(){
+                    if (this.validator.validate()) {
+                            this.form.submit();
+                    }
+            }.bind(productAddToCartForm);
+    //]]>
+    </script>
+    </div>
+
+    <div class="product-collateral">
+        <?php echo $this->getChildHtml('info_tabs') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+    </div>
+</div>
+<?php /**/ ?>

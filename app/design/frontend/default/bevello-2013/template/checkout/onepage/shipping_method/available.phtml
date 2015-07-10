@@ -1,0 +1,199 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+//amount to free shipping
+$total = $this->helper('checkout/cart')->getQuote()->getSubtotal();
+if($total < 100) $amountToFree = 100 - $total;
+?>
+<?php if (!($_shippingRateGroups = $this->getShippingRates())): ?>
+    <p><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></p>
+<?php else: ?>
+    <dl class="sp-methods">
+    <?php $shippingCodePrice = array(); ?>
+    <?php $_sole = count($_shippingRateGroups) == 1; foreach ($_shippingRateGroups as $code => $_rates): ?>
+    	
+        <dt><?php echo $this->getCarrierName($code) ?></dt>
+        <dd>
+            <?php if($_rates[0]->getPrice() === 10.00) : ?>
+
+                <?php if($free) { ?>
+                    <div><h2>Free Shipping</h2></div>
+                    <?= $free; ?>
+                <?php } else { ?>
+                    <div><h2>Standard Shipping</h2></div>
+                    <ul>
+                        <?php $_sole = $_sole && count($_rates) == 1; ?>
+                        <?php $shippingCodePrice[] = "'".$_rates[0]->getCode()."':".(float)$_rates[0]->getPrice(); ?>
+                        <li>
+                            <?php if ($_rates[0]->getErrorMessage()): ?>
+                                <ul class="messages"><li class="error-msg"><ul><li><?php echo $_rates[0]->getErrorMessage() ?></li></ul></li></ul>
+                            <?php else: ?>
+                                <?php if ($_sole) : ?>
+                                    <span class="no-display"><input name="shipping_method" type="radio" value="<?php echo $_rates[0]->getCode() ?>" id="s_method_<?php echo $_rates[0]->getCode() ?>" checked="checked" /></span>
+                                <?php else: ?>
+                                <input name="shipping_method" type="radio" value="<?php echo $_rates[0]->getCode() ?>" id="s_method_<?php echo $_rates[0]->getCode() ?>"<?php if($_rates[0]->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> class="radio"/>
+
+                                <?php if ($_rates[0]->getCode() === $this->getAddressShippingMethod()): ?>
+                                    <script type="text/javascript">
+                                        //<![CDATA[
+                                        lastPrice = <?php echo (float)$_rates[0]->getPrice(); ?>;
+                                        //]]>
+                                    </script>
+                                <?php endif; ?>
+
+                                <?php endif; ?>
+                                <label for="s_method_<?php echo $_rates[0]->getCode() ?>"><b>bevello</b> <?php echo $_rates[0]->getMethodTitle() ?>
+                                    <?php $_excl = $this->getShippingPrice($_rates[0]->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+                                    <?php $_incl = $this->getShippingPrice($_rates[0]->getPrice(), true); ?>
+                                    <?php echo $_excl; ?>
+                                    <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                        (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                                    <?php endif; ?>
+                                </label>
+                            <?php endif ?>
+                        </li>
+                    </ul>
+                <?php } ?>
+                <?php unset($_rates[0]); ?>
+                <div><h2>Expedited Shipping</h2></div>
+            <?php endif; ?>
+            <?php //pull freeshipping out at place with standard shipping options  ?>
+            <?php if($this->getCarrierName($code) === 'Free Shipping'): ?>
+				
+				<?php $_sole = $_sole && count($_rates) == 1; foreach ($_rates as $_rate): ?>
+                <?php $shippingCodePrice[] = "'".$_rate->getCode()."':".(float)$_rate->getPrice(); ?>
+                <?php $free = '<ul><li>'; ?>
+                   <?php if ($_rate->getErrorMessage()): ?>
+                    <?php $free .= '<ul class="messages"><li class="error-msg"><ul><li>'.$_rate->getErrorMessage() .'s</li></ul></li></ul>'; ?>
+                   <?php else: ?>
+                        <?php if ($_sole) : ?>
+                            <?php $free .= '<span class="no-display"><input name="shipping_method" type="radio" value="'. $_rate->getCode().'" id="s_method_'.$_rate->getCode() .'" checked="checked" /></span>'; ?>
+                            <?php else: ?>
+                            	<?php if($_rate->getCode()===$this->getAddressShippingMethod()) $checked = ' checked="checked"'; ?>
+								<?php $free .= '<input name="shipping_method" type="radio" value="'.$_rate->getCode().'" id="s_method_'.$_rate->getCode().'" '.$checked.' class="radio"/>'; ?>
+
+                            <?php if ($_rate->getCode() === $this->getAddressShippingMethod()): 
+                                $free .='<script type="text/javascript">
+                                    //<![CDATA[
+                                        lastPrice = '. (float)$_rate->getPrice() .';
+                                    //]]>
+                                </script>';
+                             endif; ?>
+
+                        <?php endif; ?>
+                        <?php $free .= ' <label for="s_method_'.$_rate->getCode().'"><b>bevello</b> '.$_rate->getMethodTitle(); ?>
+                        <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+                        <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
+                        <?php //$free .= ' '.$_excl; ?>
+                        <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                            <?php //$free .= '('. $this->__('Incl. Tax'). $_incl.')'; ?>
+                        <?php endif; ?>
+                        <?php $free .= '</label>'; ?>
+                   <?php endif ?>
+                <?php $free .= '</li></ul>'; ?>
+            <?php endforeach; ?>
+                <?php continue; ?>
+                
+            <?php endif; ?>
+            <ul>
+            <?php $_sole = $_sole && count($_rates) == 1; foreach ($_rates as $_rate): ?>
+                <?php $shippingCodePrice[] = "'".$_rate->getCode()."':".(float)$_rate->getPrice(); ?>
+                <li>
+                   <?php if ($_rate->getErrorMessage()): ?>
+                    <ul class="messages"><li class="error-msg"><ul><li><?php echo $_rate->getErrorMessage() ?></li></ul></li></ul>
+                   <?php else: ?>
+                        <?php if ($_sole) : ?>
+                            <span class="no-display"><input name="shipping_method" type="radio" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>" checked="checked" /></span>
+                            <?php else: ?>
+                            <input name="shipping_method" type="radio" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> class="radio"/>
+
+                            <?php if ($_rate->getCode() === $this->getAddressShippingMethod()): ?>
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                        lastPrice = <?php echo (float)$_rate->getPrice(); ?>;
+                                    //]]>
+                                </script>
+                            <?php endif; ?>
+
+                        <?php endif; ?>
+                        <label for="s_method_<?php echo $_rate->getCode() ?>"><?php echo $_rate->getMethodTitle() ?>
+                        <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+                        <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
+                        <?php echo $_excl; ?>
+                        <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                            (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                        <?php endif; ?>
+                        </label>
+                   <?php endif ?>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </dd>
+    <?php endforeach; ?>
+    </dl>
+    <?php if($amountToFree): ?>
+          <div class="amountToFree">
+  			<ul>
+                <li><img src="<?= $this->getSkinUrl('images/free-shipping1.png'); ?>" /></li>
+                <li class="freeShippingText">You’re only <span style="color:#ec008b">$<?= $amountToFree; ?></span> away to qualify for</li>
+                <li><img src="<?= $this->getSkinUrl('images/free-shipping2.png'); ?>" /></li>
+            </ul>
+          </div>
+          <script type="text/javascript">
+		  	jQuery('.amountToFree').live('click', function() {
+			  window.location.href = '<?= Mage::getBaseUrl(); ?>new-arrivals-1';
+			});
+		  </script>
+    <?php endif; ?>
+<script type="text/javascript">
+//<![CDATA[
+    <?php if (!empty($shippingCodePrice)): ?>
+        var shippingCodePrice = {<?php echo implode(',',$shippingCodePrice); ?>};
+    <?php endif; ?>
+
+    $$('input[type="radio"][name="shipping_method"]').each(function(el){
+        Event.observe(el, 'click', function(){
+            if (el.checked == true) {
+                var getShippingCode = el.getValue();
+                <?php if (!empty($shippingCodePrice)): ?>
+                    var newPrice = shippingCodePrice[getShippingCode];
+                    if (!lastPrice) {
+                        lastPrice = newPrice;
+                        quoteBaseGrandTotal += newPrice;
+                    }
+                    if (newPrice != lastPrice) {
+                        quoteBaseGrandTotal += (newPrice-lastPrice);
+                        lastPrice = newPrice;
+                    }
+                <?php endif; ?>
+                checkQuoteBaseGrandTotal = quoteBaseGrandTotal;
+                return false;
+            }
+       });
+    });
+//]]>
+</script>
+<?php endif; ?>

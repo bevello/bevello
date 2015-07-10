@@ -1,0 +1,170 @@
+<div class="smalldivider"></div>
+
+<div class="homeboxes row" id="twoboxes">
+	<div id="facebookbox" class="hometwobox">
+		<a href="http://www.facebook.com/bevelloboutique" target="_blank"><img src="<?php echo $this->getSkinUrl('images/facebook-large.png'); ?>" alt="facebook-large" width="51" height="51" class="facebookbutton" /></a>
+		<a href="http://www.facebook.com/bevelloboutique" target="_blank"><img src="<?php echo $this->getSkinUrl('images/go-now.png'); ?>" alt="go-now" width="148" height="51" class="gonowbutton" /></a>
+		<span class="homesmalltext">"Like" us on</span></br>
+		<span class="homelargetext">Facebook</span>
+	</div>
+	<div id="emailsignupbox" class="hometwobox">
+		<span class="homesmalltext">Be the first to know about bevello</span><span class="homesmalltextgotham"> offers, events & more</span>
+		<div class="emailsignupbox">
+			<?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+			<!--
+			<form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail">
+				<div class="form-subscribe">
+					<input type="text" name="email" id="newsletter" title="" class="input-text required-entry validate-email homeemail" style="border:none;" value="Email Address" onfocus="this.value==this.defaultValue?this.value='':null" />
+					<input type="image" title="<?php echo $this->__('Submit') ?>" class="emailbutton" src="<?php echo $this->getSkinUrl('images/email-submit-arrow.png'); ?>" />
+				</div>
+			</form>
+			<script type="text/javascript">
+			//<![CDATA[
+			    var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+			    new Varien.searchForm('newsletter-validate-detail', 'newsletter', '<?php /*echo $this->helper('newsletter')->__('Enter your email address')*/ ?>');
+			//]]>
+			</script>
+			-->
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+
+<div class="smalldivider"></div>
+<!--
+<div class="homeboxes row" id="threeboxes">
+	<div class="homethreebox firstfeaturebox">
+		<a href="http://www.bevello.com/new-arrivals-1"><img src="<?php echo $this->getSkinUrl('images/home-box-1.jpg'); ?>" alt="facebook-large" width="310" height="235" /></a>
+	</div>
+	<div class="homethreebox">
+		<a href="http://www.bevello.com/new-arrivals-1"><img src="<?php echo $this->getSkinUrl('images/home-box-2.jpg'); ?>" alt="facebook-large" width="310" height="235" /></a>
+	</div>
+	<div class="homethreebox">
+		<a href="http://www.bevello.com/new-arrivals-1"><img src="<?php echo $this->getSkinUrl('images/home-box-3.jpg'); ?>" alt="facebook-large" width="310" height="235" /></a>
+	</div>
+	<div style="clear:both;"></div>
+</div>
+-->
+<div id="subscribe-dialog">
+    <div class="subscribe-dialog-closer"><a href="#">&times;</a></div>
+	<div class="subscribe-dialog-content">
+		<h1>Join <span>the List</span></h1>
+		<h2><span>Be the first to know</span> about private promotions,  new arrivals, bevello exclusives and more.</h2>
+		<form action="/subscribe.php" method="post">
+			<input type="hidden" name="id" value="Main" />
+			<label for="mce-FNAME">
+				First Name
+				<input id="mce-FNAME" name="FNAME" type="text" />
+			</label>
+			<label for="mce-LNAME">
+				Last Name
+				<input id="mce-LNAME" name="LNAME" type="text" />
+			</label>
+			<label for="mce-EMAIL">
+				Email
+				<input id="mce-EMAIL" name="EMAIL" type="text" />
+			</label>
+			<label for="mce-CONFIRM">
+				Confirm Email
+				<input id="mce-CONFIRM" type="text" />
+			</label>
+			<div class="subscribe-dialog-control-group">
+				<label for="mce-STATE">
+					State
+					<select id="mce-STATE" name="STATE">
+						<option value="AL">AL</option>
+						<option value="AK">AK</option>
+						<option value="AZ">AZ</option>
+						<option value="AR">AR</option>
+						<option value="CA">CA</option>
+						<option value="CO">CO</option>
+						<option value="CT">CT</option>
+						<option value="DE">DE</option>
+						<option value="DC">DC</option>
+						<option value="FL">FL</option>
+						<option value="GA">GE</option>
+						<option value="HI">HI</option>
+						<option value="ID">ID</option>
+						<option value="IL">IL</option>
+						<option value="IN">IN</option>
+						<option value="IA">IA</option>
+						<option value="KS">KS</option>
+						<option value="KY">KY</option>
+						<option value="LA">LA</option>
+						<option value="ME">ME</option>
+						<option value="MD">MD</option>
+						<option value="MA">MA</option>
+						<option value="MI">MI</option>
+						<option value="MN">MN</option>
+						<option value="MS">MS</option>
+						<option value="MO">MO</option>
+						<option value="MT">MT</option>
+						<option value="NE">NE</option>
+						<option value="NV">NV</option>
+						<option value="NH">NH</option>
+						<option value="NJ">NJ</option>
+						<option value="NM">NM</option>
+						<option value="NY">NY</option>
+						<option value="NC">NC</option>
+						<option value="ND">ND</option>
+						<option value="OH">OH</option>
+						<option value="OK">OK</option>
+						<option value="OR">OR</option>
+						<option value="PA">PA</option>
+						<option value="RI">RI</option>
+						<option value="SC">SC</option>
+						<option value="SD">SD</option>
+						<option value="TN">TN</option>
+						<option value="TX">TX</option>
+						<option value="UT">UT</option>
+						<option value="VT">VT</option>
+						<option value="VA">VA</option>
+						<option value="WA">WA</option>
+						<option value="WV">WV</option>
+						<option value="WI">WI</option>
+						<option value="WY">WY</option>
+					</select>
+				</label>
+				<label for="mce-POSTAL">
+					ZIP Code
+					<input id="mce-POSTAL" name="POSTAL" type="text" />
+				</label>
+			</div>
+			<label for="mce-BIRTHMONTH">Birthday <em>(We like to give surprises!)</em>
+				<select id="mce-BIRTHMONTH">
+					<option value="01">January</option>
+					<option value="02">February</option>
+					<option value="03">March</option>
+					<option value="04">April</option>
+					<option value="05">May</option>
+					<option value="06">June</option>
+					<option value="07">July</option>
+					<option value="08">August</option>
+					<option value="09">September</option>
+					<option value="10">October</option>
+					<option value="11">November</option>
+					<option value="12">December</option>
+				</select>
+				<input id="mce-BIRTHDAY" type="number" min="1" max="31" />
+				<input type="hidden" name="BIRTHDAY" value="" id="mce-REAL-BIRTHDAY" />
+			</label>
+            <div class="subscribe-dialog-control-group subscribe-dialog-disclaimer">
+                <div class="subscribe-dialog-disclaimer-text">
+                    I have read and agree to the Terms & Conditions described above and agree to receive email
+                    communications as per our <a href="/privacy-security">Privacy Policy</a>.
+                </div>
+                <div class="subscribe-dialog-disclaimer-checkbox-container">
+                    <input type="checkbox" class="subscribe-dialog-disclaimer-checkbox" checked="checked">
+                </div>
+            </div>
+			<input id="mce-SUBMIT" value="Submit ▸" type="submit" />
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+	(function($){
+		$('#subscribe-dialog').appendTo($('body').first()).subscribePopup({id: 'Main'});
+	})(jQuery);
+</script>
+

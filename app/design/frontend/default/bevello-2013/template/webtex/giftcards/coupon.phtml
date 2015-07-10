@@ -1,0 +1,46 @@
+<?php $oGiftCardSession = Mage::getSingleton('giftcards/session'); ?>
+
+<!--<div class="discount">-->
+<!--    <h2><?php echo $this->__('Gift Cards'); ?></h2>-->
+
+<!--    <div class="discount-form">-->
+        <form method="post" action="<?php echo $this->getUrl('giftcards/cart/activateGiftCard'); ?>" id="activateGiftCard">
+            <div class="title"><?php echo $this->__('Gift Cards'); ?></div>
+            <div><?php echo $this->__('Redeem and use your Gift Card now'); ?></div>
+            <input value="" name="giftcard_code" id="giftcard_code" class="input-text">
+            <span class="button-set">
+                <a value="<?php echo $this->__('Activate') ?>" onclick="giftCardForm.submit(true)" class="button coupon-add" title="Redeem" type="button">
+                    <span><?php echo $this->__('Redeem') ?></span>
+                </a>
+            </span>
+
+            <?php $currencySymbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); $temp = 0; ?>
+            <?php if($oGiftCardSession->getActive()) {
+                echo '<br />';
+                foreach($oGiftCardSession->getFrontOptions() as $k => $v)
+                {
+                    if($temp) {
+                        echo '<br/><br/>';
+                    }
+                    echo '<b>'.$currencySymbol.$v['applied'].' '.$this->__('applied from Gift Card').' **********'.$v['code'].'.</b><br/>';
+                    echo $this->__('Remaining card balance').': '.$currencySymbol.$v['remaining'].'. ( <a href="'.$this->getUrl("giftcards/cart/deActivateGiftCard/id/$k").'">'.$this->__('Remove').'</a> )';
+                    $temp = 1;
+                }
+            }
+            ?>
+        </form>
+
+<!--    </div>-->
+    <script type="text/javascript">
+        //&lt;![CDATA[
+        var deActivateGiftCardForm = new VarienForm('deActivateGiftCard');
+        var giftCardForm = new VarienForm('activateGiftCard');
+        //]]&gt;
+    </script>
+
+<!--</div>-->
+<?php /* ?>
+<button value="<?php echo $this->__('Activate') ?>" onclick="giftCardForm.submit(true)" class="button coupon-add"
+        title="Activate" type="button"><span><span><?php echo $this->__('Activate') ?></span></span>
+</button>
+<?php */ ?>

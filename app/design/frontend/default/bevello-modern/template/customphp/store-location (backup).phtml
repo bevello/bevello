@@ -1,0 +1,485 @@
+<?php
+$location = array(
+	'nc-chapel-hill-franklin-st' => array(
+		'name' => 'bevello at Chapel Hill',
+		'img' => 'nc-chapel-hill-franklin-st',
+		'address' => '142 E. Franklin St.',
+		'city' => 'Chapel Hill',
+		'state' => 'NC',
+		'zip' => '27514',
+		'phone' => '(919) 960-5171',
+		'email' => 'chapelhill@bevello.com',
+		'hours' => array(
+			'Monday - Thursday' => '10am - 7pm',
+			'Friday - Saturday' => '10am - 8pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'nc/chapel-hill/franklin-st',
+		'dropdown-text' => 'NC - Chapel Hill - Franklin Street'
+	),
+	'tx-san-antonio-quarry-village' => array(
+		'name' => 'bevello at Quarry Village',
+		'img' => 'tx-houston-river-oaks',
+		'address' => '330 E. Basse Rd. Suite 110',
+		'city' => 'San Antonio',
+		'state' => 'TX',
+		'zip' => '78209',
+		'phone' => '(210) 334-0320',
+		'email' => 'quarry@bevello.com',
+		'hours' => array(
+			'Monday - Thursday' => '10am - 7pm',
+			'Friday - Saturday' => '10am - 8pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'tx-san-antonio-quarry-village',
+		'dropdown-text' => 'TX - San Antonio - E. Basse Rd.'
+	),
+	'tx-plano-legacy' => array(
+		'name' => 'bevello at Legacy',
+		'img' => 'tx-houston-river-oaks',
+		'address' => '5741 Legacy Drive',
+		'city' => 'Plano',
+		'state' => 'TX',
+		'zip' => '75024',
+		'phone' => '(972) 473-7850',
+		'email' => 'legacy@bevello.com',
+		'hours' => array(
+			'Monday - Thursday' => '10am - 7pm',
+			'Friday - Saturday' => '10am - 8pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'tx-plano-legacy',
+		'dropdown-text' => 'TX - Plano - Legacy Drive'
+	),
+	'al-tuscaloosa-midtown-village' => array(
+		'name' => 'bevello at Midtown Village',
+		'img' => 'tx-houston-river-oaks',
+		'address' => '1800 McFarland Blvd. East. Suite 110',
+		'city' => 'Tuscaloosa',
+		'state' => 'AL',
+		'zip' => '35404',
+		'phone' => '(919) 829-5343',
+		'email' => 'midtown@bevello.com',
+		'hours' => array(
+			'Monday - Thursday' => '10am - 7pm',
+			'Friday - Saturday' => '10am - 8pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'al-tuscaloosa-midtown-village',
+		'dropdown-text' => 'AL - Tuscaloosa - McFardland Blvd.'
+	),
+	'nc-charlotte-blakeney' => array(
+		'name' => 'bevello at Blakeney',
+		'img' => 'nc-charlotte-blakeney',
+		'address' => '9830 Rea Rd.',
+		'city' => 'Charlotte',
+		'state' => 'NC',
+		'zip' => '28277',
+		'phone' => '(704) 542-0504',
+		'email' => 'blakeney@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 7pm',
+			'Sunday' => '1pm - 5pm'
+		),
+		'dropdown-url' => 'nc/charlotte/blakeney',
+		'dropdown-text' => 'NC - Charlotte - Blakeney'
+	),
+	'nc-charlotte-phillips-place' => array(
+		'name' => 'bevello at Phillips Place',
+		'img' => 'nc-charlotte-phillips-place',
+		'address' => '6815C Phillips Place Ct.',
+		'city' => 'Charlotte',
+		'state' => 'NC',
+		'zip' => '28210',
+		'phone' => '(704) 643-5551',
+		'email' => 'phillipsplace@bevello.com',
+		'hours' => array(
+			'Monday - Thursday' => '10am - 7pm',
+			'Friday - Saturday' => '10am - 8pm',
+			'Sunday' => '1pm - 6pm'
+		),
+		'dropdown-url' => 'nc/charlotte/phillips-place',
+		'dropdown-text' => 'NC - Charlotte - Phillips Place'
+	),
+	'nc-greenville-arlington-village' => array(
+		'name' => 'bevello at Arlington Village',
+		'img' => 'nc-greenville-arlington-village',
+		'address' => '627 Red Banks Rd.',
+		'city' => 'Greenville',
+		'state' => 'NC',
+		'zip' => '27858',
+		'phone' => '(252) 756-3090',
+		'email' => 'arlington@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 6pm',
+			'Sunday' => '1pm - 5pm'
+		),
+		'dropdown-url' => 'nc/greenville/arlington-village',
+		'dropdown-text' => 'NC - Greenville - Arlington Village'
+	),
+	'nc-huntersville-birkdale-village' => array(
+		'name' => 'bevello at Birkdale Village',
+		'img' => 'nc-huntersville-birkdale-village',
+		'address' => '16805 Birkdale Commons Pkwy. Suite B.',
+		'city' => 'Huntersville',
+		'state' => 'NC',
+		'zip' => '28078',
+		'phone' => '(704) 896-1329',
+		'email' => 'birkdale@bevello.com',
+		'hours' => array(
+			'Monday - Thursday' => '10am - 7pm',
+			'Friday - Saturday' => '10am - 8pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'nc/huntersville/birkdale-village',
+		'dropdown-text' => 'NC - Huntersville - Birkdale Village'
+	),	
+	'nc-raleigh-cameron-village' => array(
+		'name' => 'bevello at Cameron Village',
+		'img' => 'nc-raleigh-cameron-village',
+		'address' => '2010 Cameron St.',
+		'city' => 'Raleigh',
+		'state' => 'NC',
+		'zip' => '27605',
+		'phone' => '(919) 821-0884',
+		'email' => 'cameron@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 7pm',
+			'Sunday' => '1pm - 5pm'
+		),
+		'dropdown-url' => 'nc/raleigh/cameron-village',
+		'dropdown-text' => 'NC - Raleigh - Cameron Village'
+	),
+	'nc-raleigh-crabtree-valley-mall' => array(
+		'name' => 'bevello at Crabtree Valley Mall',
+		'img' => 'nc-raleigh-crabtree',
+		'address' => '4325 Glenwood Ave., #2084B',
+		'city' => 'Raleigh',
+		'state' => 'NC',
+		'zip' => '27612',
+		'phone' => '(919) 785-2898',
+		'email' => 'crabtree@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 9pm',
+			'Sunday' => '12pm - 7pm'
+		),
+		'dropdown-url' => 'nc/raleigh/crabtree-valley-mall',
+		'dropdown-text' => 'NC - Raleigh - Crabtree Valley Mall'
+	),
+	'nc-wilmington-mayfaire-town-center' => array(
+		'name' => 'bevello at Mayfaire Town Center',
+		'img' => 'nc-wilmington-mayfaire',
+		'address' => '876 Inspiration Dr.',
+		'city' => 'Wilmington',
+		'state' => 'NC',
+		'zip' => '28405',
+		'phone' => '(910) 256-6664',
+		'email' => 'wilmington@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 9pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'nc/wilmington/mayfaire-town-center',
+		'dropdown-text' => 'NC - Wilmington - Mayfaire Town Center'
+	),
+	'nc-winston-salem-thruway' => array(
+		'name' => 'bevello at Thruway',
+		'img' => 'nc-winston-salem-thruway',
+		'address' => '416 S. Stratford Rd., Suite 400',
+		'city' => 'Winston-Salem',
+		'state' => 'NC',
+		'zip' => '27103',
+		'phone' => '(336) 722-6470',
+		'email' => 'thruway@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 7pm',
+			'Sunday' => '1pm - 6pm'
+		),
+		'dropdown-url' => 'nc/winston-salem/thruway',
+		'dropdown-text' => 'NC - Winston-Salem - Thruway'
+	),
+	'tx-houston-river-oaks' => array(
+		'name' => 'bevello at River Oaks',
+		'img' => 'tx-houston-river-oaks',
+		'address' => '2019 W. Gray St.',
+		'city' => 'Houston',
+		'state' => 'TX',
+		'zip' => '77019',
+		'phone' => '(713) 360-6442',
+		'email' => 'riveroaks@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 7pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'tx/houston/river-oaks',
+		'dropdown-text' => 'TX - Houston - River Oaks'
+			),
+	'tx-dallas-snider-plaza' => array(
+		'name' => 'bevello at Snider Plaza',
+		'img' => 'tx-houston-river-oaks',
+		'address' => '6818 Snider Plaza',
+		'city' => 'Dallas',
+		'state' => 'TX',
+		'zip' => '75205',
+		'phone' => '(469) 759-6470',
+		'email' => 'snider@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 7pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'tx/dallas/snider-plaza',
+		'dropdown-text' => 'TX - Dallas - Snider Plaza'
+	),
+	'va-charlottesville-barracks-road' => array(
+		'name' => 'bevello at Barracks Road',
+		'img' => 'va-charlottesville-barracks-road',
+		'address' => '1107A Emmet St.',
+		'city' => 'North Charlottesville',
+		'state' => 'VA',
+		'zip' => '22903',
+		'phone' => '(434) 244-0811',
+		'email' => 'charlottesville@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 7pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'va/charlottesville/barracks-road',
+		'dropdown-text' => 'VA - North Charlottesville - Barracks Road'
+	),
+	'va-richmond-short-pump' => array(
+		'name' => 'bevello at Short Pump',
+		'img' => 'va-richmond-short-pump',
+		'address' => '11800 W. Broad St., Suite 1502',
+		'city' => 'Richmond',
+		'state' => 'VA',
+		'zip' => '23233',
+		'phone' => '(804) 364-3442',
+		'email' => 'shortpump@bevello.com',
+		'hours' => array(
+			'Monday - Saturday' => '10am - 9pm',
+			'Sunday' => '12pm - 6pm'
+		),
+		'dropdown-url' => 'va/richmond/short-pump',
+		'dropdown-text' => 'VA - Richmond - Short Pump'
+	),
+	'va-virginia-beach-town-center-of-va-beach' => array(
+		'name' => 'bevello at Town Center of Virginia Beach',
+		'img' => 'va-virginia-beach-town-center',
+		'address' => '172 Central Park Ave.',
+		'city' => 'Virginia Beach',
+		'state' => 'VA',
+		'zip' => '23462',
+		'phone' => '(757) 321-2879',
+		'email' => 'virginiabeach@bevello.com',
+		'hours' => array(
+			'Monday - Thursday' => '10am - 7pm',
+			'Friday - Saturday' => '10am - 8pm',
+			'Sunday' => '1pm - 6pm'
+		),
+		'dropdown-url' => 'va/virginia-beach/town-center-of-va-beach',
+		'dropdown-text' => 'VA - Virginia Beach - Town Center of Virginia Beach'
+	)
+);
+
+// Retrieve the URL from the global server variable and prep it for conversion into a location key.
+// We will then use this location key to retrieve the appropriate store information.
+$uri = $_SERVER['REQUEST_URI'];
+$qstring = $_SERVER['QUERY_STRING'];
+if(!empty($qstring)) { $uri = str_replace(('?'.$qstring), '', $uri); }
+$uri = str_replace('/store-locations', '', $uri);
+$uri = trim($uri, '/');
+$location_key = str_replace('/', '-', $uri);
+$loc = $location[$location_key];
+
+// Determine if this is an actual store profile or not
+$is_store_profile = array_key_exists($location_key, $location) ? true : false;
+?>
+
+<div class="cms-store-profile">
+	<script type="text/javascript" language="javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" language="javascript">
+		jQuery(document).ready(function($) {
+			// Hide the store locations dropdown upon clicking anywhere outside of the dropdown
+			$(document).click(function(e) { 
+				if($(e.target).parents().index($('.dropdown')) == -1) {
+					if($('.store-utility-bar .dropdown .options').is(':visible')) {
+						$('.store-utility-bar .dropdown .options').hide();
+					}
+				}        
+			});
+			// Show/Hide the store locations dropdown upon clicking the menu item
+			$('.store-utility-bar .dropdown .field').click(function(e) {
+				if($('.store-utility-bar .dropdown .options').is(':visible')) {
+					$('.store-utility-bar .dropdown .options').hide();
+				} else {
+					$('.store-utility-bar .dropdown .options').show();
+				}
+				e.stopPropagation();
+			});
+			// Redirect the user to the appropriate store profile page upon clicking on a location from the store dropdown menu
+			$('.store-utility-bar .dropdown .options li').click(function() {
+				var loc_url = $(this).attr('locurl');
+				var loc_name = $(this).html();
+				$('.store-utility-bar .dropdown .field .content').html(loc_name);
+				$('.store-utility-bar .dropdown .options').hide();
+				window.location = 'http://www.bevello.com/store-locations/'+loc_url
+			});
+			
+			<?php if($is_store_profile) { ?>
+			// Initialize the Google Map
+			initialize();
+			<?php } ?>
+		});
+		<?php if($is_store_profile) { ?>
+		// Google Maps Integration
+		var geocoder;
+		var map;
+		var query = "<?php echo $loc['address']; ?>, <?php echo $loc['city']; ?>, <?php echo $loc['state']; ?> <?php echo $loc['zip']; ?>";
+		function initialize() {
+			geocoder = new google.maps.Geocoder();
+			var myOptions = {
+				zoom: 14,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+			codeAddress();
+		}
+		function codeAddress() {
+			var address = query;
+			geocoder.geocode( { 'address': address}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+					var marker = new google.maps.Marker({
+						map: map, 
+						position: results[0].geometry.location
+					});
+				} else {
+					alert("Geocode was not successful for the following reason: " + status);
+				}
+			});
+		}
+		<?php } ?>
+	</script>
+	<div class="store-utility-bar">
+		<h1 class="slanted">Bevello Store Locations</h1>
+		<div class="dropdown">
+			<div class="field"><span class="content">find a bevello location near you</span><span class="icon"></span></div>
+			<div class="options">
+				<ul>
+				<?php
+				foreach($location as $l) {
+					echo '<li locurl="'.$l['dropdown-url'].'">'.$l['dropdown-text'].'</li>';
+				}
+				?>
+				</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+	<?php if($is_store_profile) { ?>
+		<div class="map-wrapper"><div id="map_canvas"></div></div>
+		<div class="details">
+			<?php if(!empty($loc['img'])) { ?>
+			<img class="store-image" src="<?php echo $this->getSkinUrl('images/'); ?>media/store-locations/<?php echo $loc['img']; ?>.jpg" alt="<?php echo $loc['name']; ?>" border="0" />
+			<?php } ?>
+			<div class="store-name"><?php echo $loc['name']; ?></div>
+			<div class="address"><?php echo $loc['address']; ?><br/><?php echo $loc['city']; ?>, <?php echo $loc['state']; ?> <?php echo $loc['zip']; ?></div>
+			<div class="additional-info">
+				<span class="label">Phone</span>:&nbsp; <?php echo $loc['phone']; ?><br/>
+				<span class="label">Email</span>:&nbsp; <a href="mailto:<?php echo $loc['email']; ?>"><?php echo $loc['email']; ?></a><br/>
+				<br/>
+				<?php
+				if(!empty($loc['hours'])) {
+					echo '<span class="label">Hours:</span><br/>'."\n";
+					foreach($loc['hours'] as $day => $time) {
+						echo $day.':&nbsp;&nbsp; '.$time.'<br/>'."\n";
+					}
+				}
+				?>
+			</div>
+		</div>
+		<div class="clear"></div>
+	<?php } else { ?>
+		<div class="all-locations">
+			<div class="state">
+				<div class="name slanted">North Carolina</div>
+				<ul class="first">
+					<li class="city">Chapel Hill</li>
+					<li><a href="/store-locations/nc/chapel-hill/franklin-st">Franklin Street</a></li>
+				</ul>
+				<ul>
+					<li class="city">Charlotte</li>
+					<li><a href="/store-locations/nc/charlotte/blakeney">Blakeney</a></li>
+					<li><a href="/store-locations/nc/charlotte/phillips-place">Phillips Place</a></li>
+				</ul>
+				<ul>
+					<li class="city">Greenville</li>
+					<li><a href="/store-locations/nc/greenville/arlington-village">Arlington Village</a></li>
+				</ul>
+				<ul>
+					<li class="city">Huntersville</li>
+					<li><a href="/store-locations/nc/huntersville/birkdale-village">Birkdale Village</a></li>
+				</ul>
+				<ul>
+					<li class="city">Raleigh</li>
+					<li><a href="/store-locations/nc/raleigh/cameron-village">Cameron Village</a></li>
+					<li><a href="/store-locations/nc/raleigh/crabtree-valley-mall">Crabtree Valley Mall</a></li>
+				</ul>
+				<ul>
+					<li class="city">Wilmington</li>
+					<li><a href="/store-locations/nc/wilmington/mayfaire-town-center">Mayfaire Town Center</a></li>
+				</ul>
+				<ul class="last">
+					<li class="city">Winston-Salem</li>
+					<li><a href="/store-locations/nc/winston-salem/thruway">Thruway</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="state">
+				<div class="name slanted">Texas</div>
+				<ul class="first">
+					<li class="city">Houston</li>
+					<li><a href="/store-locations/tx/houston/river-oaks">River Oaks</a></li>
+				</ul>
+                <ul>
+					<li class="city">Dallas</li>
+					<li><a href="/store-locations/tx/dallas/snider-plaza">Snider Plaza</a></li>
+				</ul>
+                <ul>
+					<li class="city">Plano</li>
+					<li><a href="/store-locations/tx/plano/legacy">Legacy Drive</a></li>
+				</ul>
+                	<ul class="last">
+					<li class="city">San Antonio</li>
+					<li><a href="/store-locations/tx/san-antonio/quarry-village">Quarry Village</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="state">
+				<div class="name slanted">Virginia</div>
+				<ul class="first">
+					<li class="city">Charlottesville</li>
+					<li><a href="/store-locations/va/charlottesville/barracks-road">Barracks Road</a></li>
+				</ul>
+				<ul>
+					<li class="city">Richmond</li>
+					<li><a href="/store-locations/va/richmond/short-pump">Short Pump</a></li>
+				</ul>
+				<ul class="last">
+					<li class="city">Virginia Beach</li>
+					<li><a href="/store-locations/va/virginia-beach/town-center-of-va-beach">Town Center of Virginia Beach</a></li>
+				</ul>
+				<div class="clear"></div>
+                <div class="state">
+				<div class="name slanted">Alabama</div>
+                	<ul class="first">
+					<li class="city">Tuscaloosa</li>
+					<li><a href="/store-locations/al/tuscaloosa/midtown-village">Midtown Village</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</div>
+	<?php } ?>
+
+</div>

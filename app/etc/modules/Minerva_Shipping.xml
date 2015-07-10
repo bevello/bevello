@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Minerva_Shipping>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Minerva_Shipping>
+    </modules>
+</config> 

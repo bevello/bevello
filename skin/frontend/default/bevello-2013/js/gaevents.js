@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
         ga('send', 'event', 'footer-ad', 'click', text);
     });
     $('#searchButton').live('click', function() {
-        ga('send', 'event', 'search', 'click', 'search');
+        ga('send', 'event', 'header', 'click', 'search');
     });
 
     $('#search').on('keydown', function(e){
@@ -32,9 +32,6 @@ jQuery(document).ready(function($) {
             $('#search_mini_form').submit();
             return false;
 
-            //track the search terms (added due to search friendly urls on search, no query string)
-            //var term = $('#search').val();
-            //ga('send', 'pageview', '/catalogsearch/result/?q=' + term);
         }
     });
 

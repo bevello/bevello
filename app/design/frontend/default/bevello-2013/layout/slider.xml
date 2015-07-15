@@ -3,6 +3,10 @@
     <slider_index_index>
         <reference name="content">
             <block type="core/template" name="slider" template="bevello/slider.phtml" />
+
+            <block type="core/template" name="footerads" template="bevello/footerads.phtml" />
         </reference>
     </slider_index_index>
+
+
 </layout>

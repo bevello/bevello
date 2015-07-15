@@ -28,7 +28,7 @@
     <div class="structure cap-left"></div>
 	<div class="structure middle">
         <input id="search" type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogsearch')->getEscapedQueryText() ?>" class="input-text" />
-		<input type="submit" class="button" value="Search" />
+		<input type="submit" class="button" id="searchButton" value="Search" />
         <?php /*<button type="submit" title="<?php echo $this->__('Go') ?>" class="button"><span><span><?php echo $this->__('Go') ?></span></span></button>*/ ?>
         <div id="search_autocomplete" class="search-autocomplete"></div>
         <script type="text/javascript">

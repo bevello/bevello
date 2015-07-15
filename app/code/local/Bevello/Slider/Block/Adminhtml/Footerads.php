@@ -7,6 +7,7 @@
  */
 class Bevello_Slider_Block_Adminhtml_Footerads extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
+
     public function __construct()
 {
     $this->_controller = 'adminhtml_footerads';
@@ -25,4 +26,5 @@ class Bevello_Slider_Block_Adminhtml_Footerads extends Mage_Adminhtml_Block_Widg
     //Remove original add button
     $this->_removeButton('add');
 }
+
 }

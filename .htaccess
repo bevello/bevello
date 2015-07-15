@@ -1,13 +1,3 @@
-##########################
-##password protect dev site
-
-AuthUserFile /home/26823-17814.cloudwaysapps.com/edtpkhsseq/tmp/.htpasswd
-AuthType Basic
-AuthName "Bevello Dev Site"
-Require valid-user
-
-#########################
-
 
 ############################################
 ## uncomment these lines for CGI mode
@@ -44,7 +34,9 @@ Require valid-user
 
 #    php_value memory_limit 64M
     php_value memory_limit 256M
-    php_value max_execution_time 18000
+
+    php_value max_execution_time 28000
+
 
 ############################################
 ## disable magic quotes for php request vars
@@ -270,5 +262,4 @@ Redirect 301 /catalog/seo_sitemap/product http://www.bevello.com/
 Redirect 301 /privacy-policy/ http://www.bevello.com/privacy-security
 Redirect 301 /privacy-policy http://www.bevello.com/privacy-security
 ## 301 Redirects - Other Pages
-
 

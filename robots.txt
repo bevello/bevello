@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+User-agent: *
+Disallow: /admin/
+Disallow: /index.php/admin/
+Disallow: checkout/cart/
+Disallow: checkout/onepage/
+=======
     # Google Image Crawler Setup
     User-agent: Googlebot-Image
     Disallow:
@@ -64,3 +71,4 @@
     Disallow: /email_graphics/
   
     Sitemap: http://www.bevello.com/sitemap/sitemap.xml
+>>>>>>> dev

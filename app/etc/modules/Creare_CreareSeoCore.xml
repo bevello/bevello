@@ -1,9 +1,0 @@
-<config>
-    <modules>
-        <Creare_CreareSeoCore>
-            <active>false</active>
-            <codePool>community</codePool>
-	     	<version>1.0.0</version>
-        </Creare_CreareSeoCore>
-    </modules>
-</config>

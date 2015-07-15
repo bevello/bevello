@@ -1,3 +1,4 @@
+
 ############################################
 ## uncomment these lines for CGI mode
 ## make sure to specify the correct cgi php binary file name
@@ -33,7 +34,9 @@
 
 #    php_value memory_limit 64M
     php_value memory_limit 256M
+
     php_value max_execution_time 28000
+
 
 ############################################
 ## disable magic quotes for php request vars
@@ -259,3 +262,4 @@ Redirect 301 /catalog/seo_sitemap/product http://www.bevello.com/
 Redirect 301 /privacy-policy/ http://www.bevello.com/privacy-security
 Redirect 301 /privacy-policy http://www.bevello.com/privacy-security
 ## 301 Redirects - Other Pages
+

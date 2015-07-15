@@ -20,14 +20,17 @@ jQuery(document).ready(function($) {
         ga('send', 'event', 'footer-ad', 'click', text);
     });
     $('#search_mini_form .button').live('click', function() {
-
         ga('send', 'event', 'search', 'click', 'search');
     });
 
     $('#search').on('keydown', function(e){
-        if (e.which == 13) {
+        if (e.which === 13) {
+
             //if enter key is pressed
             ga('send', 'event', 'header', 'click', 'search');
+
+            $('#search_mini_form').submit();
+            return false;
 
             //track the search terms (added due to search friendly urls on search, no query string)
             //var term = $('#search').val();

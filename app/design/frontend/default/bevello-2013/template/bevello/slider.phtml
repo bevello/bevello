@@ -75,7 +75,9 @@ jQuery(document).ready(function($) {
             foreach ($collection as $item) {
 				if ($item->getStatus() == 1) {
 					?>
+
 					<li><a href="<?= $item->getLink(); ?>" eventLabel="<?= $item->getData('event_label'); ?>"><img src="/media/<?= $item->getImage(); ?>"
+
 																alt="<?= $item->getAlt(); ?>" border="0" height="525"
 																width="960"/></a></li>
 				<?php

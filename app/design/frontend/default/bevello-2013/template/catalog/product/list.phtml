@@ -169,15 +169,14 @@ function addMediaGalleryAttributeToCollection(Mage_Catalog_Model_Resource_Produc
                 }
 				// Display a single image or an image slider, depending on how many images are in the gallery
 				if($this_product_count <= 1) {
-					//echo '<div class="img"><a href="'.$_product->getProductUrl().'"><img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" /></a><div></div>';
-                    echo '<div class="img"><a href="'.$_product->getProductUrl().'"><img class="lazy" src="'.$this->getSkinUrl("images/mgt_lazy_image_loader/loader.gif").'" data-src="'.$this->helper("catalog/image")->init($_product, "small_image")->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200, null).'" width="200" alt="'.$this->htmlEscape($_product->getName()).'" /></a><div></div>';
+
+					echo '<div class="img"><a href="'.$_product->getProductUrl().'"><img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" /></a><div></div>';
                 } else {
 					echo '<div class="img multiple"><a href="'.$_product->getProductUrl().'">';
 					echo '<span class="img-slider">';
-					//echo '<img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" />';
-                    echo '<img class="lazy" src="'.$this->getSkinUrl("images/mgt_lazy_image_loader/loader.gif").'" data-src="'.$this->helper("catalog/image")->init($_product, "small_image")->resize(200, null)->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false).'" width="200" alt="'.$this->htmlEscape($_product->getName()).'" />';
-                    //echo '<img src="'.$this->helper('catalog/image')->init($_product, 'image', $this_product_image_last->getFile())->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" />';
-                    echo '<img class="lazy" src="'.$this->getSkinUrl("images/mgt_lazy_image_loader/loader.gif").'" data-src="'.$this->helper('catalog/image')->init($_product, 'image', $this_product_image_last->getFile())->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null)->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false).'" width="200" alt="'.$this->htmlEscape($_product->getName()).'" />';
+					echo '<img src="'.$this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" />';
+                    echo '<img src="'.$this->helper('catalog/image')->init($_product, 'image', $this_product_image_last->getFile())->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)->resize(200,null).'" alt="'.$this->htmlEscape($_product->getName()).'" border="0" width="200" />';
+
                     echo '</span>';
 					echo '</a>';
 					echo '<div class="img-slider-controller">+</div>';

@@ -677,7 +677,7 @@ tr.tax-details-first td { border-top:1px solid #d2d8db; }
 .price-box-bundle { padding:0 0 10px 0; }
 .price-box-bundle .price-box { margin:0 !important; padding:0 !important; }
 .price-box-bundle .price { color:#222; }
-f/********** Product Prices > */
+/********** Product Prices > */
 
 /* Tier Prices */
 .tier-prices { margin:10px 0; padding:10px; background:#f4f9ea; border:1px solid #ddd; }
@@ -868,6 +868,42 @@ f/********** Product Prices > */
 .tags-list li { display:inline !important; margin:0 4px 0 0; }
 .tags-list li a { color:#1b2d3b; }
 
+#search_autocomplete {
+    z-index:1000;
+    background-color: white;
+    min-width: 238px;
+    width: auto !important;
+
+}
+#search_autocomplete ul {
+    padding:0px;
+}
+
+#search_autocomplete li {
+    list-style: outside none none;
+    padding: 5px 5px 5px 15px;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+#search_autocomplete .odd {
+    background-color: #FFF5FA;
+}
+
+#search_autocomplete a {
+    text-decoration: none;
+}
+
+#search_autocomplete a:hover {
+    color:#f06eaa;
+    text-decoration: underline;
+}
+
+
+#search_autocomplete .amount {
+    font-size: 11px;
+}
+
 /* Advanced Search */
 .advanced-search .form-list label { width:160px; padding-right:10px; }
 .advanced-search .form-list .input-box,
@@ -1010,7 +1046,7 @@ f/********** Product Prices > */
 }
 
 
- 
+
 
 .please-wait { float:right; }
 .please-wait img { vertical-align:middle; }

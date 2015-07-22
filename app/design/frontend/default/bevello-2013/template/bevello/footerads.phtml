@@ -20,7 +20,9 @@
 						<?php
 				}*/
 				?>
-				<li class="footerSlider"><a href="<?= $item->getLink(); ?>"><img src="/media/<?= $item->getImage(); ?>"
+
+				<li class="footerSlider"><a href="<?= $item->getLink(); ?>" eventLabel="<?= $item->getData('event_label'); ?>"><img src="/media/<?= $item->getImage(); ?>"
+
 																			 alt="<?= $item->getAlt(); ?>"/></a></li>
 				<?php
 			}

@@ -1486,3 +1486,6 @@ tr.tax-details-first td { border-top:1px solid #d2d8db; }
 
 }
 
+.events-content img {
+    width: 100%;
+}

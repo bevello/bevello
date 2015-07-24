@@ -7,17 +7,17 @@ jQuery(document).ready(function($) {
     //nav clicks
     $('#nav a').live('click', function() {
         var txt = $("span", this).text();
-        ga('send', 'event', 'nav', 'click', text);
+        ga('send', 'event', 'nav', 'click', txt);
     });
     //hero slider clicks
     $('.featured-image a').live('click', function() {
         var txt = $(this).attr('eventlabel');
-        ga('send', 'event', 'hero-slider', 'click', text);
+        ga('send', 'event', 'hero-slider', 'click', txt);
     });
     //footer ads clicks
     $('.footerSlider a').live('click', function() {
         var txt = $(this).attr('eventlabel');
-        ga('send', 'event', 'footer-ad', 'click', text);
+        ga('send', 'event', 'footer-ad', 'click', txt);
     });
     $('#searchButton').live('click', function() {
         ga('send', 'event', 'header', 'click', 'search');
